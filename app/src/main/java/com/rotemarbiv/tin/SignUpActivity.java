@@ -70,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
                     User newUser = new User(fullNameStr, userNameStr, passwordStr,
                             dogNameStr, dogSize, addressStr, phoneNumberStr,
                             mailStr, true);
+//                    MyApp.mGlobalUsers.put(userNameStr, passwordStr); // TODO this is temp instead of the server
 
                     Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
                     intent.putExtra("Self", newUser);

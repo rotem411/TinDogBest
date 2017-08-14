@@ -21,11 +21,15 @@ public class User implements Serializable {
     public String phoneNumber;
     public String mail;
     public boolean notifications;
+    public int pros;
+    public int cons;
 
     User(String userName, String password, boolean notifications){
         this.userName = userName;
         this.password = password;
         this.notifications = notifications;
+        pros = 0;
+        cons = 0;
     }
 
     User(String fullName, String userName, String password, String dogName, String dogSize, String address,
@@ -41,5 +45,9 @@ public class User implements Serializable {
         this.mail = mail;
 
         this.notifications = notifications;
+        pros = 0;
+        cons = 0;
     }
+
+
 }

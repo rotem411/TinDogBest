@@ -1,11 +1,14 @@
 package com.rotemarbiv.tin;
 
 import android.content.Intent;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText password;
     public Button signInButton;
     public Button signUpButton;
+    public String passwordString;
 
 
     @Override
@@ -23,17 +27,24 @@ public class MainActivity extends AppCompatActivity {
 
         userName = (EditText) findViewById(R.id.userNameInput);
         password = (EditText) findViewById(R.id.passwordInput);
+        passwordString = password.getText().toString();
         signInButton = (Button) findViewById(R.id.signInButton);
-
         self = new User(userName.getText().toString(), password.getText().toString(), true);
 
         signInButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+//                if (MyApp.mGlobalUsers == null){
+//                    Toast.makeText(getApplicationContext(), "There is no such User or the password is not correct ",Toast.LENGTH_LONG).show();
+//                }
+//                else if (MyApp.mGlobalUsers.get(userName.getText().toString()).equals(passwordString)){ // verify the user with server
+//                    Toast.makeText(getApplicationContext(), "There is no such User or the password is not correct ",Toast.LENGTH_LONG).show();
+//                }
+//                else {
+                    //sign in as the user - dont know who
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+//                }
 
-                // verify the user with server
-
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -50,6 +61,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.settingsLabel:
+                Toast.makeText(getApplicationContext(), "settins clicked ",Toast.LENGTH_LONG).show();
+
+            case R.id.action_app:
+                Toast.makeText(getApplicationContext(), "action clicked ",Toast.LENGTH_LONG).show();
+
+            case R.id.HomeLabel:
+                Toast.makeText(getApplicationContext(), "home clicked ",Toast.LENGTH_LONG).show();
+
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
