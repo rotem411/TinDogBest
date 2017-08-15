@@ -39,6 +39,19 @@ public class BackendSimulatorTest {
         assertFalse(loginStatus);
     }
 
+    @Test
+    public void testAddTask_ValidInput() throws Exception {
+        BackendSimulator backendSimulator = new BackendSimulator();
+        Task canTask = new Task();
+        canTask.setTime(System.currentTimeMillis() + 1000);
+        Task needTask = new Task();
+        needTask.setTime(System.currentTimeMillis() + 1000);
+        backendSimulator.addTask(canTask, needTask);
+
+        assertThat(backendSimulator.getCanTasks().size(), is(1));
+        assertThat(backendSimulator.getNeedTasks().size(), is(1));
+    }
+
     private User createUser() {
         User user = new User();
         user.setName("gal");

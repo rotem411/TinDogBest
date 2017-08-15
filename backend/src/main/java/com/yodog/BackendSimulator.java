@@ -3,27 +3,34 @@ package com.yodog;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
-public class BackendSimulator {
+class BackendSimulator {
 
     private HashMap<String, User> users = new HashMap<>();
-    private HashMap<String, Task> canTasks = new HashMap<>();
-    private HashMap<String, Task> needTasks = new HashMap<>();
+    private HashMap<Long, Task> canTasks = new HashMap<>();
+    private HashMap<Long, Task> needTasks = new HashMap<>();
 
-    public HashMap<String, User> getUsers() {
+    HashMap<String, User> getUsers() {
         return users;
     }
 
-    public void signUp(User newUser) {
+    HashMap<Long, Task> getCanTasks() {
+        return canTasks;
+    }
+
+    HashMap<Long, Task> getNeedTasks() {
+        return needTasks;
+    }
+
+    void signUp(User newUser) {
         // todo check is user exist
 
-        if (newUser != null) {
+        if (newUser != null)
             users.put(newUser.getName(), newUser);
-        }
 
         // todo throw exception if null/invalid data
     }
 
-    public Boolean signIn(String userName, String password) {
+    boolean signIn(String userName, String password) {
         if (userName == null)
             throw new NoSuchElementException("Expected userName, got Null");
 
@@ -34,7 +41,21 @@ public class BackendSimulator {
         return user != null && password.equals(user.getPassword());
     }
 
-    //    + addTask(Task can, Task need)
+    boolean addTask(Task canTask, Task needTask) {
+        if (canTask == null)
+            throw new NoSuchElementException("Expected canTask, got Null");
+
+        if (needTask == null)
+            throw new NoSuchElementException("Expected needTask, got Null");
+
+        if (System.currentTimeMillis() > canTask.getTime() || System.currentTimeMillis() > needTask.getTime())
+            return false;  // todo throw an exception that makes sense
+
+        canTasks.put(canTask.getTime(), canTask);
+        needTasks.put(needTask.getTime(), needTask);
+        return true;
+    }
+
 
 //    + findMatch(Task can, Task need)
 //    + viewProfile(User user)
