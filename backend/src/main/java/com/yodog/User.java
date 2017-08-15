@@ -7,6 +7,7 @@ package com.yodog;
 public class User {
     private String name;
     private String password;
+    private float rating;
     private String phoneNumber;
     private Address address;
     private Dog dog;
@@ -25,5 +26,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 }

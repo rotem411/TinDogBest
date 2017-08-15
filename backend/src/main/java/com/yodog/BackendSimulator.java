@@ -1,6 +1,7 @@
 package com.yodog;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 class BackendSimulator {
@@ -56,11 +57,23 @@ class BackendSimulator {
         return true;
     }
 
+    User viewProfile(String username) {  // todo test
+        if (username == null)
+            throw new NoSuchElementException("Expected username, got null");
 
-//    + findMatch(Task can, Task need)
-//    + viewProfile(User user)
+        return users.get(username);
+    }
+
+    void rateUser(User user, int rate) {
+        // todo validate params not null
+        user.setRating((user.getRating() + rate) / 2);  // todo make rating better
+    }
+
+    List<Task> findMatch(Task can, Task need) {
+        return null;
+    }
+
 //    + markDone(Task task)
-//    + rateUser(User user, int rate)
 //    + editTask(Task task)
 //    + removeTask(Task task)
 
