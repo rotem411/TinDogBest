@@ -16,12 +16,16 @@ import java.util.List;
  */
 
 public class HomeActivity extends AppCompatActivity {
-    public Event a = new Event(3, "shenkin", "yotam", true);
-    public Event b =  new Event(1, "Alenby", "maya ", false );
+    public static Event a = new Event(3, "shenkin", "yotam", true, "momo");
+    public static Event b =  new Event(1, "Alenby", "maya ", false, "roki" );
 
-    Event[] events = new Event[]{
+    static Event[] events = new Event[]{
             a,b
     };
+
+    // NOTE - instead of this list, there going to be a request to the server:
+    // give me the list of events for the current user .
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
@@ -38,8 +42,8 @@ public class HomeActivity extends AppCompatActivity {
                 int curEventID = view.getId();
                 Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
 
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-//                intent.putExtra("spesificEvent", curEventID);
+                Intent intent = new Intent(HomeActivity.this, EventActivity.class);
+                intent.putExtra("position", position);
                 startActivity(intent);
 
             }
