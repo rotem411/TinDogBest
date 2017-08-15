@@ -1,0 +1,23 @@
+@startuml
+
+(Sign up) as (create)
+(Sign in) as (login)
+(Sign out) as (logout)
+(Ask for a walker) as (ask)
+(Suggest a walk) as (suggest)
+(Search for a match) as (match)
+(Update status - in a walk, etc..) as (update)
+(See scheduled walks) as (schedule)
+(View other users profile) as (view)
+
+User --> (create)
+User --> (login)
+User --> (logout)
+User --> (ask)
+User --> (suggest)
+User --> (match)
+User --> (update)
+User --> (schedule)
+User --> (view)
+
+@enduml
