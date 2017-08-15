@@ -4,7 +4,7 @@ package com.yodog;
  * Created by Omri on 8/15/2017
  */
 
-public class User {
+public class User {  // todo add photo
     private String name;
     private String password;
     private float rating;
