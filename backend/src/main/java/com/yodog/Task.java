@@ -7,6 +7,8 @@ package com.yodog;
 public class Task {
 
     private long time;
+    private User owner;
+    private String type;
 
     public long getTime() {
         return time;
@@ -14,5 +16,9 @@ public class Task {
 
     public void setTime(long time) {
         this.time = time;
+    }
+
+    public User getOwner() {
+        return owner;
     }
 }

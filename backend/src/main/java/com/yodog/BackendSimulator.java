@@ -3,12 +3,18 @@ package com.yodog;
 import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 class BackendSimulator {
 
     private HashMap<String, User> users = new HashMap<>();
-    private HashMap<Long, Task> canTasks = new HashMap<>();
+    private HashMap<Long, Task> canTasks = new HashMap<>();  // todo maybe remove
     private HashMap<Long, Task> needTasks = new HashMap<>();
+    private HashMap<String, List<Task>> matchedCan = new HashMap<>();
+    private HashMap<String, List<Task>> matchedNeed = new HashMap<>();
+    private HashMap<String, List<Task>> pendingCan = new HashMap<>();
+    private HashMap<String, List<Task>> pendingNeed = new HashMap<>();
+    private static Random random = new Random();
 
     HashMap<String, User> getUsers() {
         return users;
@@ -31,7 +37,7 @@ class BackendSimulator {
         // todo throw exception if null/invalid data
     }
 
-    boolean signIn(String userName, String password) {
+    Dashboard signIn(String userName, String password) {
         if (userName == null)
             throw new NoSuchElementException("Expected userName, got Null");
 
@@ -39,10 +45,13 @@ class BackendSimulator {
             throw new NoSuchElementException("Expected password, got Null");
 
         User user = users.get(userName);
-        return user != null && password.equals(user.getPassword());
+        if (user == null)  // login fail
+            return null;
+
+        return generateDashboard(user);
     }
 
-    boolean addTask(Task canTask, Task needTask) {
+    Dashboard addTask(Task canTask, Task needTask) {
         if (canTask == null)
             throw new NoSuchElementException("Expected canTask, got Null");
 
@@ -50,11 +59,15 @@ class BackendSimulator {
             throw new NoSuchElementException("Expected needTask, got Null");
 
         if (System.currentTimeMillis() > canTask.getTime() || System.currentTimeMillis() > needTask.getTime())
-            return false;  // todo throw an exception that makes sense
+            return generateDashboard(canTask.getOwner());  // todo throw an exception that makes sense
 
-        canTasks.put(canTask.getTime(), canTask);
-        needTasks.put(needTask.getTime(), needTask);
-        return true;
+        // todo find match, return dashboard with matches found or with no update
+        return findMatch(canTask, needTask);
+    }
+
+    private Dashboard generateDashboard(User user) {
+        return new Dashboard(pendingCan.get(user.getName()), pendingNeed.get(user.getName()),
+                matchedCan.get(user.getName()), matchedNeed.get(user.getName()), user);
     }
 
     User viewProfile(String username) {  // todo test
@@ -69,8 +82,19 @@ class BackendSimulator {
         user.setRating((user.getRating() + rate) / 2);  // todo make rating better
     }
 
-    List<Task> findMatch(Task can, Task need) {
-        return null;
+    Dashboard findMatch(Task can, Task need) {
+        boolean found = random.nextBoolean();
+        String userName = can.getOwner().getName();
+
+        if (found) {
+            matchedCan.get(userName).add(can);  // todo add every new user to the maps, and init it's task list!!
+            matchedNeed.get(userName).add(need);
+        } else {
+            pendingCan.get(userName).add(can);  // todo add every new user to the maps, and init it's task list!!
+            pendingNeed.get(userName).add(need);
+        }
+
+        return generateDashboard(can.getOwner());
     }
 
 //    + markDone(Task task)
