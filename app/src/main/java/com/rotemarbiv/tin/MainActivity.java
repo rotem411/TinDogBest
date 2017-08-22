@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.settingsLabel:
-                Toast.makeText(getApplicationContext(), "settins clicked ",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "settings clicked ",Toast.LENGTH_LONG).show();
 
             case R.id.action_app:
                 Toast.makeText(getApplicationContext(), "action clicked ",Toast.LENGTH_LONG).show();

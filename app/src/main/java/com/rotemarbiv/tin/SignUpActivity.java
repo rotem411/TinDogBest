@@ -8,6 +8,7 @@ package com.rotemarbiv.tin;
         import android.content.Intent;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
+        import android.text.method.PasswordTransformationMethod;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
@@ -31,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     public String dogSize;
 
     public Button signUpButton;
+    public Button showPasswordButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,21 @@ public class SignUpActivity extends AppCompatActivity {
         phoneNumber = (EditText) findViewById(R.id.phoneNumberInput);
         mail = (EditText) findViewById(R.id.mailInput);
 
-
+        showPasswordButton = (Button) findViewById(R.id.showPasswordButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
+
+        showPasswordButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Toggles showing password
+
+                if (password.getTransformationMethod() == null){
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                }
+                else {
+                    password.setTransformationMethod(null);
+                }
+            }
+        });
 
         signUpButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -70,6 +85,7 @@ public class SignUpActivity extends AppCompatActivity {
                     User newUser = new User(fullNameStr, userNameStr, passwordStr,
                             dogNameStr, dogSize, addressStr, phoneNumberStr,
                             mailStr, true);
+
 //                    MyApp.mGlobalUsers.put(userNameStr, passwordStr); // TODO this is temp instead of the server
 
                     Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
