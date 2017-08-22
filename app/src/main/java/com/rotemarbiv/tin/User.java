@@ -32,6 +32,16 @@ public class User implements Serializable {
         cons = 0;
     }
 
+    User(String fullName, String userName, String dogName, String address, boolean notifications){
+        this.fullName = fullName;
+        this.userName = userName;
+        this.dogName = dogName;
+        this.address = address;
+        this.notifications = notifications;
+        pros = 0;
+        cons = 0;
+    }
+
     User(String fullName, String userName, String password, String dogName, String dogSize, String address,
          String phoneNumber, String mail,  boolean notifications){
 

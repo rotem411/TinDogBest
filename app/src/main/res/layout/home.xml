@@ -16,31 +16,89 @@
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
 
     <TextView
-        android:id="@+id/comingIventsLabel"
+        android:id="@+id/comingEventsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Upcoming Walks"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@+id/HomeLabel"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <TextView
+        android:id="@+id/myEventsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Events"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/comingEventsLabel"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/dogsEventsLabel"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.333" />
+
+    <TextView
+        android:id="@+id/dogsEventsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Dog's Events"
+        android:layout_marginRight="58dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/comingEventsLabel" />
 
     <ListView
-        android:id="@+id/eventsList"
-        android:layout_width="331dp"
-        android:layout_height="353dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/comingIventsLabel"
+        android:id="@+id/myEventsList"
+        android:layout_width="145dp"
+        android:layout_height="356dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/myEventsLabel"
+        app:layout_constraintRight_toLeftOf="@+id/dogsEventsList"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintVertical_bias="0.016" />
+
+    <ListView
+        android:id="@+id/dogsEventsList"
+        android:layout_width="145dp"
+        android:layout_height="356dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dogsEventsLabel"
+        app:layout_constraintVertical_bias="0.018" />
+
+    <Button
+        android:id="@+id/newEventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Add Event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myEventsList" />
+
 
 </android.support.constraint.ConstraintLayout>
+
