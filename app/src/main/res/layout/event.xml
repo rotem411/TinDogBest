@@ -11,56 +11,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Walker"
-        android:layout_marginTop="47dp"
-        app:layout_constraintTop_toBottomOf="@+id/titleLabel"
-        app:layout_constraintRight_toLeftOf="@+id/walkerNameInput"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="68dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.542" />
+        android:layout_marginTop="31dp"
+        app:layout_constraintTop_toBottomOf="@+id/dateTitleLabel" />
 
-    <EditText
-        android:id="@+id/walkerNameInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
+    <TextView
+        android:id="@+id/walkerName"
+        android:layout_width="184dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="10dp"
         android:text="Name"
-        android:layout_marginTop="39dp"
-        app:layout_constraintTop_toBottomOf="@+id/titleLabel"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/dogName"
+        app:layout_constraintTop_toBottomOf="@+id/walkerLabel" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
+    <TextView
+        android:id="@+id/dogName"
+        android:layout_width="103dp"
+        android:layout_height="41dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginTop="8dp"
         android:text="Name"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/walkerNameInput"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DogLabel" />
 
     <TextView
         android:id="@+id/DogLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dog Name"
-        android:layout_marginTop="56dp"
-        app:layout_constraintTop_toBottomOf="@+id/walkerLabel"
-        app:layout_constraintRight_toLeftOf="@+id/editText2"
-        android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginRight="91dp"
+        android:layout_marginTop="51dp"
+        android:text="Walkee"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/walkerLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/walkDoneButton" />
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="198dp"
         android:layout_height="128dp"
         android:layout_marginTop="43dp"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/dogName"
         android:layout_marginRight="33dp"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -69,13 +69,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Place"
-        android:layout_marginTop="89dp"
-        app:layout_constraintTop_toBottomOf="@+id/DogLabel"
         app:layout_constraintRight_toLeftOf="@+id/mapView"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.463" />
+        app:layout_constraintHorizontal_bias="0.47"
+        android:layout_marginTop="42dp"
+        app:layout_constraintTop_toBottomOf="@+id/walkerName" />
 
     <TextView
         android:id="@+id/intoLabel"
@@ -91,34 +91,66 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.54" />
 
-    <EditText
+    <TextView
         android:id="@+id/info"
         android:layout_width="215dp"
         android:layout_height="53dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/mapView"
+        android:layout_marginBottom="8dp"
         android:layout_marginRight="29dp"
+        app:layout_constraintTop_toBottomOf="@+id/mapView"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
         app:layout_constraintVertical_bias="0.39" />
 
     <TextView
-        android:id="@+id/titleLabel"
-        android:layout_width="221dp"
-        android:layout_height="35dp"
-        android:fontFamily="monospace"
-        android:text="This Walk"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="31dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/timeTitleLabel"
+        android:layout_width="196dp"
+        android:layout_height="31dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="19dp"
+        android:fontFamily="monospace"
+        android:paddingLeft="15dp"
+        android:text="Morning"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.503" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/walkDoneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Walk Done"
+        android:visibility="invisible"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/timeTitleLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:clickable="false" />
+
+    <TextView
+        android:id="@+id/dateTitleLabel"
+        android:layout_width="191dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="2dp"
+        android:paddingLeft="15dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/walkDoneButton"
+        app:layout_constraintTop_toBottomOf="@+id/timeTitleLabel" />
 
 </android.support.constraint.ConstraintLayout>

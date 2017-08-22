@@ -37,10 +37,10 @@ public class EventAdapter extends ArrayAdapter<Event> {
             row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new EventHolder();
-            holder.imageIcon = (ImageView)row.findViewById(R.id.imageIcon);
-            holder.nameTitle = (TextView)row.findViewById(R.id.nameTitle);
-            holder.timeTitle = (TextView)row.findViewById(R.id.timeTitle);
-            holder.dateTitle = (TextView)row.findViewById(R.id.dateTitle);
+            holder.imageIcon = (ImageView)row.findViewById(R.id.imageIconList);
+            holder.nameTitle = (TextView)row.findViewById(R.id.nameTitleList);
+            holder.timeTitle = (TextView)row.findViewById(R.id.timeTitleList);
+            holder.dateTitle = (TextView)row.findViewById(R.id.dateTitleList);
 
             row.setTag(holder);
         }
