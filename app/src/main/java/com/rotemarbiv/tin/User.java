@@ -24,6 +24,8 @@ public class User implements Serializable {
     public int pros;
     public int cons;
 
+    public Event[] pendingEvents;
+
     User(String userName, String password, boolean notifications){
         this.userName = userName;
         this.password = password;
@@ -40,6 +42,8 @@ public class User implements Serializable {
         this.notifications = notifications;
         pros = 0;
         cons = 0;
+
+        pendingEvents = new Event[] {};
     }
 
     User(String fullName, String userName, String password, String dogName, String dogSize, String address,
@@ -57,6 +61,9 @@ public class User implements Serializable {
         this.notifications = notifications;
         pros = 0;
         cons = 0;
+
+        pendingEvents = new Event[] {};
+
     }
 
 

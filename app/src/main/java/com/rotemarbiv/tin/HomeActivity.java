@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * Created by dafnaarbiv on 22/07/2017.
  */
-// todo: pending request, new event goes there. approved events go from there to upcoming
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -27,12 +26,16 @@ public class HomeActivity extends AppCompatActivity {
     public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "15:00", false);
     public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "22:00",  false);
 
-    Event[] myEvents = new Event[]{
+    public Event[] myEvents = new Event[]{
             a,b
     };
 
-    Event[] dogsEvents = new Event[]{
+    public Event[] dogsEvents = new Event[]{
             c,d
+    };
+
+    public Event[] myPendingEvents = new Event[]{
+            d
     };
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
 
         ListView myEventsListView = (ListView)findViewById(R.id.myEventsList);
         ListView dogsEventsListView = (ListView)findViewById(R.id.dogsEventsList);
+        ListView myPendingEventsListView = (ListView)findViewById(R.id.myPendingEventsList);
+
 
         EventAdapter myEventsAdapter = new EventAdapter(this, R.layout.event_item_list, myEvents);
         myEventsListView.setAdapter(myEventsAdapter);
@@ -79,23 +84,27 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-//        ArrayAdapter myAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, myEvents);
-//        myEventsList.setAdapter(myAdapter);
-//
-//        myEventsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            public void onItemClick(AdapterView<?> parent , View view, int position, long id){
-//
-//                int curEventID = view.getId();
-//                Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
-//
-//
-//                Intent intent = new Intent(HomeActivity.this, EventActivity.class);
-////                intent.putExtra("spesificEvent", curEventID);
-//                startActivity(intent);
-//
-//            }
-//        });
-//
+        ArrayAdapter myPendingAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, myPendingEvents);
+        myPendingEventsListView.setAdapter(myPendingAdapter);
+
+        myPendingEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent , View view, int position, long id){
+
+                int curEventID = view.getId();
+                Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
+
+
+                Intent intent = new Intent(HomeActivity.this, EventActivity.class);
+//                intent.putExtra("spesificEvent", curEventID);
+                startActivity(intent);
+
+            }
+        });
+
     }
 }
+
+// time of walk: morning (8-12, noon12-18, evening18-24)
+// date- no option for past event
+//
