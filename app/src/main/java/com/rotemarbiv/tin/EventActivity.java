@@ -41,7 +41,7 @@ public class EventActivity extends AppCompatActivity {
         walkerName = (EditText) findViewById(R.id.walkerName);
         dogName = (EditText) findViewById(R.id.dogNameInput);
 //        map = (MapView) findViewById(R.id.mapView);
-        special = (EditText) findViewById(R.id.info);
+        special = (EditText) findViewById(R.id.commentsInput);
 
 
 

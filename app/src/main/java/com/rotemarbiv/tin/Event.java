@@ -8,7 +8,7 @@ public class Event {
 
     public User walker;
     public User dog;
-    public String time; //Todo: TimePicker in new Event
+    public String time; //Todo: Morning / noon /evening
     public String date; //Todo: DatePicbker in new Event
     public String address;
     public boolean isItMe; // am I the walker
