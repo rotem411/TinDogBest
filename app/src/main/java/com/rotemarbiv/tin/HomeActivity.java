@@ -2,6 +2,7 @@ package com.rotemarbiv.tin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,6 +39,8 @@ public class HomeActivity extends AppCompatActivity {
             d
     };
 
+    public FloatingActionButton newEventButton;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
@@ -45,7 +48,6 @@ public class HomeActivity extends AppCompatActivity {
         ListView myEventsListView = (ListView)findViewById(R.id.myEventsList);
         ListView dogsEventsListView = (ListView)findViewById(R.id.dogsEventsList);
         ListView myPendingEventsListView = (ListView)findViewById(R.id.myPendingEventsList);
-
 
         EventAdapter myEventsAdapter = new EventAdapter(this, R.layout.event_item_list, myEvents);
         myEventsListView.setAdapter(myEventsAdapter);
@@ -76,12 +78,11 @@ public class HomeActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
-//                intent.putExtra("spesificEvent", curEventID);
+                intent.putExtra("spesificEvent", curEventID);
                 startActivity(intent);
 
             }
         });
-
 
 
         ArrayAdapter myPendingAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, myPendingEvents);
@@ -99,6 +100,15 @@ public class HomeActivity extends AppCompatActivity {
 //                intent.putExtra("spesificEvent", curEventID);
                 startActivity(intent);
 
+            }
+        });
+
+
+        newEventButton = (FloatingActionButton) findViewById(R.id.addEventButton);
+        newEventButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, NewEventActivity.class);
+                startActivity(intent);
             }
         });
 
