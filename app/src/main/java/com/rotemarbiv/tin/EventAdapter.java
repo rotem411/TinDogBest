@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by laurescemama on 21/08/2017.
  */
@@ -17,9 +19,9 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
     Context context;
     int layoutResourceId;
-    Event events[] = null;
+    ArrayList<Event> events;
 
-    public EventAdapter(Context context, int layoutResourceId, Event[] data) {
+    public EventAdapter(Context context, int layoutResourceId, ArrayList<Event> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -49,7 +51,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
             holder = (EventHolder)row.getTag();
         }
 
-        Event event = events[position];
+        Event event = events.get(position);
 
         System.out.println(event.getEventTitle() + " " + event.isItMe + " " + position);
 

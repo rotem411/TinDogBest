@@ -8,18 +8,16 @@
 
     <DatePicker
         android:id="@+id/datePickerEvent"
-        android:layout_width="264dp"
-        android:layout_height="214dp"
-        android:calendarViewShown="false"
-        android:scaleX=".9"
-        android:scaleY=".9"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        android:layout_width="0dp"
+        android:layout_height="247dp"
+        android:datePickerMode="spinner"
+        android:paddingBottom="0dp"
+        android:spinnersShown="false"
+        android:startYear="2017"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="-66dp"
-        app:layout_constraintTop_toBottomOf="@+id/noonToggleButton"
-        app:layout_constraintHorizontal_bias="0.326" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noonToggleButton" />
 
     <TextView
         android:id="@+id/commentsLabel"
@@ -30,7 +28,7 @@
         android:layout_marginRight="29dp"
         android:text="something special"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/commentsInput"
         android:layout_marginStart="8dp"
@@ -41,15 +39,16 @@
 
     <EditText
         android:id="@+id/commentsInput"
-        android:layout_width="219dp"
-        android:layout_height="78dp"
+        android:layout_width="258dp"
+        android:layout_height="65dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerEvent" />
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerEvent"
+        tools:layout_editor_absoluteX="110dp" />
 
     <Button
         android:id="@+id/calculateButton"
@@ -64,7 +63,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commentsInput"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginEnd="6dp" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -81,23 +81,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/calculateButton"
         app:layout_constraintTop_toBottomOf="@+id/commentsInput"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/whenTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="When?"
-        android:layout_marginTop="81dp"
-        app:layout_constraintTop_toBottomOf="@+id/morningToggleButton"
-        android:layout_marginLeft="3dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/datePickerEvent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/commentsLabel"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp" />
 
     <ToggleButton
         android:id="@+id/eveningToggleButton"
@@ -109,7 +95,8 @@
         android:textOn="Evening"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="11dp"
-        app:layout_constraintTop_toBottomOf="@+id/dogToggleButton" />
+        app:layout_constraintTop_toBottomOf="@+id/dogToggleButton"
+        android:layout_marginEnd="55dp" />
 
     <ToggleButton
         android:id="@+id/noonToggleButton"
@@ -121,7 +108,8 @@
         android:textOn="Noon"
         app:layout_constraintRight_toLeftOf="@+id/eveningToggleButton"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/userToggleButton" />
+        app:layout_constraintTop_toBottomOf="@+id/userToggleButton"
+        android:layout_marginEnd="16dp" />
 
     <ToggleButton
         android:id="@+id/morningToggleButton"
@@ -136,7 +124,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/noonToggleButton"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/userToggleButton" />
+        app:layout_constraintTop_toBottomOf="@+id/userToggleButton"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -145,11 +135,12 @@
         android:text="Yay, new walk!"
         android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="-25dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ToggleButton
         android:id="@+id/userToggleButton"
@@ -159,25 +150,28 @@
         android:text="ToggleButton"
         android:textOff=""
         android:textOn=""
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="-6dp"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         android:layout_marginLeft="76dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="76dp" />
 
     <ToggleButton
         android:id="@+id/dogToggleButton"
-        android:layout_width="86dp"
+        android:layout_width="88dp"
         android:layout_height="60dp"
         android:text="ToggleButton"
         android:textOff=""
         android:textOn=""
         android:background="@mipmap/walk_dog_icon"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="-6dp"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/userToggleButton"
         android:layout_marginLeft="8dp"
-        app:layout_constraintHorizontal_bias="0.254" />
+        app:layout_constraintHorizontal_bias="0.258"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
 </android.support.constraint.ConstraintLayout>

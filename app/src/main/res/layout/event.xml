@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/walkerName" />
 
     <TextView
-        android:id="@+id/intoLabel"
+        android:id="@+id/infoLabel"
         android:layout_width="88dp"
         android:layout_height="49dp"
         android:text="something special"
@@ -93,7 +93,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintVertical_bias="0.54" />
 
-    <TextView
+    <EditText
         android:id="@+id/commentsInput"
         android:layout_width="215dp"
         android:layout_height="53dp"
@@ -130,6 +130,7 @@
         android:layout_marginRight="46dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/colorAccent"
+        android:onClick="walkDoneClicked"
         android:text="Walk Done"
         android:visibility="invisible"
         app:layout_constraintHorizontal_bias="1.0"

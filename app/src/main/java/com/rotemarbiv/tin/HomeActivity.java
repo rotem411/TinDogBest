@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,28 +23,38 @@ public class HomeActivity extends AppCompatActivity {
     public User galUser = new User("Gal Nachmana", "gal", "Doggy2", "Yafo 4", true);
     public User rotemUser = new User("Rotem Arbiv", "rotem", "Doggy3", "Yafo 5", true);
 
-    public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "13:00", true);
-    public Event b = new Event(laureUser, galUser, "Tue, July 7th", "14:00", true);
-    public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "15:00", false);
-    public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "22:00",  false);
+    public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "noon", true, 1);
+    public Event b = new Event(laureUser, galUser, "Tue, July 7th", "morning", true, 2);
+    public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
+    public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);
 
-    public Event[] myEvents = new Event[]{
-            a,b
-    };
+    public ArrayList<Event> myEvents = new ArrayList<Event>();
+    public ArrayList<Event> dogsEvents = new ArrayList<Event>();
 
-    public Event[] dogsEvents = new Event[]{
-            c,d
-    };
-
-    public Event[] myPendingEvents = new Event[]{
-            d
-    };
+    public ArrayList<Event> myPendingEvents = new ArrayList<Event>();
 
     public FloatingActionButton newEventButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+        myEvents.add(a);
+        myEvents.add(b);
+        dogsEvents.add(c);
+        dogsEvents.add(d);
+        myPendingEvents.add(d);
+
+        Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
+        Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
+
+        if(myToDelete != null){
+
+            myEvents.remove(myToDelete.index);
+        }
+        if(dogToDelete != null){
+            dogsEvents.remove(dogToDelete.index);
+        }
 
         ListView myEventsListView = (ListView)findViewById(R.id.myEventsList);
         ListView dogsEventsListView = (ListView)findViewById(R.id.dogsEventsList);
@@ -54,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         EventAdapter dogsEventsAdapter = new EventAdapter(this, R.layout.event_item_list, dogsEvents);
         dogsEventsListView.setAdapter(dogsEventsAdapter);
 
+
         myEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent , View view, int position, long id){
@@ -61,9 +73,9 @@ public class HomeActivity extends AppCompatActivity {
                 int curEventID = view.getId();
                 Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
 
-
+                System.out.println(myEvents.get(position).getEventTitle()+"   "+myEvents.get(position).isItMe);
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
-//                intent.putExtra("spesificEvent", curEventID);
+                intent.putExtra("eventClicked", myEvents.get(position));
                 startActivity(intent);
 
             }
@@ -78,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
-                intent.putExtra("spesificEvent", curEventID);
+                intent.putExtra("eventClicked", dogsEvents.get(position));
                 startActivity(intent);
 
             }
