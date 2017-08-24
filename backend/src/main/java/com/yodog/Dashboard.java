@@ -1,7 +1,6 @@
 package com.yodog;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Omri on 8/16/2017
@@ -9,38 +8,17 @@ import java.util.List;
 
 public class Dashboard {
 
-    private List<Task> pendingCan = new ArrayList<>();
-    private List<Task> pendingNeed = new ArrayList<>();
-    private List<Task> matchedCan = new ArrayList<>();
-    private List<Task> matchedNeed = new ArrayList<>();
-    private User user;
+    private ArrayList<Task> tasks = new ArrayList<>();
 
-    public Dashboard(List<Task> pendingCan, List<Task> pendingNeed, List<Task> matchedCan, List<Task> matchedNeed, User user) {
-        this.pendingCan = pendingCan;
-        this.pendingNeed = pendingNeed;
-        this.matchedCan = matchedCan;
-        this.matchedNeed = matchedNeed;
-        this.user = user;
+    public Dashboard() {
     }
 
-    public List<Task> getPendingCan() {
-        return pendingCan;
+    public Dashboard(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
-    public List<Task> getPendingNeed() {
-        return pendingNeed;
-    }
-
-    public List<Task> getMatchedCan() {
-        return matchedCan;
-    }
-
-    public List<Task> getMatchedNeed() {
-        return matchedNeed;
-    }
-
-    public User getUser() {
-        return user;
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 
 }
