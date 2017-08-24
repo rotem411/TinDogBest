@@ -1,25 +1,31 @@
 package com.rotemarbiv.tin;
 
+import java.io.Serializable;
+
 /**
  * Created by dafnaarbiv on 23/07/2017.
  */
 
-public class Event {
+public class Event implements Serializable {
 
     public User walker;
     public User dog;
     public String time; //Todo: Morning / noon /evening
     public String date; //Todo: DatePicbker in new Event
     public String address;
+    public String comments;
     public boolean isItMe; // am I the walker
 
-    Event(User walker, User dog, String date, String time, boolean isItMe){
+    public int index;
+
+    Event(User walker, User dog, String date, String time, boolean isItMe, int index){
         this.walker = walker;
         this.dog = dog;
         this.time = time;
         this.date = date ;
         this.address = dog.address;
         this.isItMe = isItMe;
+        this.index = index;
     }
 
 //    String getTitle(){

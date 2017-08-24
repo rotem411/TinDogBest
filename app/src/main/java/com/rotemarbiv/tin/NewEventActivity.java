@@ -2,12 +2,17 @@ package com.rotemarbiv.tin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import static android.support.v7.appcompat.R.styleable.MenuItem;
 
 /**
  * Created by laurescemama on 23/08/2017.
@@ -29,9 +34,14 @@ public class NewEventActivity extends AppCompatActivity {
     public ToggleButton noonToggleButton;
     public ToggleButton eveningToggleButton;
 
+    public Button cancelButton;
+    public Button calculateButton;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_event);
+
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         datePickerView = (DatePicker) findViewById(R.id.datePickerEvent);
 
@@ -44,7 +54,7 @@ public class NewEventActivity extends AppCompatActivity {
         noonToggleButton = (ToggleButton)findViewById(R.id.noonToggleButton);
         eveningToggleButton = (ToggleButton)findViewById(R.id.eveningToggleButton);
 
-        personToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        CompoundButton.OnCheckedChangeListener togglePressed = new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (buttonView == personToggleButton) {
@@ -72,7 +82,33 @@ public class NewEventActivity extends AppCompatActivity {
                     }
                 }
             }
-        });
+        };
+
+        personToggleButton.setOnCheckedChangeListener(togglePressed);
+        dogToggleButton.setOnCheckedChangeListener(togglePressed);
+        morningToggleButton.setOnCheckedChangeListener(togglePressed);
+        noonToggleButton.setOnCheckedChangeListener(togglePressed);
+        eveningToggleButton.setOnCheckedChangeListener(togglePressed);
+
+//
+//        @Override
+//        public boolean onOptionsItemSelected(MenuItem item) {
+//            super.onOptionsItemSelected(item);
+//            switch(item.getItemId()) {
+//                case android.R.id.home:
+//                    NavUtils.navigateUpFromSameTask(this);
+//                    break;
+//            }
+//            return true;
+//        }
+
+//        cancelButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent cancelIntent = new Intent(this, HomeActivity.class);
+//                startActivity(cancelIntent);
+//            }
+//        });
+
     }
 
     public void calculatePressed(){
@@ -108,10 +144,8 @@ public class NewEventActivity extends AppCompatActivity {
         }
     }
 
-    public void cancelPressed(){
-        Intent intent = new Intent(NewEventActivity.this, HomeActivity.class);
-//                intent.putExtra("spesificEvent", curEventID);
-        startActivity(intent);
+    public void cancelPressed(View view){
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }
 
