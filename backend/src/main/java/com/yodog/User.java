@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class User {  // todo add photo
     private String name;
     private String password;
-    private ArrayList<Integer> rates;
+    private ArrayList<Integer> rates = new ArrayList<>();
     private String phoneNumber;
     private Address address;
     private Dog dog;
@@ -18,6 +18,7 @@ public class User {  // todo add photo
     public static User of(String name) {
         User user = new User();
         user.setName(name);
+        user.setPassword("password");
         return user;
     }
 

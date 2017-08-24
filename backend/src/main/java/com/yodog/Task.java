@@ -6,15 +6,15 @@ package com.yodog;
 
 public class Task {
 
-    private long needTime;
-    private long canTime;
+    private TaskTime needTime;
+    private TaskTime canTime;
     private User owner;
     private User partner;
     private boolean ownerDone = false;
     private boolean partnerDone = false;
     private boolean status;
 
-    public Task(long needTime, long canTime, User owner, User partner, boolean status) {
+    public Task(TaskTime needTime, TaskTime canTime, User owner, User partner, boolean status) {
         this.needTime = needTime;
         this.canTime = canTime;
         this.owner = owner;
@@ -22,11 +22,11 @@ public class Task {
         this.status = status;
     }
 
-    public long getNeedTime() {
+    public TaskTime getNeedTime() {
         return needTime;
     }
 
-    public long getCanTime() {
+    public TaskTime getCanTime() {
         return canTime;
     }
 
@@ -58,7 +58,7 @@ public class Task {
         this.partnerDone = partnerDone;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
