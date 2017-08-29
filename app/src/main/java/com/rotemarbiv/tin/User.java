@@ -53,10 +53,11 @@ public class User implements Serializable {
         this.userName = userName;
         this.password = password;
         this.dogName = dogName;
-        this.dogSize = dogSize;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
+
+        this.dogSize = dogSize;
 
         this.notifications = notifications;
         pros = 0;

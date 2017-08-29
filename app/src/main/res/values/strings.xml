@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Tin</string>
+    <string name="app_name">TinDog</string>
+    <string-array name="dog_size_array">
+        <item>S</item>
+        <item>M</item>
+        <item>L</item>
+    </string-array>
 </resources>

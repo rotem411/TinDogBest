@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
@@ -17,7 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView fullName;
     public EditText userName;
     public EditText dogName;
-    public EditText dogSize;
+    public Spinner dogSizeSpinner;
     public EditText address;
     public EditText email;
     public EditText phoneNum;
@@ -35,7 +38,7 @@ public class ProfileActivity extends AppCompatActivity {
         fullName =  (TextView) findViewById(R.id.profileName);
         userName =  (EditText) findViewById(R.id.profileUserName);
         dogName =  (EditText) findViewById(R.id.profileDogName);
-        dogSize =  (EditText) findViewById(R.id.profileDogSize);
+        dogSizeSpinner =  (Spinner) findViewById(R.id.profileDogSize);
         address =  (EditText) findViewById(R.id.profileAddress);
         email =  (EditText) findViewById(R.id.profileEmail);
         phoneNum = (EditText) findViewById(R.id.profileTelephon);
@@ -46,13 +49,23 @@ public class ProfileActivity extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra("profileUser");
         selfUser = user; //TODO: change better
 
+        ArrayAdapter<CharSequence> dogSizeAdapter = ArrayAdapter.createFromResource(this,
+                R.array.dog_size_array, android.R.layout.simple_spinner_item);
+        dogSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dogSizeSpinner.setAdapter(dogSizeAdapter);
+
+        dogSizeSpinner.setEnabled(false);
         fullName.setText(user.fullName);
         userName.setText(user.userName);
         dogName.setText(user.dogName);
-        dogSize.setText(user.dogSize);
         address.setText(user.address);
         email.setText(user.email);
         phoneNum.setText(user.phoneNumber);
+
+        if (user.dogSize != null){
+            dogSizeSpinner.setSelection(dogSizeAdapter.getPosition(user.dogSize));
+        }
+
 
         if (user.userName == selfUser.userName){
 
@@ -69,7 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
             fullName.setEnabled(true);
             userName.setEnabled(true);
             dogName.setEnabled(true);
-            dogSize.setEnabled(true);
+            dogSizeSpinner.setEnabled(true);
             address.setEnabled(true);
             email.setEnabled(true);
             phoneNum.setEnabled(true);
@@ -79,15 +92,26 @@ public class ProfileActivity extends AppCompatActivity {
             fullName.setEnabled(false);
             userName.setEnabled(false);
             dogName.setEnabled(false);
-            dogSize.setEnabled(false);
+            dogSizeSpinner.setEnabled(false);
             address.setEnabled(false);
             email.setEnabled(false);
             phoneNum.setEnabled(false);
 
+            dogSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                    user.dogSize = (String) parent.getItemAtPosition(position);
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // TODO Auto-generated method stub
+                }
+            });
+
             user.fullName = fullName.getText().toString();
             user.userName = userName.getText().toString();
             user.dogName = dogName.getText().toString();
-            user.dogSize = dogSize.getText().toString();
             user.address = address.getText().toString();
             user.email = email.getText().toString();
             user.phoneNumber = phoneNum.getText().toString();
