@@ -28,6 +28,8 @@ public class HomeActivity extends AppCompatActivity {
     public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
     public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);
 
+    public User selfUser; //TODO: receive from sign in
+
     public ArrayList<Event> myEvents = new ArrayList<Event>();
     public ArrayList<Event> dogsEvents = new ArrayList<Event>();
 
@@ -47,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
         Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
+        Event toAdd = (Event) getIntent().getSerializableExtra("newEventFound");
 
         if(myToDelete != null){
 
@@ -54,6 +57,15 @@ public class HomeActivity extends AppCompatActivity {
         }
         if(dogToDelete != null){
             dogsEvents.remove(dogToDelete.index);
+        }
+
+        if(toAdd != null){
+            if (toAdd.isItMe){
+                myEvents.add(toAdd);
+            }
+            else{
+                dogsEvents.add(toAdd);
+            }
         }
 
         ListView myEventsListView = (ListView)findViewById(R.id.myEventsList);
@@ -124,6 +136,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void profileClicked(View view){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("profileUser", laureUser);
+        startActivity(intent);
     }
 }
 

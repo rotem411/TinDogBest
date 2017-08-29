@@ -1,5 +1,7 @@
 package com.rotemarbiv.tin;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -36,6 +38,9 @@ public class NewEventActivity extends AppCompatActivity {
 
     public Button cancelButton;
     public Button calculateButton;
+
+    final Context context = this;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +121,6 @@ public class NewEventActivity extends AppCompatActivity {
                 (personToggleButton.isChecked() || dogToggleButton.isChecked()) &&
                 (morningToggleButton.isChecked() || noonToggleButton.isChecked()
                         || eveningToggleButton.isChecked())){
-            /// pass the server the request
 
             int day = datePickerView.getDayOfMonth();
             int month = datePickerView.getMonth();
@@ -125,15 +129,34 @@ public class NewEventActivity extends AppCompatActivity {
 
             comments = commentsInput.getText().toString();
 
+            boolean newEventServerResult = true;
+
+
             if (personToggleButton.isChecked() && isItMe) {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "You are available for a walk on "+date+" at "+time, Toast.LENGTH_LONG);
                 toast.show();
+
+                ///  here pass the server the request for creating a walk for user
+
+                if (newEventServerResult){
+                    Intent goodIntent = new Intent(this, ResultActivity.class);
+//                    intent.putExtra("newEventFound", newEventServerResult);
+                    startActivity(goodIntent);
+                }
+                else{
+                    final Dialog dialog = new Dialog(context);
+                    dialog.setContentView(R.layout.bad_result_dialog);
+
+                }
             }
             else{
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Doggy needs a walk pal on "+date+" at "+time, Toast.LENGTH_LONG);
                 toast.show();
+
+                ///  here pass the server the request for creating a walk for user's dog
+
             }
 
         }
