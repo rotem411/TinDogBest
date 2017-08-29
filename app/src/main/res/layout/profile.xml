@@ -7,22 +7,24 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="202dp"
-        android:layout_height="39dp"
+        android:id="@+id/profileName"
+        android:layout_width="316dp"
+        android:layout_height="43dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="8dp"
         android:text="Name"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="48dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/userNameLabel"
         android:layout_width="98dp"
         android:layout_height="17dp"
         android:text="User name"
-        android:layout_marginTop="47dp"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
+        android:layout_marginTop="108dp"
+        app:layout_constraintTop_toBottomOf="@+id/homeButton"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -51,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Addresss"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="31dp"
         app:layout_constraintTop_toBottomOf="@+id/dogSizeLabel"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -61,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="42dp"
         app:layout_constraintTop_toBottomOf="@+id/addressLabel"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -76,23 +78,26 @@
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.597" />
 
     <EditText
-        android:id="@+id/selfUserName"
+        android:id="@+id/profileUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintLeft_toRightOf="@+id/userNameLabel"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginTop="-25dp"
+        android:enabled="false"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toRightOf="@+id/userNameLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileName"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
-        android:id="@+id/backButton"
+        android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="goToHomePage"
@@ -101,75 +106,107 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/name"
-        android:layout_marginRight="16dp" />
+        app:layout_constraintRight_toLeftOf="@+id/profileName"
+        android:layout_marginRight="16dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <EditText
-        android:id="@+id/selfDogName"
+        android:id="@+id/profileDogName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/selfUserName"
         app:layout_constraintLeft_toRightOf="@+id/dogNameLabel"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileUserName" />
 
     <EditText
-        android:id="@+id/selfDogSize"
+        android:id="@+id/profileDogSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="15dp"
+        android:enabled="false"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/selfDogName"
+        app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintLeft_toRightOf="@+id/dogSizeLabel"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileDogName" />
 
     <EditText
-        android:id="@+id/selfAddress"
+        android:id="@+id/profileAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/selfDogSize"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/addressLabel"
-        android:layout_marginLeft="16dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileDogSize" />
 
     <EditText
-        android:id="@+id/selfEmail"
+        android:id="@+id/profileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/selfAddress"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/MailLable"
-        android:layout_marginLeft="16dp" />
-
-    <EditText
-        android:id="@+id/selfTelephon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/selfEmail"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/PhoneLable"
         android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintLeft_toRightOf="@+id/MailLable"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileAddress" />
+
+    <EditText
+        android:id="@+id/profileTelephon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
+        android:ems="10"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintLeft_toRightOf="@+id/PhoneLable"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEmail"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="editClicked"
+        android:text="Edit"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="96dp"
+        android:layout_height="89dp"
+        app:srcCompat="@mipmap/walk_user_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/editButton"
+        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/homeButton"
+        android:layout_marginLeft="8dp" />
 
 </android.support.constraint.ConstraintLayout>

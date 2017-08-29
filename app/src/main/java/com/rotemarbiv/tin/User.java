@@ -19,7 +19,7 @@ public class User implements Serializable {
     public String dogSize;
     public String address;
     public String phoneNumber;
-    public String mail;
+    public String email;
     public boolean notifications;
     public int pros;
     public int cons;
@@ -47,7 +47,7 @@ public class User implements Serializable {
     }
 
     User(String fullName, String userName, String password, String dogName, String dogSize, String address,
-         String phoneNumber, String mail,  boolean notifications){
+         String phoneNumber, String email,  boolean notifications){
 
         this.fullName = fullName;
         this.userName = userName;
@@ -56,7 +56,7 @@ public class User implements Serializable {
         this.dogSize = dogSize;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.mail = mail;
+        this.email = email;
 
         this.notifications = notifications;
         pros = 0;

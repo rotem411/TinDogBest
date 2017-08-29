@@ -19,37 +19,83 @@ public class ProfileActivity extends AppCompatActivity {
     public EditText dogName;
     public EditText dogSize;
     public EditText address;
-    public EditText Email;
+    public EditText email;
     public EditText phoneNum;
-    public User self;
+    public Button homeButton;
+    public Button editButton;
+    public User user;
+    public User selfUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
+        fullName =  (TextView) findViewById(R.id.profileName);
+        userName =  (EditText) findViewById(R.id.profileUserName);
+        dogName =  (EditText) findViewById(R.id.profileDogName);
+        dogSize =  (EditText) findViewById(R.id.profileDogSize);
+        address =  (EditText) findViewById(R.id.profileAddress);
+        email =  (EditText) findViewById(R.id.profileEmail);
+        phoneNum = (EditText) findViewById(R.id.profileTelephon);
 
-        fullName =  (TextView) findViewById(R.id.name);
-        userName =  (EditText) findViewById(R.id.selfUserName);
-        dogName =  (EditText) findViewById(R.id.selfDogName);
-        dogSize =  (EditText) findViewById(R.id.selfDogSize);
-        address =  (EditText) findViewById(R.id.selfAddress);
-        Email =  (EditText) findViewById(R.id.selfEmail);
-        phoneNum = (EditText) findViewById(R.id.selfTelephon);
+        homeButton = (Button) findViewById((R.id.homeButton));
+        editButton = (Button) findViewById((R.id.editButton));
 
-        self = (User) getIntent().getSerializableExtra("Self");
+        user = (User) getIntent().getSerializableExtra("profileUser");
+        selfUser = user; //TODO: change better
 
-        fullName.setText(self.fullName);
-        userName.setText(self.userName);
-        dogName.setText(self.dogName);
-        dogSize.setText(self.dogSize);
-        address.setText(self.address);
-        Email.setText(self.mail);
-        phoneNum.setText(self.phoneNumber);
+        fullName.setText(user.fullName);
+        userName.setText(user.userName);
+        dogName.setText(user.dogName);
+        dogSize.setText(user.dogSize);
+        address.setText(user.address);
+        email.setText(user.email);
+        phoneNum.setText(user.phoneNumber);
+
+        if (user.userName == selfUser.userName){
+
+            editButton.setVisibility(View.VISIBLE);
+            editButton.setClickable(true);
+        }
 
     }
 
+    public void editClicked(View view){
 
+        if (editButton.getText() == "Edit") {
+            editButton.setText("Save");
+            fullName.setEnabled(true);
+            userName.setEnabled(true);
+            dogName.setEnabled(true);
+            dogSize.setEnabled(true);
+            address.setEnabled(true);
+            email.setEnabled(true);
+            phoneNum.setEnabled(true);
+        }
+        else{
+            //means it now says save
+            fullName.setEnabled(false);
+            userName.setEnabled(false);
+            dogName.setEnabled(false);
+            dogSize.setEnabled(false);
+            address.setEnabled(false);
+            email.setEnabled(false);
+            phoneNum.setEnabled(false);
+
+            user.fullName = fullName.getText().toString();
+            user.userName = userName.getText().toString();
+            user.dogName = dogName.getText().toString();
+            user.dogSize = dogSize.getText().toString();
+            user.address = address.getText().toString();
+            user.email = email.getText().toString();
+            user.phoneNumber = phoneNum.getText().toString();
+
+            editButton.setText("Edit");
+
+        }
+    }
 
     public void goToHomePage(View view){
         Intent intent = new Intent(this, HomeActivity.class);

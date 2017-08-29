@@ -227,8 +227,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text="S"
             android:onClick="onRadioButtonClicked"
+            android:text="S"
             app:layout_constraintRight_toLeftOf="@+id/mediumButton" />
 
         <RadioButton

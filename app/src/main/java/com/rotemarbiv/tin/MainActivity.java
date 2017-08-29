@@ -77,9 +77,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_app:
                 Toast.makeText(getApplicationContext(), "action clicked ",Toast.LENGTH_LONG).show();
 
-            case R.id.HomeLabel:
-                Toast.makeText(getApplicationContext(), "home clicked ",Toast.LENGTH_LONG).show();
-
 
         }
         return super.onOptionsItemSelected(item);
