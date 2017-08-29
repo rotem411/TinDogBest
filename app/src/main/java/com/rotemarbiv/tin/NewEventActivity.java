@@ -116,7 +116,7 @@ public class NewEventActivity extends AppCompatActivity {
 
     }
 
-    public void calculatePressed(){
+    public void calculatePressed(View view){
         if (     time != null && time.trim().length() > 0 &&
                 (personToggleButton.isChecked() || dogToggleButton.isChecked()) &&
                 (morningToggleButton.isChecked() || noonToggleButton.isChecked()
@@ -129,7 +129,7 @@ public class NewEventActivity extends AppCompatActivity {
 
             comments = commentsInput.getText().toString();
 
-            boolean newEventServerResult = true;
+            boolean newEventServerResult = false;
 
 
             if (personToggleButton.isChecked() && isItMe) {
@@ -147,6 +147,16 @@ public class NewEventActivity extends AppCompatActivity {
                 else{
                     final Dialog dialog = new Dialog(context);
                     dialog.setContentView(R.layout.bad_result_dialog);
+
+                    Button dialogButton = (Button) dialog.findViewById(R.id.okButton);
+                    dialogButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
 
                 }
             }
