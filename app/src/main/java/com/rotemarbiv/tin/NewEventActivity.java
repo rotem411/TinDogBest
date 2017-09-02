@@ -14,8 +14,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.rotemarbiv.tin.backend.BackendSimulator;
+import com.rotemarbiv.tin.backend.EventTime;
+import com.rotemarbiv.tin.backend.Match;
 import com.rotemarbiv.tin.backend.Task;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,6 +40,8 @@ public class NewEventActivity extends AppCompatActivity {
     public boolean isItMe;
     public boolean firstEvent = true;
 
+    private static BackendSimulator backend = BackendSimulator.getInstance();
+
     public DatePicker datePickerView;
     public EditText commentsInput;
     public ToggleButton personToggleButton;
@@ -49,21 +55,25 @@ public class NewEventActivity extends AppCompatActivity {
 
     final Context context = this;
 
-// bla info for testing
-    public User laureUser = new User("Laure Scemama", "Doggy", "Yafo 3", true);
-    public User galUser = new User("Gal Nachmana", "Meggie", "Yafo 4", true);
-
+    private EventTime needTime;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_event);
 
+        needTime = (EventTime)getIntent().getSerializableExtra("needTime");
+        if (needTime == null){
+            firstEvent = true;
+        }
+        String needComments = getIntent().getStringExtra("needComments");
+        user = (User)getIntent().getSerializableExtra("selfUser");
+
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         datePickerView = (DatePicker) findViewById(R.id.datePickerEvent);
-
         commentsInput = (EditText) findViewById(R.id.commentsInput);
 
+        // change to relevent image and text
         personToggleButton = (ToggleButton)findViewById(R.id.userToggleButton);
         dogToggleButton = (ToggleButton)findViewById(R.id.dogToggleButton);
 
@@ -74,14 +84,6 @@ public class NewEventActivity extends AppCompatActivity {
         CompoundButton.OnCheckedChangeListener togglePressed = new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    if (buttonView == personToggleButton) {
-                        isItMe = true;
-                        dogToggleButton.setChecked(false);
-                    }
-                    if (buttonView == dogToggleButton) {
-                        isItMe = false;
-                        personToggleButton.setChecked(false);
-                    }
                     if (buttonView == morningToggleButton) {
                         time = "morning";
                         noonToggleButton.setChecked(false);
@@ -101,13 +103,11 @@ public class NewEventActivity extends AppCompatActivity {
             }
         };
 
-        personToggleButton.setOnCheckedChangeListener(togglePressed);
-        dogToggleButton.setOnCheckedChangeListener(togglePressed);
+
         morningToggleButton.setOnCheckedChangeListener(togglePressed);
         noonToggleButton.setOnCheckedChangeListener(togglePressed);
         eveningToggleButton.setOnCheckedChangeListener(togglePressed);
 
-//
 //        @Override
 //        public boolean onOptionsItemSelected(MenuItem item) {
 //            super.onOptionsItemSelected(item);
@@ -144,27 +144,29 @@ public class NewEventActivity extends AppCompatActivity {
                         "You cannot choose a date that has passed", Toast.LENGTH_LONG);
                 toast.show();
             }
-            date = Integer.toString(day)+"."+Integer.toString(month)+"."+Integer.toString(year);
+            date = Integer.toString(day)+"/"+Integer.toString(month)+"/"+Integer.toString(year);
 
             comments = commentsInput.getText().toString();
 
             if(firstEvent){
-//                Task newTask = new Task();
+                firstEvent = false;
+                Intent intent = new Intent(this, NewEventActivity.class);
+                intent.putExtra("selfUser", this.user);
+                intent.putExtra("needTime", EventTime.createEventTime(date, time));
+                startActivity(intent);
             }
+            else{
+                EventTime canTime = EventTime.createEventTime(date, time);
+                Match matchFound = backend.findMatch(needTime, canTime,
+                        User.convertUserToBackendUser(this.user));
 
-            // bla info just for testing
-            Event newEventServerResult = new Event(laureUser, galUser, "Tue, July 8th", "noon", true, 2);;
+                if (matchFound != null){
+                    //update the events comments
 
-            if (personToggleButton.isChecked() && isItMe) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "You are available for a walk on "+date+" at "+time, Toast.LENGTH_LONG);
-                toast.show();
-
-                ///  here pass the server the request for creating a walk for user
-
-                if (newEventServerResult != null){
                     Intent goodIntent = new Intent(this, ResultActivity.class);
-                    goodIntent.putExtra("newEventFound", newEventServerResult);
+//                    goodIntent.putExtra("matchFound", matchFound);
+
+                    goodIntent.putExtra("selfUser", this.user);
                     startActivity(goodIntent);
                 }
                 else{
@@ -180,18 +182,8 @@ public class NewEventActivity extends AppCompatActivity {
                     });
 
                     dialog.show();
-
                 }
             }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Doggy needs a walk pal on "+date+" at "+time, Toast.LENGTH_LONG);
-                toast.show();
-
-                ///  here pass the server the request for creating a walk for user's dog
-
-            }
-
         }
         else {
             Toast toast = Toast.makeText(getApplicationContext(),

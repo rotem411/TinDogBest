@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button signUpButton;
     private String passwordString;
     private String emailString;
-    private static BackendSimulator backend = BackendSimulator.getInstance();
+    private BackendSimulator backend = BackendSimulator.getInstance();
 
     private com.rotemarbiv.tin.backend.User serverResponse;
 

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.rotemarbiv.tin.backend.Match;
+
 /**
  * Created by laurescemama on 08/08/2017.
  */
@@ -15,7 +17,10 @@ public class ResultActivity extends AppCompatActivity {
 
     public TextView fullName;
     public Button okButton;
-    public Event event;
+    public Event userEvent;
+    public Event dogEvent;
+
+    public User selfUser;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,20 +28,23 @@ public class ResultActivity extends AppCompatActivity {
 
         fullName = (TextView)findViewById(R.id.fullNameLabel);
         okButton = (Button)findViewById(R.id.okButton);
-        event = (Event) getIntent().getSerializableExtra("newEventFound");
 
-        if (event.isItMe){
-            fullName.setText(event.dog.getDogName());
+        selfUser = (User) getIntent().getSerializableExtra("selfUser");
+        userEvent = (Event)getIntent().getSerializableExtra("userEvent");
+        dogEvent = (Event)getIntent().getSerializableExtra("dogEvent");
+
+        if (userEvent.isItMe){
+            fullName.setText(userEvent.dog.getDogName());
         }
         else{
-            fullName.setText(event.walker.getFullName());
+            fullName.setText(userEvent.walker.getFullName());
         }
 
     }
 
     public void okClicked(View view){
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("newEventFound", event);
+        intent.putExtra("selfUser", selfUser);
         //update server
         startActivity(intent);
     }

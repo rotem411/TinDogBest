@@ -121,5 +121,12 @@ public class User implements Serializable {
         return toReturn;
     }
 
+    public static com.rotemarbiv.tin.backend.User convertUserToBackendUser(User user){
+        com.rotemarbiv.tin.backend.User toReturn = com.rotemarbiv.tin.backend.User.createUser(user.getFullName(),
+                user.getPassword(), user.getPhoneNumber(),user.getAddress(),user.getEmail(),
+                user.getDogName(), user.getDogSize());
+        return toReturn;
+    }
+
 
 }

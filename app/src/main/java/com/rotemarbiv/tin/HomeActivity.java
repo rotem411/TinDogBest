@@ -14,18 +14,13 @@ import com.rotemarbiv.tin.backend.BackendSimulator;
 import com.rotemarbiv.tin.backend.Task;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by dafnaarbiv on 22/07/2017.
  */
 
 public class HomeActivity extends AppCompatActivity {
-//
-//    public User laureUser = new User("Laure Scemama", "Doggy", "Yafo 3", true);
-//    public User galUser = new User("Gal Nachmana", "Meggie", "Yafo 4", true);
-//    public User rotemUser = new User("Rotem Arbiv", "Julia", "Yafo 5", true);
-//
+
 //    public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "noon", true, 1);
 //    public Event b = new Event(laureUser, galUser, "Tue, July 7th", "morning", true, 2);
 //    public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
@@ -34,45 +29,51 @@ public class HomeActivity extends AppCompatActivity {
     private User selfUser;
     private static BackendSimulator backend = BackendSimulator.getInstance();
 
+//    private ArrayList<Event> myEvents = new ArrayList<Event>(); //todo: convert from backend.getTasks()
+//    private ArrayList<Event> dogsEvents = new ArrayList<Event>();
+//    private ArrayList<Event> myPendingEvents = new ArrayList<Event>();
 
-    private ArrayList<Event> myEvents = new ArrayList<Event>(); //todo: convert from backend.getTasks()
-    private ArrayList<Event> dogsEvents = new ArrayList<Event>();
-
-    private ArrayList<Event> myPendingEvents = new ArrayList<Event>();
+    private ArrayList<Event> myEvents;
+    private ArrayList<Event> dogsEvents;
+    private ArrayList<Event> myPendingEvents;
 
     private FloatingActionButton newEventButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-
 //        myEvents.add(a);
 //        myEvents.add(b);
 //        dogsEvents.add(c);
 //        dogsEvents.add(d);
 //        myPendingEvents.add(d);
-
         selfUser = (User) getIntent().getSerializableExtra("selfUser");
-        Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
-        Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
-        Event toAdd = (Event) getIntent().getSerializableExtra("newEventFound");
+        com.rotemarbiv.tin.backend.User backendUser = backend.getUser(selfUser.getEmail());
 
-        if(myToDelete != null){
+        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents());
+        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents());
+        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents());
 
-            myEvents.remove(myToDelete.index);
-        }
-        if(dogToDelete != null){
-            dogsEvents.remove(dogToDelete.index);
-        }
-
-        if(toAdd != null){
-            if (toAdd.isItMe){
-                myEvents.add(toAdd);
-            }
-            else{
-                dogsEvents.add(toAdd);
-            }
-        }
+//        Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
+//        Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
+//        Event toAdd = (Event) getIntent().getSerializableExtra("newEventFound");
+//
+//        if(myToDelete != null){
+//
+//            myEvents.remove(myToDelete.index);
+//        }
+//        if(dogToDelete != null){
+//            dogsEvents.remove(dogToDelete.index);
+//        }
+//
+//        if(toAdd != null){
+//            if (toAdd.isItMe){
+//                myEvents.add(toAdd);
+//            }
+//            else{
+//                dogsEvents.add(toAdd);
+//            }
+//        }
 
         ListView myEventsListView = (ListView)findViewById(R.id.myEventsList);
         ListView dogsEventsListView = (ListView)findViewById(R.id.dogsEventsList);
@@ -114,7 +115,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
         ArrayAdapter myPendingAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, myPendingEvents);
         myPendingEventsListView.setAdapter(myPendingAdapter);
 
@@ -125,14 +125,12 @@ public class HomeActivity extends AppCompatActivity {
                 int curEventID = view.getId();
                 Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
 
-
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
 //                intent.putExtra("spesificEvent", curEventID);
                 startActivity(intent);
 
             }
         });
-
 
         newEventButton = (FloatingActionButton) findViewById(R.id.addEventButton);
         newEventButton.setOnClickListener(new View.OnClickListener() {

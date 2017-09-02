@@ -1,6 +1,11 @@
 package com.rotemarbiv.tin;
 
+import com.rotemarbiv.tin.backend.EventTime;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by dafnaarbiv on 23/07/2017.
@@ -19,7 +24,15 @@ public class Event implements Serializable {
 
     public int index;
 
-    Event(User walker, User dog, String date, String time, boolean isItMe, int index){
+    Event(User walker, User dog, String time, String date){
+        this.walker = walker;
+        this.dog = dog;
+        this.time = time;
+        this.date = date ;
+        this.address = dog.address;
+    }
+    
+    Event(User walker, User dog, String time, String date, boolean isItMe, int index){
         this.walker = walker;
         this.dog = dog;
         this.time = time;
@@ -63,11 +76,54 @@ public class Event implements Serializable {
         }
     }
 
-    public String getDateStr(){
+    public String getDateStr()
+    {
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(selectedYear,selectedMonth,selectedDay);
+//        editday.setText(new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime()));
+//        String day = new SimpleDateFormat("EEEE").format(calendar.getTime());
+// // TODO: change this to the way we want to display a date 
         return date;
     }
 
     public String getTimeStr(){
             return time;
+    }
+
+
+    public String getComments() {
+        return comments;
+    }
+
+    public User getWalker() {
+        return walker;
+    }
+
+    public User getDog() {
+        return dog;
+    }
+    
+    public static Event convertBackendEventToEvent(com.rotemarbiv.tin.backend.Event event){
+        User convertWalker = User.convertBackendUserToUser(event.getOwner());
+        User convertDog = User.convertBackendUserToUser(event.getPartner());
+        Event toReturn = new Event(convertWalker, convertDog, event.getTime(), event.getDate());
+        return toReturn;
+    }
+    
+    public static ArrayList<Event> convertBackendEventListToEventList(ArrayList<com.rotemarbiv.tin.backend.Event> events){
+        ArrayList<Event> toReturn = new ArrayList<Event>();       
+        for (com.rotemarbiv.tin.backend.Event event :events ){
+            toReturn.add(convertBackendEventToEvent(event));
+        }
+        return toReturn;
+    }
+
+    public static com.rotemarbiv.tin.backend.Event convertEventToBackendEvent(Event event){
+        com.rotemarbiv.tin.backend.User convertWalker = User.convertUserToBackendUser(event.getWalker());
+        com.rotemarbiv.tin.backend.User convertDog = User.convertUserToBackendUser(event.getDog());
+        EventTime eventTime = EventTime.createEventTime(event.getDateStr(), event.getTimeStr());
+        com.rotemarbiv.tin.backend.Event toReturn = com.rotemarbiv.tin.backend.Event.createEvent(convertWalker,
+                convertDog, eventTime, event.getComments());
+        return toReturn;
     }
 }

@@ -6,7 +6,7 @@ import static com.rotemarbiv.tin.backend.Util.checkNotNull;
  * Created by Omri on 9/2/2017
  */
 
-class Event {
+public class Event {
 
     private User owner;
     private User partner;
