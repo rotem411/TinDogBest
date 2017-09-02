@@ -22,6 +22,7 @@ public class User {
         user.setName(name);
         user.setEmail(email);
         user.setPassword("password");
+        user.dog = new Dog("Bob", "L");
         return user;
     }
 

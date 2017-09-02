@@ -14,8 +14,6 @@ public class BackendSimulator implements Serializable {
 
     private HashMap<String, User> users = new HashMap<>();
 
-//    private HashMap<String, User> newUsers = new HashMap<>();
-
     private static BackendSimulator instance = new BackendSimulator();
 
     public static BackendSimulator getInstance() {
@@ -26,7 +24,7 @@ public class BackendSimulator implements Serializable {
         initDB();
     }
 
-    public void initDB() {
+    private void initDB() {
         users.put("no mail", User.of("no partner", "no email"));
         users.put("julian@gmail.com", User.of("Julian", "julian@gmail.com"));
         users.put("12kobi@walla.co.il", User.of("Kobi", "12kobi@walla.co.il"));
@@ -48,7 +46,7 @@ public class BackendSimulator implements Serializable {
         if (match == 0) {
             task = new Task(needTime, canTime, owner, users.get("no mail"), PENDING);
         } else {
-            User partner = users.get(match);
+            User partner = users.get(match);  // FIXME: 9/2/2017 match is an int, we need the email address
             task = new Task(needTime, canTime, owner, partner, UPCOMING);
             partner.getDashboard().getTasks().add(new Task(canTime, needTime, partner, owner, UPCOMING));
         }
@@ -66,14 +64,12 @@ public class BackendSimulator implements Serializable {
         task.getOwner().getDashboard().getTasks().remove(task);
     }
 
-    public void signUp(User user) {
-        users.put(user.getEmail(), user);
-    }
-
     public User signUp(String name, String password, String dogName, String dogSize, String address, String phone, String email) {
         Dog dog = new Dog(dogName, dogSize);
         Address theAddress = Address.createAddress(address);
-        return new User(name, password, phone, theAddress, email, dog);
+        User user = new User(name, password, phone, theAddress, email, dog);
+        users.put(user.getEmail(), user);
+        return user;
     }
 
     public HashMap<String, User> getUsers() {
@@ -81,7 +77,7 @@ public class BackendSimulator implements Serializable {
     }
 
     public User signIn(String email, String password) {
-        User user = users.get(email);
+        User user = users.get(email.toLowerCase());
         if (user.getPassword().equals(password))
             return user;
         return null;  // return something that makes sense instead of null
