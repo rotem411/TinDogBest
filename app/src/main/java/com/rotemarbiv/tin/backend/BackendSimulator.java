@@ -1,11 +1,10 @@
 package com.rotemarbiv.tin.backend;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Random;
 
-public class BackendSimulator implements Serializable{
+public class BackendSimulator implements Serializable {
 
     private static final boolean UPCOMING = true;
 
@@ -13,7 +12,9 @@ public class BackendSimulator implements Serializable{
 
     private static Random random = new Random();
 
-    private List<User> users = new ArrayList<>();
+    private HashMap<String, User> users = new HashMap<>();
+
+//    private HashMap<String, User> newUsers = new HashMap<>();
 
     private static BackendSimulator instance = new BackendSimulator();
 
@@ -26,11 +27,11 @@ public class BackendSimulator implements Serializable{
     }
 
     public void initDB() {
-        users.add(User.of("no partner", "no email"));
-        users.add(User.of("Julian", "julian@gmail.com"));
-        users.add(User.of("Kobi", "12kobi@walla.co.il"));
-        users.add(User.of("Galgal", "tirtir@patzi.shmenki"));
-        users.add(User.of("Rotem", "rotem.ar@walla.co.il"));
+        users.put("no mail", User.of("no partner", "no email"));
+        users.put("julian@gmail.com", User.of("Julian", "julian@gmail.com"));
+        users.put("12kobi@walla.co.il", User.of("Kobi", "12kobi@walla.co.il"));
+        users.put("tirtir@patzi.shmenki", User.of("Galgal", "tirtir@patzi.shmenki"));
+        users.put("rotem.ar@walla.co.il", User.of("Rotem", "rotem.ar@walla.co.il"));
     }
 
     void rateUser(User user, int rate) {
@@ -45,7 +46,7 @@ public class BackendSimulator implements Serializable{
         int match = random.nextInt(users.size());
         Task task;
         if (match == 0) {
-            task = new Task(needTime, canTime, owner, users.get(0), PENDING);
+            task = new Task(needTime, canTime, owner, users.get("no mail"), PENDING);
         } else {
             User partner = users.get(match);
             task = new Task(needTime, canTime, owner, partner, UPCOMING);
@@ -66,19 +67,17 @@ public class BackendSimulator implements Serializable{
     }
 
     public void signUp(User user) {
-        users.add(user);
+        users.put(user.getEmail(), user);
     }
 
-    public List<User> getUsers() {
+    public HashMap<String, User> getUsers() {
         return users;
     }
 
-    public ArrayList<Task> signIn(String email, String password) {
-        for (User user : users) {
-            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                return user.getDashboard().getTasks();
-            }
-        }
+    public User signIn(String email, String password) {
+        User user = users.get(email);
+        if (user.getPassword().equals(password))
+            return user;
         return null;  // return something that makes sense instead of null
     }
 
