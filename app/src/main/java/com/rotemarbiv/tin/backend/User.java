@@ -99,4 +99,24 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getDogName() {
+        return dog.getName();
+    }
+
+    public String getDogSize() {
+        return dog.getSize();
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public int getPhoto() {
+        return photo;
+    }
 }
