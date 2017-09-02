@@ -19,23 +19,23 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    public User laureUser = new User("Laure Scemama", "laure", "Doggy", "Yafo 3", true);
-    public User galUser = new User("Gal Nachmana", "gal", "Doggy2", "Yafo 4", true);
-    public User rotemUser = new User("Rotem Arbiv", "rotem", "Doggy3", "Yafo 5", true);
+    public User laureUser = new User("Laure Scemama", "Doggy", "Yafo 3", true);
+    public User galUser = new User("Gal Nachmana", "Meggie", "Yafo 4", true);
+    public User rotemUser = new User("Rotem Arbiv", "Julia", "Yafo 5", true);
 
     public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "noon", true, 1);
     public Event b = new Event(laureUser, galUser, "Tue, July 7th", "morning", true, 2);
     public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
     public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);
 
-    public User selfUser; //TODO: receive from sign in
+    private User selfUser; //TODO: receive from sign in
 
-    public ArrayList<Event> myEvents = new ArrayList<Event>();
-    public ArrayList<Event> dogsEvents = new ArrayList<Event>();
+    private ArrayList<Event> myEvents = new ArrayList<Event>();
+    private ArrayList<Event> dogsEvents = new ArrayList<Event>();
 
-    public ArrayList<Event> myPendingEvents = new ArrayList<Event>();
+    private ArrayList<Event> myPendingEvents = new ArrayList<Event>();
 
-    public FloatingActionButton newEventButton;
+    private FloatingActionButton newEventButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
