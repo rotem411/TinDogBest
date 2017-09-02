@@ -13,8 +13,7 @@ public class User {
     private String phoneNumber;
     private Address address;
     private String email;
-    private  String dogName;
-    private String dogSize;
+    private Dog dog;
     private Dashboard dashboard = new Dashboard();
     private int photo;
 
@@ -23,6 +22,29 @@ public class User {
         user.setName(name);
         user.setPassword("password");
         return user;
+    }
+
+    public User() {
+    }
+
+    public User(String name,
+                String password,
+                ArrayList<Integer> rates,
+                String phoneNumber,
+                Address address,
+                String email,
+                Dog dog,
+                Dashboard dashboard,
+                int photo) {
+        this.name = name;
+        this.password = password;
+        this.rates = rates;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
+        this.dog = dog;
+        this.dashboard = dashboard;
+        this.photo = photo;
     }
 
     public String getName() {

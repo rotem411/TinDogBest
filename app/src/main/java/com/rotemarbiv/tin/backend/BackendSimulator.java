@@ -72,7 +72,7 @@ public class BackendSimulator {
         return users;
     }
 
-    public List<Task> signIn(String email, String password) {
+    public ArrayList<Task> signIn(String email, String password) {
         for (User user : users) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 return user.getDashboard().getTasks();
