@@ -48,6 +48,25 @@ public class User {
     public static User createUser(String name,
                                   String password,
                                   String phoneNumber,
+                                  Address address,
+                                  String email,
+                                  Dog dog) {
+        verifyParamsNotNull(name, password, phoneNumber, address, email, dog);
+        return new User(name, password, phoneNumber, address, email, dog);
+    }
+
+    private static void verifyParamsNotNull(String name, String password, String phoneNumber, Address address, String email, Dog dog) {
+        checkNotNull(name, "'name' was null");
+        checkNotNull(password, "'password' was null");
+        checkNotNull(phoneNumber, "'phoneNumber' was null");
+        checkNotNull(address, "'address' was null");
+        checkNotNull(email, "'email' was null");
+        checkNotNull(dog, "'dog' was null");
+    }
+
+    public static User createUser(String name,
+                                  String password,
+                                  String phoneNumber,
                                   String addressDescription,
                                   String email,
                                   String dogName,
