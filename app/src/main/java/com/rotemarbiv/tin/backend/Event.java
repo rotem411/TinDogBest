@@ -40,6 +40,10 @@ public class Event {
         return comments;
     }
 
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
     public String getAddress() {
         return partner.getAddress();
     }
