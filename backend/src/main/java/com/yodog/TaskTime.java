@@ -7,9 +7,9 @@ package com.yodog;
 class TaskTime {
 
     private int dayOfWeek;
-    private int chunk;
+    private String chunk;
 
-    public TaskTime(int dayOfWeek, int chunk) {
+    public TaskTime(int dayOfWeek, String chunk) {
         this.dayOfWeek = dayOfWeek;
         this.chunk = chunk;
     }
@@ -18,7 +18,7 @@ class TaskTime {
         return dayOfWeek;
     }
 
-    public int getChunk() {
+    public String getChunk() {
         return chunk;
     }
 }

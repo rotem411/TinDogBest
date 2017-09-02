@@ -6,14 +6,17 @@ import java.util.ArrayList;
  * Created by Omri on 8/15/2017
  */
 
-public class User {  // todo add photo
+public class User {
     private String name;
     private String password;
     private ArrayList<Integer> rates = new ArrayList<>();
     private String phoneNumber;
     private Address address;
-    private Dog dog;
+    private String email;
+    private  String dogName;
+    private String dogSize;
     private Dashboard dashboard = new Dashboard();
+    private int photo;
 
     public static User of(String name) {
         User user = new User();

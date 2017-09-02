@@ -45,8 +45,8 @@ public class BackendSimulatorTest {
         BackendSimulator backendSimulator = new BackendSimulator();
 
         User owner = createUser();
-        TaskTime needTime = new TaskTime(2, 3);
-        TaskTime canTime = new TaskTime(3, 2);
+        TaskTime needTime = new TaskTime(2, "3");
+        TaskTime canTime = new TaskTime(3, "2");
         int expectedTasksCount = owner.getDashboard().getTasks().size() + 1;
 
         Dashboard match = backendSimulator.findMatch(needTime, canTime, owner);
@@ -60,8 +60,8 @@ public class BackendSimulatorTest {
         User owner = createUser();
         backendSimulator.signUp(owner);
 
-        TaskTime needTime = new TaskTime(2, 3);
-        TaskTime canTime = new TaskTime(3, 2);
+        TaskTime needTime = new TaskTime(2, "3");
+        TaskTime canTime = new TaskTime(3, "2");
         Dashboard ownerDashboard = backendSimulator.findMatch(needTime, canTime, owner);
 
         ArrayList<Task> ownerTasks = ownerDashboard.getTasks();
@@ -79,8 +79,8 @@ public class BackendSimulatorTest {
         User owner = createUser();
         backendSimulator.signUp(owner);
 
-        TaskTime needTime = new TaskTime(2, 3);
-        TaskTime canTime = new TaskTime(3, 2);
+        TaskTime needTime = new TaskTime(2, "3");
+        TaskTime canTime = new TaskTime(3, "2");
         User partner = backendSimulator.getUsers().get(1);
         Task task = new Task(needTime, canTime, owner, partner, true);
         owner.getDashboard().getTasks().add(task);
