@@ -27,7 +27,9 @@ public class BackendSimulator {
     public void initDB() {
         users.add(User.of("no partner", "no email"));
         users.add(User.of("Julian", "julian@gmail.com"));
-        users.add(User.of("Kobi", "kobi69@walla.co.il"));
+        users.add(User.of("Kobi", "12kobi@walla.co.il"));
+        users.add(User.of("Galgal", "tirtir@patzi.shmenki"));
+        users.add(User.of("Rotem", "rotem.ar@walla.co.il"));
     }
 
     void rateUser(User user, int rate) {
@@ -70,10 +72,10 @@ public class BackendSimulator {
         return users;
     }
 
-    public Dashboard signIn(String email, String password) {
+    public ArrayList<Task> signIn(String email, String password) {
         for (User user : users) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                return user.getDashboard();
+                return user.getDashboard().getTasks();
             }
         }
         return null;  // return something that makes sense instead of null
