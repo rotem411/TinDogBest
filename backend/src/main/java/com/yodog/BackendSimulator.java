@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-class BackendSimulator {
+public class BackendSimulator {
 
     private static final boolean UPCOMING = true;
     private static final boolean PENDING = false;
@@ -62,9 +62,9 @@ class BackendSimulator {
         return users;
     }
 
-    public Dashboard signIn(String name, String password) {
+    public Dashboard signIn(String email, String password) {
         for (User user : users) {
-            if (user.getName().equals(name) && user.getPassword().equals(password)) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 return user.getDashboard();
             }
         }

@@ -68,4 +68,8 @@ public class User {
     public Dashboard getDashboard() {
         return dashboard;
     }
+
+    public String getEmail() {
+        return email;
+    }
 }
