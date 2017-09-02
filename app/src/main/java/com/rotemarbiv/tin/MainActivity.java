@@ -11,16 +11,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rotemarbiv.tin.backend.BackendSimulator;
+import com.rotemarbiv.tin.backend.Task;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static User self;
-    public EditText email;
-    public EditText password;
-    public Button signInButton;
-    public Button signUpButton;
-    public String passwordString;
+    private static User self;
+    private EditText email;
+    private EditText password;
+    private Button signInButton;
+    private Button signUpButton;
+    private String passwordString;
+    private String emailString;
     private static BackendSimulator backend = BackendSimulator.getInstance();
+
+    private ArrayList<Task> serverResponse;
 
 
     @Override
@@ -29,21 +36,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         email = (EditText) findViewById(R.id.emailInput);
+        emailString = email.getText().toString();
         password = (EditText) findViewById(R.id.passwordInput);
         passwordString = password.getText().toString();
         signInButton = (Button) findViewById(R.id.signInButton);
         self = new User(email.getText().toString(), password.getText().toString(), true);
 
+
         signInButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-
                  if (email.getText().toString().trim().length()>0
                          && password.getText().toString().trim().length() > 0){
-
+                            serverResponse = backend.signIn(emailString, passwordString);
+                            if(serverResponse == null){
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "User Doesn't exist. Try again or sign up.", Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+                            else{
+                                //sign in as the user - dont know who
+                                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                                intent.putExtra("taskList", serverResponse);
+                                startActivity(intent);
+                            }
                  }
-                    //sign in as the user - dont know who
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);
+
 //                }
 
             }

@@ -1,10 +1,14 @@
 package com.rotemarbiv.tin.backend;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by Omri on 8/15/2017
  */
 
-public class Task {
+public class Task implements Serializable{
 
     private TaskTime needTime;
     private TaskTime canTime;
@@ -13,6 +17,12 @@ public class Task {
     private boolean ownerDone = false;
     private boolean partnerDone = false;
     private boolean status;
+
+    public Task(TaskTime needTime, User owner, boolean status) {
+        this.needTime = needTime;
+        this.owner = owner;
+        this.status = status;
+    }
 
     public Task(TaskTime needTime, TaskTime canTime, User owner, User partner, boolean status) {
         this.needTime = needTime;

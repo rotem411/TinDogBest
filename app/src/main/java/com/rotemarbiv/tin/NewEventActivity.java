@@ -149,7 +149,7 @@ public class NewEventActivity extends AppCompatActivity {
             comments = commentsInput.getText().toString();
 
             if(firstEvent){
-//                Task newTask = new Task()
+//                Task newTask = new Task();
             }
 
             // bla info just for testing

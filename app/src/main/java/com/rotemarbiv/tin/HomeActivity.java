@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.rotemarbiv.tin.backend.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
         dogsEvents.add(c);
         dogsEvents.add(d);
         myPendingEvents.add(d);
+
+        ArrayList<Task> serverTaskList =  (ArrayList<Task>) getIntent().getSerializableExtra("taskList");
 
         Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
         Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
