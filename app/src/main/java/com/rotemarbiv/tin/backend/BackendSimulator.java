@@ -72,13 +72,9 @@ public class BackendSimulator implements Serializable {
         return userDashboard;
     }
 
-    public void removeTask(User owner, Task task) {
-//        owner.getDashboard().getTasks().remove(task);
-    }
-
-    public void markDone(Task task, int partnerRating) {
-        task.getPartner().rate(partnerRating);
-//        task.getOwner().getDashboard().getTasks().remove(task);
+    public void removeEvent(Event event) {
+        event.getOwner().getDashboard().getUserEvents().removeEvent(event);
+        event.getPartner().getDashboard().getDogEvents().removeEvent(event);
     }
 
     public User signUp(String name, String password, String dogName, String dogSize, String address, String phone, String email) {
