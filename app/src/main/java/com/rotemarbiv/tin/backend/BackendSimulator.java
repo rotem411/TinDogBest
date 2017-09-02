@@ -37,7 +37,7 @@ public class BackendSimulator implements Serializable {
                 new User("Kobi",
                         "1234",
                         "08333666",
-                        Address.createAddress("Loid George 2, Jerusalem"),
+                        Address.createAddress("Loyd George 2, Jerusalem"),
                         "12kobi@walla.co.il",
                         Dog.createDog("Tooki", "M")));
         users.put("tirtir@patzi.shmenki",
@@ -46,7 +46,7 @@ public class BackendSimulator implements Serializable {
                         "0551239876",
                         Address.createAddress("Ha'Banai 4, Jerusalem"),
                         "tirtir@patzi.shmenki",
-                        Dog.createDog("loulou", "L")));
+                        Dog.createDog("Loulou", "L")));
     }
 
     void rateUser(User user, int rate) {
@@ -83,10 +83,6 @@ public class BackendSimulator implements Serializable {
         User user = new User(name, password, phone, theAddress, email, dog);
         users.put(user.getEmail(), user);
         return user;
-    }
-
-    public HashMap<String, User> getUsers() {
-        return users;
     }
 
     public User getUser(String email) {

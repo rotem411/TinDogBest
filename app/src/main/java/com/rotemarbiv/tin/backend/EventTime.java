@@ -6,7 +6,7 @@ import static com.rotemarbiv.tin.backend.Util.checkNotNull;
  * Created by Omri on 8/24/2017
  */
 
-class EventTime {
+public class EventTime {
 
     private String date;
     private String time;
