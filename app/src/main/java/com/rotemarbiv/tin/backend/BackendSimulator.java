@@ -1,6 +1,7 @@
 package com.rotemarbiv.tin.backend;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -56,20 +57,35 @@ public class BackendSimulator implements Serializable {
         user.getRates().add(rate);
     }
 
-    Dashboard findMatch(EventTime needTime, EventTime canTime, User owner) {
+    Match findMatch(EventTime needTime, EventTime canTime, User owner) {
+        final boolean FOUND = true;
+        final boolean NOT_FOUND = false;
+
         Dashboard userDashboard = owner.getDashboard();
         int match = random.nextInt(users.size());
-        Task task;
-        if (match == 0) {
-            task = new Task(needTime, canTime, owner, users.get("no mail"), PENDING);
-        } else {
-            User partner = users.get(match);  // FIXME: 9/2/2017 match is an int, we need the email address
-            task = new Task(needTime, canTime, owner, partner, UPCOMING);
-//            partner.getDashboard().getTasks().add(new Task(canTime, needTime, partner, owner, UPCOMING));
-        }
+        ArrayList<String> userEmails = new ArrayList<>(users.keySet());
 
-//        userDashboard.getTasks().add(task);  // update dashboard
-        return userDashboard;
+        Event event;
+        if (match == 0) {
+            event = Event.createEvent(owner, users.get("no mail"), canTime, "");
+            userDashboard.getPendingEvents().addEvent(event);
+            return null;
+        } else {
+            User partner = users.get(userEmails.get(match));
+            Event ownerDogEvent = Event.createEvent(owner, partner, needTime, "");
+            Event ownerEvent = Event.createEvent(partner, owner, canTime, "");
+
+            Event partnerDogEvent = Event.createEvent(partner, owner, canTime, "");
+            Event partnerEvent = Event.createEvent(owner, partner, needTime, "");
+
+            userDashboard.getDogEvents().addEvent(ownerDogEvent);
+            userDashboard.getUserEvents().addEvent(ownerEvent);
+
+            partner.getDashboard().getUserEvents().addEvent(partnerEvent);
+            partner.getDashboard().getDogEvents().addEvent(partnerDogEvent);
+
+            return Match.createMatch(ownerEvent, ownerDogEvent);
+        }
     }
 
     public void removeEvent(Event event) {

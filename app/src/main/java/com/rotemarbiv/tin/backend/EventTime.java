@@ -1,12 +1,14 @@
 package com.rotemarbiv.tin.backend;
 
+import java.io.Serializable;
+
 import static com.rotemarbiv.tin.backend.Util.checkNotNull;
 
 /**
  * Created by Omri on 8/24/2017
  */
 
-public class EventTime {
+public class EventTime implements Serializable{
 
     private String date;
     private String time;
