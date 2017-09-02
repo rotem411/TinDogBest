@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.rotemarbiv.tin.backend.Task;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -127,8 +129,7 @@ public class NewEventActivity extends AppCompatActivity {
     }
 
     public void calculatePressed(View view){
-        if (     time != null && time.trim().length() > 0 &&
-                (personToggleButton.isChecked() || dogToggleButton.isChecked()) &&
+        if (time != null && time.trim().length() > 0 &&
                 (morningToggleButton.isChecked() || noonToggleButton.isChecked()
                         || eveningToggleButton.isChecked())){
 
@@ -147,8 +148,11 @@ public class NewEventActivity extends AppCompatActivity {
 
             comments = commentsInput.getText().toString();
 
-            // bla info just for testing
+            if(firstEvent){
+//                Task newTask = new Task()
+            }
 
+            // bla info just for testing
             Event newEventServerResult = new Event(laureUser, galUser, "Tue, July 8th", "noon", true, 2);;
 
             if (personToggleButton.isChecked() && isItMe) {

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
                  if (email.getText().toString().trim().length()>0
                          && password.getText().toString().trim().length() > 0){
-                     //todo:
+
                  }
                     //sign in as the user - dont know who
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
