@@ -40,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.sign_up);
 
         fullName = (EditText) findViewById(R.id.fullNameInput);
-        userName = (EditText) findViewById(R.id.userNameInput);
+        userName = (EditText) findViewById(R.id.emailInput);
         password = (EditText) findViewById(R.id.passwordInput);
         dogName = (EditText) findViewById(R.id.dogNameInput);
         address = (EditText) findViewById(R.id.addressInput);

@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public static User self;
-    public EditText userName;
+    public EditText email;
     public EditText password;
     public Button signInButton;
     public Button signUpButton;
@@ -25,21 +25,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        userName = (EditText) findViewById(R.id.userNameInput);
+        email = (EditText) findViewById(R.id.emailInput);
         password = (EditText) findViewById(R.id.passwordInput);
         passwordString = password.getText().toString();
         signInButton = (Button) findViewById(R.id.signInButton);
-        self = new User(userName.getText().toString(), password.getText().toString(), true);
+        self = new User(email.getText().toString(), password.getText().toString(), true);
 
         signInButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-//                if (MyApp.mGlobalUsers == null){
-//                    Toast.makeText(getApplicationContext(), "There is no such User or the password is not correct ",Toast.LENGTH_LONG).show();
-//                }
-//                else if (MyApp.mGlobalUsers.get(userName.getText().toString()).equals(passwordString)){ // verify the user with server
-//                    Toast.makeText(getApplicationContext(), "There is no such User or the password is not correct ",Toast.LENGTH_LONG).show();
-//                }
-//                else {
+
+                 if (email.getText().toString().trim().length()>0
+                         && password.getText().toString().trim().length() > 0){
+                     //todo:
+                 }
                     //sign in as the user - dont know who
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);

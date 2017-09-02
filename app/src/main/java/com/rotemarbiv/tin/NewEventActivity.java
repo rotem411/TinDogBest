@@ -32,6 +32,7 @@ public class NewEventActivity extends AppCompatActivity {
     public String date;
     public String comments;
     public boolean isItMe;
+    public boolean firstEvent = true;
 
     public DatePicker datePickerView;
     public EditText commentsInput;
@@ -47,8 +48,8 @@ public class NewEventActivity extends AppCompatActivity {
     final Context context = this;
 
 // bla info for testing
-    public User laureUser = new User("Laure Scemama","Doggy", "Yafo 3", true);
-    public User galUser = new User("Gal Nachmana", "Doggy2", "Yafo 4", true);
+    public User laureUser = new User("Laure Scemama", "Doggy", "Yafo 3", true);
+    public User galUser = new User("Gal Nachmana", "Meggie", "Yafo 4", true);
 
 
     protected void onCreate(Bundle savedInstanceState) {
