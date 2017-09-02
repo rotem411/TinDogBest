@@ -18,7 +18,7 @@ public class User {
     private Dashboard dashboard = new Dashboard();
     private int photo;
 
-    public static User of(String name) {
+    public static User of(String name, String email) {
         User user = new User();
         user.setName(name);
         user.setPassword("password");

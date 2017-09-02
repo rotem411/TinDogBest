@@ -7,19 +7,27 @@ import java.util.Random;
 public class BackendSimulator {
 
     private static final boolean UPCOMING = true;
+
     private static final boolean PENDING = false;
+
     private static Random random = new Random();
 
     private List<User> users = new ArrayList<>();
 
-    public BackendSimulator() {
+    private static BackendSimulator instance = new BackendSimulator();
+
+    public static BackendSimulator getInstance() {
+        return instance;
+    }
+
+    private BackendSimulator() {
         initDB();
     }
 
     public void initDB() {
-        users.add(User.of("no partner"));
-        users.add(User.of("Julian"));
-        users.add(User.of("Kobi"));
+        users.add(User.of("no partner", "no email"));
+        users.add(User.of("Julian", "julian@gmail.com"));
+        users.add(User.of("Kobi", "kobi69@walla.co.il"));
     }
 
     void rateUser(User user, int rate) {
