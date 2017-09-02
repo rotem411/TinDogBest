@@ -1,80 +1,74 @@
 package com.yodog;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Random;
 
 class BackendSimulator {
 
-    private HashMap<String, User> users = new HashMap<>();
-    private HashMap<Long, Task> canTasks = new HashMap<>();
-    private HashMap<Long, Task> needTasks = new HashMap<>();
+    private static final boolean UPCOMING = true;
+    private static final boolean PENDING = false;
+    private static Random random = new Random();
 
-    HashMap<String, User> getUsers() {
-        return users;
+    private List<User> users = new ArrayList<>();
+
+    public BackendSimulator() {
+        initDB();
     }
 
-    HashMap<Long, Task> getCanTasks() {
-        return canTasks;
-    }
-
-    HashMap<Long, Task> getNeedTasks() {
-        return needTasks;
-    }
-
-    void signUp(User newUser) {
-        // todo check is user exist
-
-        if (newUser != null)
-            users.put(newUser.getName(), newUser);
-
-        // todo throw exception if null/invalid data
-    }
-
-    boolean signIn(String userName, String password) {
-        if (userName == null)
-            throw new NoSuchElementException("Expected userName, got Null");
-
-        if (password == null)
-            throw new NoSuchElementException("Expected password, got Null");
-
-        User user = users.get(userName);
-        return user != null && password.equals(user.getPassword());
-    }
-
-    boolean addTask(Task canTask, Task needTask) {
-        if (canTask == null)
-            throw new NoSuchElementException("Expected canTask, got Null");
-
-        if (needTask == null)
-            throw new NoSuchElementException("Expected needTask, got Null");
-
-        if (System.currentTimeMillis() > canTask.getTime() || System.currentTimeMillis() > needTask.getTime())
-            return false;  // todo throw an exception that makes sense
-
-        canTasks.put(canTask.getTime(), canTask);
-        needTasks.put(needTask.getTime(), needTask);
-        return true;
-    }
-
-    User viewProfile(String username) {  // todo test
-        if (username == null)
-            throw new NoSuchElementException("Expected username, got null");
-
-        return users.get(username);
+    public void initDB() {
+        users.add(User.of("no partner"));
+        users.add(User.of("Julian"));
+        users.add(User.of("Kobi"));
     }
 
     void rateUser(User user, int rate) {
-        // todo validate params not null
-        user.setRating((user.getRating() + rate) / 2);  // todo make rating better
+        if (user == null)
+            return;
+
+        user.getRates().add(rate);
     }
 
-    List<Task> findMatch(Task can, Task need) {
-        return null;
+    Dashboard findMatch(TaskTime needTime, TaskTime canTime, User owner) {
+        Dashboard userDashboard = owner.getDashboard();
+        int match = random.nextInt(users.size());
+        Task task;
+        if (match == 0) {
+            task = new Task(needTime, canTime, owner, users.get(0), PENDING);
+        } else {
+            User partner = users.get(match);
+            task = new Task(needTime, canTime, owner, partner, UPCOMING);
+            partner.getDashboard().getTasks().add(new Task(canTime, needTime, partner, owner, UPCOMING));
+        }
+
+        userDashboard.getTasks().add(task);  // update dashboard
+        return userDashboard;
     }
 
-//    + markDone(Task task)
-//    + editTask(Task task)
-//    + removeTask(Task task)
+    public void removeTask(User owner, Task task) {
+        owner.getDashboard().getTasks().remove(task);
+    }
+
+    public void markDone(Task task, int partnerRating) {
+        task.getPartner().rate(partnerRating);
+        task.getOwner().getDashboard().getTasks().remove(task);
+    }
+
+    public void signUp(User user) {
+        users.add(user);
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public Dashboard signIn(String name, String password) {
+        for (User user : users) {
+            if (user.getName().equals(name) && user.getPassword().equals(password)) {
+                return user.getDashboard();
+            }
+        }
+        return null;  // return something that makes sense instead of null
+    }
 
 }
