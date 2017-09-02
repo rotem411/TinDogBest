@@ -57,7 +57,7 @@ public class BackendSimulator implements Serializable {
         user.getRates().add(rate);
     }
 
-    Match findMatch(EventTime needTime, EventTime canTime, User owner) {
+    public Match findMatch(EventTime needTime, EventTime canTime, User owner) {
         int match = random.nextInt(users.size());
         ArrayList<String> userEmails = new ArrayList<>(users.keySet());
 
