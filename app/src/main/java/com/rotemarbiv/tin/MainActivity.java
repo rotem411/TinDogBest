@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.rotemarbiv.tin.backend.BackendSimulator;
+
 public class MainActivity extends AppCompatActivity {
 
     public static User self;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public Button signInButton;
     public Button signUpButton;
     public String passwordString;
+    private static BackendSimulator backend = BackendSimulator.getInstance();
 
 
     @Override
