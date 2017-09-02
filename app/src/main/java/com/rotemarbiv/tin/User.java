@@ -20,6 +20,7 @@ public class User implements Serializable {
     public String address;
     public String phoneNumber;
     public String email;
+    public float rating;
     public boolean notifications;
 
     public ArrayList<Integer> rates = new ArrayList<Integer>();
@@ -112,6 +113,12 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public static User convertBackendUserToUser(com.rotemarbiv.tin.backend.User user){
+        User toReturn = new User(user.getName(),user.getPassword(),user.getDogName(),
+                user.getDogSize(), user.getAddress(), user.getPhoneNumber(), user.getEmail(), true);
+        return toReturn;
     }
 
 

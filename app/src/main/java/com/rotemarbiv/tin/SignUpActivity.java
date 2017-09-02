@@ -15,14 +15,17 @@ package com.rotemarbiv.tin;
         import android.widget.RadioButton;
         import android.widget.Toast;
 
+        import com.rotemarbiv.tin.backend.BackendSimulator;
+
 /**
  * Created by laurescemama on 12/07/2017.
  */
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private static BackendSimulator backend = BackendSimulator.getInstance();
+
     public EditText fullName;
-    public EditText userName;
     public EditText password;
     public EditText dogName;
     public EditText address;
@@ -40,7 +43,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.sign_up);
 
         fullName = (EditText) findViewById(R.id.fullNameInput);
-        userName = (EditText) findViewById(R.id.emailInput);
         password = (EditText) findViewById(R.id.passwordInput);
         dogName = (EditText) findViewById(R.id.dogNameInput);
         address = (EditText) findViewById(R.id.addressInput);
@@ -67,29 +69,29 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v){
 
                 String fullNameStr = fullName.getText().toString();
-                String userNameStr = userName.getText().toString();
                 String passwordStr = password.getText().toString();
                 String dogNameStr = dogName.getText().toString();
                 String addressStr = address.getText().toString();
                 String phoneNumberStr = phoneNumber.getText().toString();
-                String mailStr = mail.getText().toString();
+                String emailStr = mail.getText().toString();
 
                 if (fullNameStr != null && fullNameStr.trim().length() > 0 &&
-                        userNameStr != null && userNameStr.trim().length() > 0  &&
                         passwordStr != null && passwordStr.trim().length() > 0 &&
                         dogNameStr != null && dogNameStr.trim().length() > 0 &&
                         addressStr != null && addressStr.trim().length() > 0 &&
                         phoneNumberStr != null && phoneNumberStr.trim().length() > 0 &&
-                        mailStr != null && mailStr.trim().length() > 0) {
+                        emailStr != null && emailStr.trim().length() > 0) {
 
-                    User newUser = new User(fullNameStr, passwordStr,
+                    com.rotemarbiv.tin.backend.User serverResponse = backend.signUp(fullNameStr, passwordStr,
                             dogNameStr, dogSize, addressStr, phoneNumberStr,
-                            mailStr, true);
+                            emailStr);
+                    User self = User.convertBackendUserToUser(serverResponse);
+
 
 //                    MyApp.mGlobalUsers.put(userNameStr, passwordStr); // TODO this is temp instead of the server
 
                     Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-                    intent.putExtra("Self", newUser);
+                    intent.putExtra("selfUser", self);
                     startActivity(intent);
                 }
                 else{

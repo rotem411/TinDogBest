@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.rotemarbiv.tin.backend.BackendSimulator;
 import com.rotemarbiv.tin.backend.Task;
 
 import java.util.ArrayList;
@@ -20,19 +21,21 @@ import java.util.List;
  */
 
 public class HomeActivity extends AppCompatActivity {
+//
+//    public User laureUser = new User("Laure Scemama", "Doggy", "Yafo 3", true);
+//    public User galUser = new User("Gal Nachmana", "Meggie", "Yafo 4", true);
+//    public User rotemUser = new User("Rotem Arbiv", "Julia", "Yafo 5", true);
+//
+//    public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "noon", true, 1);
+//    public Event b = new Event(laureUser, galUser, "Tue, July 7th", "morning", true, 2);
+//    public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
+//    public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);
 
-    public User laureUser = new User("Laure Scemama", "Doggy", "Yafo 3", true);
-    public User galUser = new User("Gal Nachmana", "Meggie", "Yafo 4", true);
-    public User rotemUser = new User("Rotem Arbiv", "Julia", "Yafo 5", true);
+    private User selfUser;
+    private static BackendSimulator backend = BackendSimulator.getInstance();
 
-    public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "noon", true, 1);
-    public Event b = new Event(laureUser, galUser, "Tue, July 7th", "morning", true, 2);
-    public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
-    public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);
 
-    private User selfUser; //TODO: receive from sign in
-
-    private ArrayList<Event> myEvents = new ArrayList<Event>();
+    private ArrayList<Event> myEvents = new ArrayList<Event>(); //todo: convert from backend.getTasks()
     private ArrayList<Event> dogsEvents = new ArrayList<Event>();
 
     private ArrayList<Event> myPendingEvents = new ArrayList<Event>();
@@ -43,14 +46,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        myEvents.add(a);
-        myEvents.add(b);
-        dogsEvents.add(c);
-        dogsEvents.add(d);
-        myPendingEvents.add(d);
+//        myEvents.add(a);
+//        myEvents.add(b);
+//        dogsEvents.add(c);
+//        dogsEvents.add(d);
+//        myPendingEvents.add(d);
 
-        ArrayList<Task> serverTaskList =  (ArrayList<Task>) getIntent().getSerializableExtra("taskList");
-
+        selfUser = (User) getIntent().getSerializableExtra("selfUser");
         Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
         Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
         Event toAdd = (Event) getIntent().getSerializableExtra("newEventFound");
@@ -144,7 +146,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void profileClicked(View view){
         Intent intent = new Intent(this, ProfileActivity.class);
-        intent.putExtra("profileUser", laureUser);
+        intent.putExtra("profileUser", selfUser);
         startActivity(intent);
     }
 }

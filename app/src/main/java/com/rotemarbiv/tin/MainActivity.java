@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private String emailString;
     private static BackendSimulator backend = BackendSimulator.getInstance();
 
-    private ArrayList<Task> serverResponse;
+    private com.rotemarbiv.tin.backend.User serverResponse;
 
 
     @Override
@@ -36,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         email = (EditText) findViewById(R.id.emailInput);
-        emailString = email.getText().toString();
         password = (EditText) findViewById(R.id.passwordInput);
-        passwordString = password.getText().toString();
         signInButton = (Button) findViewById(R.id.signInButton);
-        self = new User(email.getText().toString(), password.getText().toString(), true);
 
 
         signInButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                 if (email.getText().toString().trim().length()>0
+                emailString = email.getText().toString();
+                passwordString = password.getText().toString();
+
+                if (email.getText().toString().trim().length()>0
                          && password.getText().toString().trim().length() > 0){
                             serverResponse = backend.signIn(emailString, passwordString);
                             if(serverResponse == null){
@@ -55,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
                             }
                             else{
                                 //sign in as the user - dont know who
+                                self = User.convertBackendUserToUser(serverResponse);
                                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                                intent.putExtra("taskList", serverResponse);
+                                intent.putExtra("selfUser", self);
                                 startActivity(intent);
                             }
                  }
