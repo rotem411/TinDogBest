@@ -70,6 +70,12 @@ public class BackendSimulator implements Serializable {
         users.put(user.getEmail(), user);
     }
 
+    public User signUp(String name, String password, String dogName, String dogSize, String address, String phone, String email) {
+        Dog dog = new Dog(dogName, dogSize);
+        Address theAddress = Address.createAddress(address);
+        return new User(name, password, phone, theAddress, email, dog);
+    }
+
     public HashMap<String, User> getUsers() {
         return users;
     }

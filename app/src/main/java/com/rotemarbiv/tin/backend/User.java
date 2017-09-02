@@ -30,22 +30,16 @@ public class User {
 
     public User(String name,
                 String password,
-                ArrayList<Integer> rates,
                 String phoneNumber,
                 Address address,
                 String email,
-                Dog dog,
-                Dashboard dashboard,
-                int photo) {
+                Dog dog) {
         this.name = name;
         this.password = password;
-        this.rates = rates;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
         this.dog = dog;
-        this.dashboard = dashboard;
-        this.photo = photo;
     }
 
     public String getName() {
@@ -112,8 +106,8 @@ public class User {
         return phoneNumber;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getAddress() {
+        return address.getDescription();
     }
 
     public int getPhoto() {
