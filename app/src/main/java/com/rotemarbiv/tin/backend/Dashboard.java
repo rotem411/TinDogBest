@@ -1,6 +1,9 @@
 package com.rotemarbiv.tin.backend;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static com.rotemarbiv.tin.backend.Util.checkNotNull;
 
 /**
  * Created by Omri on 8/16/2017
@@ -8,17 +11,42 @@ import java.util.ArrayList;
 
 public class Dashboard {
 
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Event> userEvents = new ArrayList<>();
+    private ArrayList<Event> dogEvents = new ArrayList<>();
+    private ArrayList<Event> pendingEvents = new ArrayList<>();
 
-    public Dashboard() {
+    Dashboard() {
     }
 
-    public Dashboard(ArrayList<Task> tasks) {
-        this.tasks = tasks;
+    public ArrayList<Event> getUserEvents() {
+        return userEvents;
     }
 
-    public ArrayList<Task> getTasks() {
-        return tasks;
+    public ArrayList<Event> getDogEvents() {
+        return dogEvents;
     }
+
+    public ArrayList<Event> getPendingEvents() {
+        return pendingEvents;
+    }
+
+    private void addUserEvent(Event event) {
+        addEventToList(event, userEvents);
+    }
+
+    private void addDogEvent(Event event) {
+        addEventToList(event, dogEvents);
+    }
+
+    private void addPendingEvent(Event event) {
+        addEventToList(event, pendingEvents);
+    }
+
+    private void addEventToList(Event event, List<Event> list) {
+        checkNotNull(event, "'event' was null");
+        list.add(event);
+    }
+
+
 
 }

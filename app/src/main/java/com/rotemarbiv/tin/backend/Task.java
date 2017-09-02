@@ -1,7 +1,5 @@
 package com.rotemarbiv.tin.backend;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 /**
@@ -10,21 +8,21 @@ import java.io.Serializable;
 
 public class Task implements Serializable{
 
-    private TaskTime needTime;
-    private TaskTime canTime;
+    private EventTime needTime;
+    private EventTime canTime;
     private User owner;
     private User partner;
     private boolean ownerDone = false;
     private boolean partnerDone = false;
     private boolean status;
 
-    public Task(TaskTime needTime, User owner, boolean status) {
+    public Task(EventTime needTime, User owner, boolean status) {
         this.needTime = needTime;
         this.owner = owner;
         this.status = status;
     }
 
-    public Task(TaskTime needTime, TaskTime canTime, User owner, User partner, boolean status) {
+    public Task(EventTime needTime, EventTime canTime, User owner, User partner, boolean status) {
         this.needTime = needTime;
         this.canTime = canTime;
         this.owner = owner;
@@ -32,11 +30,11 @@ public class Task implements Serializable{
         this.status = status;
     }
 
-    public TaskTime getNeedTime() {
+    public EventTime getNeedTime() {
         return needTime;
     }
 
-    public TaskTime getCanTime() {
+    public EventTime getCanTime() {
         return canTime;
     }
 

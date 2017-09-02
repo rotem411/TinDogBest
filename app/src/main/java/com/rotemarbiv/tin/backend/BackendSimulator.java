@@ -56,7 +56,7 @@ public class BackendSimulator implements Serializable {
         user.getRates().add(rate);
     }
 
-    Dashboard findMatch(TaskTime needTime, TaskTime canTime, User owner) {
+    Dashboard findMatch(EventTime needTime, EventTime canTime, User owner) {
         Dashboard userDashboard = owner.getDashboard();
         int match = random.nextInt(users.size());
         Task task;
@@ -65,20 +65,20 @@ public class BackendSimulator implements Serializable {
         } else {
             User partner = users.get(match);  // FIXME: 9/2/2017 match is an int, we need the email address
             task = new Task(needTime, canTime, owner, partner, UPCOMING);
-            partner.getDashboard().getTasks().add(new Task(canTime, needTime, partner, owner, UPCOMING));
+//            partner.getDashboard().getTasks().add(new Task(canTime, needTime, partner, owner, UPCOMING));
         }
 
-        userDashboard.getTasks().add(task);  // update dashboard
+//        userDashboard.getTasks().add(task);  // update dashboard
         return userDashboard;
     }
 
     public void removeTask(User owner, Task task) {
-        owner.getDashboard().getTasks().remove(task);
+//        owner.getDashboard().getTasks().remove(task);
     }
 
     public void markDone(Task task, int partnerRating) {
         task.getPartner().rate(partnerRating);
-        task.getOwner().getDashboard().getTasks().remove(task);
+//        task.getOwner().getDashboard().getTasks().remove(task);
     }
 
     public User signUp(String name, String password, String dogName, String dogSize, String address, String phone, String email) {
@@ -91,6 +91,10 @@ public class BackendSimulator implements Serializable {
 
     public HashMap<String, User> getUsers() {
         return users;
+    }
+
+    public User getUser(String email) {
+        return users.get(email);
     }
 
     public User signIn(String email, String password) {
