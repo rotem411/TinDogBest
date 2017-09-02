@@ -10,9 +10,13 @@ class Dog {
 
     private String size;
 
-    public Dog(String name, String size) {
+    private Dog(String name, String size) {
         this.name = name;
         this.size = size;
+    }
+
+    public static Dog createDog(String name, String size) {
+        return new Dog(name, size);
     }
 
     public String getName() {

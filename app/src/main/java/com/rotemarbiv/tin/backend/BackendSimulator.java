@@ -26,10 +26,27 @@ public class BackendSimulator implements Serializable {
 
     private void initDB() {
         users.put("no mail", User.of("no partner", "no email"));
-        users.put("julian@gmail.com", User.of("Julian", "julian@gmail.com"));
-        users.put("12kobi@walla.co.il", User.of("Kobi", "12kobi@walla.co.il"));
-        users.put("tirtir@patzi.shmenki", User.of("Galgal", "tirtir@patzi.shmenki"));
-        users.put("rotem.ar@walla.co.il", User.of("Rotem", "rotem.ar@walla.co.il"));
+        users.put("julian@gmail.com",
+                new User("Julian",
+                        "password",
+                        "052345678",
+                        Address.createAddress("Shamai 5, Jerusalem"),
+                        "julian@gmail.com",
+                        Dog.createDog("Bob", "L")));
+        users.put("12kobi@walla.co.il",
+                new User("Kobi",
+                        "1234",
+                        "08333666",
+                        Address.createAddress("Loid George 2, Jerusalem"),
+                        "12kobi@walla.co.il",
+                        Dog.createDog("Tooki", "M")));
+        users.put("tirtir@patzi.shmenki",
+                new User("Galgal",
+                        "1234",
+                        "0551239876",
+                        Address.createAddress("Ha'Banai 4, Jerusalem"),
+                        "tirtir@patzi.shmenki",
+                        Dog.createDog("loulou", "L")));
     }
 
     void rateUser(User user, int rate) {
@@ -65,7 +82,7 @@ public class BackendSimulator implements Serializable {
     }
 
     public User signUp(String name, String password, String dogName, String dogSize, String address, String phone, String email) {
-        Dog dog = new Dog(dogName, dogSize);
+        Dog dog = Dog.createDog(dogName, dogSize);
         Address theAddress = Address.createAddress(address);
         User user = new User(name, password, phone, theAddress, email, dog);
         users.put(user.getEmail(), user);
