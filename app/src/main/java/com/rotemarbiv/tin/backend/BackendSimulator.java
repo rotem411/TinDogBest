@@ -1,10 +1,11 @@
 package com.rotemarbiv.tin.backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BackendSimulator {
+public class BackendSimulator implements Serializable{
 
     private static final boolean UPCOMING = true;
 

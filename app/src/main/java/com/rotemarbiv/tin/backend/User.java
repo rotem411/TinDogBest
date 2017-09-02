@@ -20,6 +20,7 @@ public class User {
     public static User of(String name, String email) {
         User user = new User();
         user.setName(name);
+        user.setEmail(email);
         user.setPassword("password");
         return user;
     }
@@ -93,5 +94,9 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
