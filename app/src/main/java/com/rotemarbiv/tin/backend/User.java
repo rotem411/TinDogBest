@@ -2,6 +2,8 @@ package com.rotemarbiv.tin.backend;
 
 import java.util.ArrayList;
 
+import static com.rotemarbiv.tin.backend.Util.checkNotNull;
+
 /**
  * Created by Omri on 8/15/2017
  */
@@ -29,18 +31,41 @@ public class User {
     public User() {
     }
 
-    public User(String name,
-                String password,
-                String phoneNumber,
-                Address address,
-                String email,
-                Dog dog) {
+    private User(String name,
+                 String password,
+                 String phoneNumber,
+                 Address address,
+                 String email,
+                 Dog dog) {
         this.name = name;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
         this.dog = dog;
+    }
+
+    public static User createUser(String name,
+                                  String password,
+                                  String phoneNumber,
+                                  String addressDescription,
+                                  String email,
+                                  String dogName,
+                                  String dogSize) {
+        verifyParamsAreNotNull(name, password, phoneNumber, addressDescription, email, dogName, dogSize);
+        Dog dog = Dog.createDog(dogName, dogSize);
+        Address address = Address.createAddress(addressDescription);
+        return new User(name, password, phoneNumber, address, email, dog);
+    }
+
+    private static void verifyParamsAreNotNull(String name, String password, String phoneNumber, String addressDescription, String email, String dogName, String dogSize) {
+        checkNotNull(name, "'name' was null");
+        checkNotNull(password, "'password' was null");
+        checkNotNull(phoneNumber, "'phoneNumber' was null");
+        checkNotNull(addressDescription, "'addressDescription' was null");
+        checkNotNull(email, "'email' was null");
+        checkNotNull(dogName, "'dogName' was null");
+        checkNotNull(dogSize, "'dogSize' was null");
     }
 
     public String getName() {
