@@ -5,4 +5,19 @@ package com.rotemarbiv.tin.backend;
  */
 
 public class Address {
+
+    private String description;
+
+    private Address(String description) {
+        this.description = description;
+    }
+
+    public static Address createAddress(String description) {
+        return new Address(description);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
 }
