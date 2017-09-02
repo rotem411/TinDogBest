@@ -36,7 +36,6 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.profile);
 
         fullName =  (TextView) findViewById(R.id.profileName);
-        userName =  (EditText) findViewById(R.id.profileUserName);
         dogName =  (EditText) findViewById(R.id.profileDogName);
         dogSizeSpinner =  (Spinner) findViewById(R.id.profileDogSize);
         address =  (EditText) findViewById(R.id.profileAddress);
@@ -55,19 +54,18 @@ public class ProfileActivity extends AppCompatActivity {
         dogSizeSpinner.setAdapter(dogSizeAdapter);
 
         dogSizeSpinner.setEnabled(false);
-        fullName.setText(user.fullName);
-        userName.setText(user.userName);
-        dogName.setText(user.dogName);
-        address.setText(user.address);
-        email.setText(user.email);
-        phoneNum.setText(user.phoneNumber);
+        fullName.setText(user.getFullName());
+        dogName.setText(user.getDogName());
+        address.setText(user.getAddress());
+        email.setText(user.getEmail());
+        phoneNum.setText(user.getPhoneNumber());
 
         if (user.dogSize != null){
-            dogSizeSpinner.setSelection(dogSizeAdapter.getPosition(user.dogSize));
+            dogSizeSpinner.setSelection(dogSizeAdapter.getPosition(user.getDogSize()));
         }
 
 
-        if (user.userName == selfUser.userName){
+        if (user.getEmail() == selfUser.getEmail()){
 
             editButton.setVisibility(View.VISIBLE);
             editButton.setClickable(true);
@@ -109,12 +107,11 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             });
 
-            user.fullName = fullName.getText().toString();
-            user.userName = userName.getText().toString();
-            user.dogName = dogName.getText().toString();
-            user.address = address.getText().toString();
-            user.email = email.getText().toString();
-            user.phoneNumber = phoneNum.getText().toString();
+            user.setFullName(fullName.getText().toString());
+            user.setDogName(dogName.getText().toString());
+            user.setAddress(address.getText().toString());
+            user.setEmail(email.getText().toString());
+            user.setPhoneNumber(phoneNum.getText().toString());
 
             editButton.setText("Edit");
 

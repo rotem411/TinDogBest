@@ -14,6 +14,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static android.support.v7.appcompat.R.styleable.MenuItem;
 
 /**
@@ -21,6 +24,8 @@ import static android.support.v7.appcompat.R.styleable.MenuItem;
  */
 
 public class NewEventActivity extends AppCompatActivity {
+
+    //TODO: split to 2 screens, one for when you can take out, and one for when you need
 
     public User user; // the one utilizing the app
     public String time;
@@ -40,6 +45,10 @@ public class NewEventActivity extends AppCompatActivity {
     public Button calculateButton;
 
     final Context context = this;
+
+// bla info for testing
+    public User laureUser = new User("Laure Scemama","Doggy", "Yafo 3", true);
+    public User galUser = new User("Gal Nachmana", "Doggy2", "Yafo 4", true);
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,12 +134,21 @@ public class NewEventActivity extends AppCompatActivity {
             int day = datePickerView.getDayOfMonth();
             int month = datePickerView.getMonth();
             int year = datePickerView.getYear();
+
+            Calendar calendar= Calendar.getInstance();
+
+            if (calendar.YEAR <= year && calendar.MONTH <= month && calendar.DAY_OF_MONTH <= day){
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "You cannot choose a date that has passed", Toast.LENGTH_LONG);
+                toast.show();
+            }
             date = Integer.toString(day)+"."+Integer.toString(month)+"."+Integer.toString(year);
 
             comments = commentsInput.getText().toString();
 
-            boolean newEventServerResult = false;
+            // bla info just for testing
 
+            Event newEventServerResult = new Event(laureUser, galUser, "Tue, July 8th", "noon", true, 2);;
 
             if (personToggleButton.isChecked() && isItMe) {
                 Toast toast = Toast.makeText(getApplicationContext(),
@@ -139,9 +157,9 @@ public class NewEventActivity extends AppCompatActivity {
 
                 ///  here pass the server the request for creating a walk for user
 
-                if (newEventServerResult){
+                if (newEventServerResult != null){
                     Intent goodIntent = new Intent(this, ResultActivity.class);
-//                    intent.putExtra("newEventFound", newEventServerResult);
+                    goodIntent.putExtra("newEventFound", newEventServerResult);
                     startActivity(goodIntent);
                 }
                 else{

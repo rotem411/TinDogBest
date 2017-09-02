@@ -19,24 +19,24 @@ public class ResultActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        setContentView(R.layout.good_result);
 
-        fullName =  (TextView) findViewById(R.id.fullNameLabel);
+        fullName = (TextView)findViewById(R.id.fullNameLabel);
         okButton = (Button)findViewById(R.id.okButton);
         event = (Event) getIntent().getSerializableExtra("newEventFound");
 
         if (event.isItMe){
-            fullName.setText(event.dog.dogName);
+            fullName.setText(event.dog.getDogName());
         }
         else{
-            fullName.setText(event.walker.fullName);
+            fullName.setText(event.walker.getFullName());
         }
 
     }
 
     public void okClicked(View view){
         Intent intent = new Intent(this, HomeActivity.class);
-//        intent.putExtra("newEventFound", event);
+        intent.putExtra("newEventFound", event);
         //update server
         startActivity(intent);
     }

@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                         phoneNumberStr != null && phoneNumberStr.trim().length() > 0 &&
                         mailStr != null && mailStr.trim().length() > 0) {
 
-                    User newUser = new User(fullNameStr, userNameStr, passwordStr,
+                    User newUser = new User(fullNameStr, passwordStr,
                             dogNameStr, dogSize, addressStr, phoneNumberStr,
                             mailStr, true);
 

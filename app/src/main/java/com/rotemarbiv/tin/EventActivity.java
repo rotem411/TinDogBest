@@ -1,5 +1,8 @@
 package com.rotemarbiv.tin;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +54,7 @@ public class EventActivity extends AppCompatActivity {
 
         time.setText(event.getTimeStr());
         date.setText(event.getDateStr());
-        walkerName.setText(event.walker.fullName);
+        walkerName.setText(event.walker.getFullName());
         dogName.setText((event.dog.dogName));
         special.setText(event.comments);
 
@@ -59,10 +62,34 @@ public class EventActivity extends AppCompatActivity {
 
         public void walkDoneClicked(View view){
             // send the server information that this event can be deleted
+            createNotification(view);
             Intent intent = new Intent(EventActivity.this, HomeActivity.class);
             if (event.isItMe){
                 intent.putExtra("myEventToDelete", event);
             }
             startActivity(intent);
+        }
+
+        public void createNotification(View view){
+            // Prepare intent which is triggered if the
+            // notification is selected
+            Intent intent = new Intent(this, HomeActivity.class);
+
+            PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+            // Build notification
+            Notification notification = new Notification.Builder(this)
+                    .setContentTitle("Walk Done!")
+                    .setContentText(event.walker.getFullName().toString()+" just took "+
+                            event.dog.dogName.toString()+" for a walk")
+                    .setSmallIcon(R.mipmap.walk_dog_icon)
+                    .setContentIntent(pIntent).build();
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            // hide the notification after its selected
+            notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+            notificationManager.notify(0, notification);
+
         }
 }

@@ -8,10 +8,11 @@ import java.io.Serializable;
 
 public class Event implements Serializable {
 
-    public User walker;
-    public User dog;
-    public String time; //Todo: Morning / noon /evening
-    public String date; //Todo: DatePicbker in new Event
+    public User walker; //owner
+    public User dog;   // partner
+    public String time; //Todo: Morning / noon / evening - check if
+    public String date; //Todo: DatePicker in new Event - make sure latrer date
+    // task time
     public String address;
     public String comments;
     public boolean isItMe; // am I the walker
@@ -44,10 +45,10 @@ public class Event implements Serializable {
      */
     public String getEventTitle(){
         if (isItMe){
-            return dog.dogName;
+            return dog.getDogName();
         }
         else{
-            return walker.fullName;
+            return walker.getFullName();
         }
     }
     public int getIcon(){

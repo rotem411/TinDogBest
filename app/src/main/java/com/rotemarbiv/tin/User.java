@@ -5,6 +5,7 @@ package com.rotemarbiv.tin;
  */
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by laurescemama on 12/07/2017.
@@ -12,8 +13,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    public String fullName;
-    public String userName;
+    private String fullName;
     public String password;
     public String dogName;
     public String dogSize;
@@ -21,36 +21,32 @@ public class User implements Serializable {
     public String phoneNumber;
     public String email;
     public boolean notifications;
-    public int pros;
-    public int cons;
 
-    public Event[] pendingEvents;
+    public ArrayList<Integer> rates = new ArrayList<Integer>();
 
-    User(String userName, String password, boolean notifications){
-        this.userName = userName;
+    public ArrayList<Event> pendingEvents;
+
+    User(String email, String password, boolean notifications){
+        this.email = email;
         this.password = password;
         this.notifications = notifications;
-        pros = 0;
-        cons = 0;
+
     }
 
-    User(String fullName, String userName, String dogName, String address, boolean notifications){
+    User(String fullName, String dogName, String address, boolean notifications){
         this.fullName = fullName;
-        this.userName = userName;
         this.dogName = dogName;
         this.address = address;
         this.notifications = notifications;
-        pros = 0;
-        cons = 0;
 
-        pendingEvents = new Event[] {};
+
+        pendingEvents = new ArrayList<Event>();
     }
 
-    User(String fullName, String userName, String password, String dogName, String dogSize, String address,
+    User(String fullName, String password, String dogName, String dogSize, String address,
          String phoneNumber, String email,  boolean notifications){
 
         this.fullName = fullName;
-        this.userName = userName;
         this.password = password;
         this.dogName = dogName;
         this.address = address;
@@ -60,11 +56,62 @@ public class User implements Serializable {
         this.dogSize = dogSize;
 
         this.notifications = notifications;
-        pros = 0;
-        cons = 0;
 
-        pendingEvents = new Event[] {};
+        pendingEvents = new ArrayList<Event>();
+    }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getDogName() {
+        return dogName;
+    }
+
+    public void setDogName(String dogName) {
+        this.dogName = dogName;
+    }
+    public String getDogSize() {
+        return dogSize;
+    }
+
+    public void setDogSize(String dogSize) {
+        this.dogSize = dogSize;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 
