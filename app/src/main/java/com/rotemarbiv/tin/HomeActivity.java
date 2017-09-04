@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.rotemarbiv.tin.backend.BackendSimulator;
-import com.rotemarbiv.tin.backend.Task;
 
 import java.util.ArrayList;
 
@@ -50,9 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         selfUser = (User) getIntent().getSerializableExtra("selfUser");
         com.rotemarbiv.tin.backend.User backendUser = backend.getUser(selfUser.getEmail());
 
-        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents());
-        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents());
-        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents());
+        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents().getEvents());
+        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents().getEvents());
+        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents().getEvents());
 
 //        Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
 //        Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
@@ -107,7 +106,6 @@ public class HomeActivity extends AppCompatActivity {
                 int curEventID = view.getId();
                 Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
 
-
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
                 intent.putExtra("eventClicked", dogsEvents.get(position));
                 startActivity(intent);
@@ -135,7 +133,8 @@ public class HomeActivity extends AppCompatActivity {
         newEventButton = (FloatingActionButton) findViewById(R.id.addEventButton);
         newEventButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, NewEventActivity.class);
+                Intent intent = new Intent(HomeActivity.this, NewNeedEventActivity.class);
+                intent.putExtra("selfUser", selfUser);
                 startActivity(intent);
             }
         });

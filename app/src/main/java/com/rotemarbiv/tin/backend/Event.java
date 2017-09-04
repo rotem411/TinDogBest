@@ -11,6 +11,7 @@ public class Event {
     private User owner;
     private User partner;
     private EventTime eventTime;
+
     private String comments;
 
     private Event(User owner, User partner, EventTime eventTime, String comments) {
@@ -55,5 +56,6 @@ public class Event {
     public String getTime() {
         return eventTime.getTime();
     }
+
 
 }

@@ -24,7 +24,7 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".ProfileActivity" />
 
-        <activity android:name=".NewEventActivity"
+        <activity android:name=".NewNeedEventActivity"
             android:parentActivityName="com.rotemarbiv.tin.HomeActivity" >
         <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -32,6 +32,13 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <activity android:name=".NewCanEventActivity"
+            android:parentActivityName="com.rotemarbiv.tin.NewNeedEventActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".EventActivity"
             android:parentActivityName="com.rotemarbiv.tin.HomeActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->

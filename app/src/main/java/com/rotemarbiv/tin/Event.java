@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by dafnaarbiv on 23/07/2017.
@@ -17,6 +18,7 @@ public class Event implements Serializable {
     public User dog;   // partner
     public String time; //Todo: Morning / noon / evening - check if
     public String date; //Todo: DatePicker in new Event - make sure latrer date
+
     // task time
     public String address;
     public String comments;
@@ -27,9 +29,9 @@ public class Event implements Serializable {
     Event(User walker, User dog, String time, String date){
         this.walker = walker;
         this.dog = dog;
+        this.address = dog.getAddress();
         this.time = time;
         this.date = date ;
-        this.address = dog.address;
     }
     
     Event(User walker, User dog, String time, String date, boolean isItMe, int index){
@@ -37,7 +39,7 @@ public class Event implements Serializable {
         this.dog = dog;
         this.time = time;
         this.date = date ;
-        this.address = dog.address;
+        this.address = dog.getAddress();
         this.isItMe = isItMe;
         this.index = index;
     }
@@ -52,8 +54,8 @@ public class Event implements Serializable {
     }
 
     /***
-     * If the user using the app is the walker- the event title should be the dog the user will take
-     * out. Otherwise, the name of the user who'll take out your dog.
+     * If the selfUser using the app is the walker- the event title should be the dog the selfUser will take
+     * out. Otherwise, the name of the selfUser who'll take out your dog.
      * @return String
      */
     public String getEventTitle(){
@@ -65,7 +67,7 @@ public class Event implements Serializable {
         }
     }
     public int getIcon(){
-        // here will import pic icon from server according to user
+        // here will import pic icon from server according to selfUser
 
         if (isItMe){
             return R.mipmap.walk_dog_icon;
@@ -102,7 +104,12 @@ public class Event implements Serializable {
     public User getDog() {
         return dog;
     }
-    
+
+    public String getAddress() {
+        return address;
+    }
+
+
     public static Event convertBackendEventToEvent(com.rotemarbiv.tin.backend.Event event){
         User convertWalker = User.convertBackendUserToUser(event.getOwner());
         User convertDog = User.convertBackendUserToUser(event.getPartner());
@@ -110,7 +117,7 @@ public class Event implements Serializable {
         return toReturn;
     }
     
-    public static ArrayList<Event> convertBackendEventListToEventList(ArrayList<com.rotemarbiv.tin.backend.Event> events){
+    public static ArrayList<Event> convertBackendEventListToEventList(List<com.rotemarbiv.tin.backend.Event> events){
         ArrayList<Event> toReturn = new ArrayList<Event>();       
         for (com.rotemarbiv.tin.backend.Event event :events ){
             toReturn.add(convertBackendEventToEvent(event));

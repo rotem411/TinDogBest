@@ -27,25 +27,25 @@
         android:text="We found you a match and it's..."
         android:textSize="24sp"
         android:textStyle="italic"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="9dp"
         app:layout_constraintTop_toBottomOf="@+id/amazingLabel"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.492" />
 
     <ImageView
         android:id="@+id/profilePic"
         android:layout_width="131dp"
         android:layout_height="120dp"
         app:srcCompat="@mipmap/walk_user_icon"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="31dp"
-        app:layout_constraintTop_toBottomOf="@+id/textLabel" />
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/textLabel"
+        app:layout_constraintRight_toLeftOf="@+id/fullNameLabel"
+        android:layout_marginRight="8dp" />
 
     <TextView
         android:id="@+id/fullNameLabel"
@@ -54,28 +54,26 @@
         android:text="Full Name"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="27dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/profilePic" />
+        android:layout_marginTop="58dp"
+        app:layout_constraintTop_toBottomOf="@+id/textLabel" />
 
     <Button
         android:id="@+id/okButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="okClicked"
         android:text="Ok"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/addressText"
         app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userAddressText"
         app:layout_constraintVertical_bias="0.7" />
 
     <TextView
@@ -86,11 +84,11 @@
         android:textSize="18sp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="88dp"
         app:layout_constraintTop_toBottomOf="@+id/fullNameLabel"
-        app:layout_constraintRight_toLeftOf="@+id/dateText"
+        app:layout_constraintRight_toLeftOf="@+id/userDateText"
         android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.827" />
+        app:layout_constraintHorizontal_bias="0.821" />
 
     <TextView
         android:id="@+id/atLabel"
@@ -102,12 +100,69 @@
         app:layout_constraintTop_toBottomOf="@+id/onLabel"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="56dp"
+        android:layout_marginLeft="77dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/dateText"
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="81dp"
+        android:layout_marginTop="8dp"
+        android:text="At:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onLabel"
+        app:layout_constraintVertical_bias="0.43" />
+
+    <TextView
+        android:id="@+id/dogAddressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="address"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintLeft_toRightOf="@+id/textView4"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dogDateText"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <TextView
+        android:id="@+id/dogDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="206dp"
+        android:text="date"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/textView7"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toTopOf="@+id/textView7"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.263" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="77dp"
+        android:text="On:"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="17dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/userDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date"
@@ -119,7 +174,7 @@
         app:layout_constraintTop_toTopOf="@+id/onLabel" />
 
     <TextView
-        android:id="@+id/addressText"
+        android:id="@+id/userAddressText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="address"
@@ -128,11 +183,39 @@
         app:layout_constraintLeft_toRightOf="@+id/atLabel"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/dateText"
+        app:layout_constraintTop_toBottomOf="@+id/userDateText"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/youLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YOU"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/profilePic"
+        app:layout_constraintRight_toLeftOf="@+id/onLabel"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/onLabel"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOGGY"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/atLabel"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.022" />
 </android.support.constraint.ConstraintLayout>

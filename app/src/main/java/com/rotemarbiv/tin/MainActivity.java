@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                                 toast.show();
                             }
                             else{
-                                //sign in as the user - dont know who
+                                //sign in as the selfUser - dont know who
                                 self = User.convertBackendUserToUser(serverResponse);
                                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                                 intent.putExtra("selfUser", self);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                // verify the user with server
+                // verify the selfUser with server
 
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(intent);
