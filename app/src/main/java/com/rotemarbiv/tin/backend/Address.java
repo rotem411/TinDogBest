@@ -20,4 +20,8 @@ public class Address {
         return description;
     }
 
+    public void setDescription(String newAddress) {
+        description = newAddress;
+    }
+
 }

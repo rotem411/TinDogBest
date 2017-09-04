@@ -12,6 +12,7 @@ public class User {
     private String name;
     private String password;
     private ArrayList<Integer> rates = new ArrayList<>();
+
     private String phoneNumber;
     private Address address;
     private String email;
@@ -151,11 +152,9 @@ public class User {
         return dog.getSize();
     }
 
-    public String setDogSize(String size) {
+    public void setDogSize(String size) {
         dog.setSize(size);
     }
-
-
 
 
     public String getPhoneNumber() {
@@ -164,6 +163,15 @@ public class User {
 
     public String getAddress() {
         return address.getDescription();
+    }
+
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAddress(String address) {
+        this.address.setDescription(address);
     }
 
     public int getPhoto() {

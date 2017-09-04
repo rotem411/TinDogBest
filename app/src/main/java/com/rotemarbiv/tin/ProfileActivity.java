@@ -118,12 +118,10 @@ public class ProfileActivity extends AppCompatActivity {
             com.rotemarbiv.tin.backend.User backendUser = backend.getUser(pastEmail);
             backendUser.setName(profileUser.getFullName());
             backendUser.setDogName(profileUser.getDogName());
-            backendUser.setName(profileUser.getFullName());
-            backendUser.setName(profileUser.getFullName());
-            backendUser.setName(profileUser.getFullName());
-            backendUser.setName(profileUser.getFullName());
-
-
+            backendUser.setAddress(profileUser.getEmail());
+            backendUser.setPhoneNumber(profileUser.getPhoneNumber());
+            backendUser.setDogSize(profileUser.getDogSize());
+            // todo: how to update server
             editButton.setText("Edit");
 
         }
