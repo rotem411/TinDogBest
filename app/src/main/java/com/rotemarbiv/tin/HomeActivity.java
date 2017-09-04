@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
 //    public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "noon", true, 1);
 //    public Event b = new Event(laureUser, galUser, "Tue, July 7th", "morning", true, 2);
 //    public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
-//    public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);
+//    public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);x
 
     private User selfUser;
     private static BackendSimulator backend = BackendSimulator.getInstance();
@@ -144,6 +144,7 @@ public class HomeActivity extends AppCompatActivity {
     public void profileClicked(View view){
         Intent intent = new Intent(this, ProfileActivity.class);
         intent.putExtra("profileUser", selfUser);
+        intent.putExtra("selfUser", selfUser);
         startActivity(intent);
     }
 }

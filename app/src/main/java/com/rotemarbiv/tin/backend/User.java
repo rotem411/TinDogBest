@@ -143,9 +143,20 @@ public class User {
         return dog.getName();
     }
 
+    public void setDogName(String name) {
+        dog.setName(name);
+    }
+
     public String getDogSize() {
         return dog.getSize();
     }
+
+    public String setDogSize(String size) {
+        dog.setSize(size);
+    }
+
+
+
 
     public String getPhoneNumber() {
         return phoneNumber;
