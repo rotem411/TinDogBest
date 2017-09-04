@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
     public Button editButton;
     public User profileUser;
     public User selfUser;
+    public RatingBar ratingBar;
     private static BackendSimulator backend = BackendSimulator.getInstance();
 
 
@@ -49,6 +51,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         profileUser = (User) getIntent().getSerializableExtra("profileUser");
         selfUser = (User) getIntent().getSerializableExtra("selfUser"); //TODO: change better
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        ratingBar.setRating(backend.getUser(profileUser.getEmail()).getRating());
 
         ArrayAdapter<CharSequence> dogSizeAdapter = ArrayAdapter.createFromResource(this,
                 R.array.dog_size_array, android.R.layout.simple_spinner_item);
@@ -71,6 +75,10 @@ public class ProfileActivity extends AppCompatActivity {
 
             editButton.setVisibility(View.VISIBLE);
             editButton.setClickable(true);
+            ratingBar.setIsIndicator(false);
+        }
+        else {
+            ratingBar.setIsIndicator(true);
         }
 
     }
