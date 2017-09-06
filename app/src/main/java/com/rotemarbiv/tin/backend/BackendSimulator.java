@@ -13,7 +13,7 @@ public class BackendSimulator implements Serializable {
 
     private static Random random = new Random();
 
-    private HashMap<String, User> users = new HashMap<>();
+    private static HashMap<String, User> users = new HashMap<>();
 
     private static BackendSimulator instance = new BackendSimulator();
 
@@ -54,6 +54,8 @@ public class BackendSimulator implements Serializable {
                         Address.createAddress("Ha'Banai 4, Jerusalem"),
                         "tirtir@patzi.shmenki",
                         Dog.createDog("Loulou", "L"),givenRates));
+        Event event = Event.createEvent(users.get(1), users.get(2), EventTime.createEventTime("7/10/17", "morning"), "");
+        users.get(1).getDashboard().getUserEvents().addEvent(event);
     }
 
     void rateUser(User user, int rate) {

@@ -83,7 +83,6 @@ public class HomeActivity extends AppCompatActivity {
         EventAdapter dogsEventsAdapter = new EventAdapter(this, R.layout.event_item_list, dogsEvents);
         dogsEventsListView.setAdapter(dogsEventsAdapter);
 
-
         myEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent , View view, int position, long id){
@@ -140,6 +139,19 @@ public class HomeActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        com.rotemarbiv.tin.backend.User backendUser = backend.getUser(selfUser.getEmail());
+
+        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents().getEvents());
+        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents().getEvents());
+        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents().getEvents());
+
+    }
+
 
     public void profileClicked(View view){
         Intent intent = new Intent(this, ProfileActivity.class);
