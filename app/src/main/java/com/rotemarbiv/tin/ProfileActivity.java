@@ -71,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
 
-        if (profileUser.getEmail() == selfUser.getEmail()){
+        if (profileUser.getEmail().equals(selfUser.getEmail())){
 
             editButton.setVisibility(View.VISIBLE);
             editButton.setClickable(true);

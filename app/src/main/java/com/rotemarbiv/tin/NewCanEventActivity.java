@@ -25,7 +25,7 @@ import java.util.Calendar;
 
 public class NewCanEventActivity extends AppCompatActivity {
 
-    public User user; // the one utilizing the app
+    public User selfUser; // the one utilizing the app
     public String time;
     public String date;
     public String comments;
@@ -51,7 +51,7 @@ public class NewCanEventActivity extends AppCompatActivity {
 
         needTime = (EventTime)getIntent().getSerializableExtra("needTime");
         needComments = getIntent().getStringExtra("needComments");
-        user = (User)getIntent().getSerializableExtra("selfUser");
+        selfUser = (User)getIntent().getSerializableExtra("selfUser");
 
         //        getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -129,7 +129,7 @@ public class NewCanEventActivity extends AppCompatActivity {
             comments = commentsInput.getText().toString();
             EventTime canTime = EventTime.createEventTime(date, time);
             Match matchFound = backend.findMatch(needTime, canTime,
-                    User.convertUserToBackendUser(this.user));
+                    User.convertUserToBackendUser(this.selfUser));
 
             if (matchFound != null){
                 //update the events comments
@@ -142,7 +142,7 @@ public class NewCanEventActivity extends AppCompatActivity {
                 Intent goodIntent = new Intent(this, ResultActivity.class);
                 goodIntent.putExtra("userEvent", userEvent);
                 goodIntent.putExtra("dogEvent", dogEvent);
-                goodIntent.putExtra("selfUser", this.user);
+                goodIntent.putExtra("selfUser", this.selfUser);
                 startActivity(goodIntent);
             }
             else{
@@ -168,7 +168,9 @@ public class NewCanEventActivity extends AppCompatActivity {
     }
 
     public void cancelPressed(View view){
-        startActivity(new Intent(this, HomeActivity.class));
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("selfUser", selfUser);
+        startActivity(intent);
     }
 }
 

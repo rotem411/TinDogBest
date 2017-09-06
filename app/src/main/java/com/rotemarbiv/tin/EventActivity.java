@@ -57,6 +57,25 @@ public class EventActivity extends AppCompatActivity {
         dogName.setText((event.dog.dogName));
         special.setText(event.comments);
 
+        walkerName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EventActivity.this, ProfileActivity.class);
+                intent.putExtra("selfUser", selfUser);
+                intent.putExtra("profileUser", event.walker);
+                startActivity(intent);
+            }
+        });
+        dogName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EventActivity.this, ProfileActivity.class);
+                intent.putExtra("selfUser", selfUser);
+                intent.putExtra("profileUser", event.dog);
+                startActivity(intent);
+            }
+        });
+
     }
 
         public void walkDoneClicked(View view){

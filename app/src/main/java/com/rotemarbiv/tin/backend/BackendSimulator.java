@@ -68,16 +68,22 @@ public class BackendSimulator implements Serializable {
         ArrayList<String> userEmails = new ArrayList<>(users.keySet());
 
         if (match == 0) {
-            Event dogEvent = Event.createEvent(owner, users.get("no mail"), canTime, "");
+            Event dogEvent = Event.createEvent(users.get("no mail"), owner, needTime, "");
             owner.getDashboard().getPendingEvents().addEvent(dogEvent);
             return null;
         } else {
             User partner = users.get(userEmails.get(match));
-            Event ownerDogEvent = Event.createEvent(owner, partner, needTime, "");
-            Event ownerEvent = Event.createEvent(partner, owner, canTime, "");
 
-            Event partnerDogEvent = Event.createEvent(partner, owner, canTime, "");
-            Event partnerEvent = Event.createEvent(owner, partner, needTime, "");
+            while (partner.getEmail() == owner.getEmail()){ // can't match selfUser with himself
+                match = random.nextInt(users.size());
+                partner = users.get(userEmails.get(match));
+            }
+
+            Event ownerDogEvent = Event.createEvent(partner, owner, needTime, "");
+            Event ownerEvent = Event.createEvent(owner, partner, canTime, "");
+
+            Event partnerDogEvent = Event.createEvent(owner, partner, canTime, "");
+            Event partnerEvent = Event.createEvent(partner, owner, needTime, "");
 
             owner.getDashboard().getDogEvents().addEvent(ownerDogEvent);
             owner.getDashboard().getUserEvents().addEvent(ownerEvent);

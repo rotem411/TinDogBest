@@ -144,6 +144,8 @@ public class NewNeedEventActivity extends AppCompatActivity {
     }
 
     public void cancelPressed(View view){
-        startActivity(new Intent(this, HomeActivity.class));
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("selfUser", selfUser);
+        startActivity(intent);
     }
 }
