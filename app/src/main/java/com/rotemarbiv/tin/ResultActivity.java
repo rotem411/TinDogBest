@@ -49,6 +49,16 @@ public class ResultActivity extends AppCompatActivity {
         dogDate.setText(dogEvent.getDateStr());
         dogAddress.setText(dogEvent.getAddress());
 
+        fullName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ResultActivity.this, ProfileActivity.class);
+                intent.putExtra("selfUser", selfUser);
+                intent.putExtra("profileUser", userEvent.walker);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void okClicked(View view){
