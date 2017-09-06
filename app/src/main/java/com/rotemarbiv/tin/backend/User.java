@@ -45,7 +45,6 @@ public class User {
         this.email = email;
         this.dog = dog;
     }
-
     public static User createUser(String name,
                                   String password,
                                   String phoneNumber,
@@ -53,7 +52,21 @@ public class User {
                                   String email,
                                   Dog dog) {
         verifyParamsNotNull(name, password, phoneNumber, address, email, dog);
-        return new User(name, password, phoneNumber, address, email, dog);
+        User toReturn = new User(name, password, phoneNumber, address, email, dog);
+        return toReturn;
+    }
+    public static User createUser(String name,
+                                  String password,
+                                  String phoneNumber,
+                                  Address address,
+                                  String email,
+                                  Dog dog, ArrayList<Integer> rates) {
+        verifyParamsNotNull(name, password, phoneNumber, address, email, dog);
+        User toReturn = new User(name, password, phoneNumber, address, email, dog);
+        if(rates != null) {
+            toReturn.setRates(rates);
+        }
+        return toReturn;
     }
 
     private static void verifyParamsNotNull(String name, String password, String phoneNumber, Address address, String email, Dog dog) {

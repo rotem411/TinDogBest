@@ -26,28 +26,34 @@ public class BackendSimulator implements Serializable {
     }
 
     private void initDB() {
+        ArrayList<Integer> givenRates = new ArrayList<Integer>();
+        givenRates.add(5);
+        givenRates.add(4);
         users.put("no mail", User.of("no partner", "no email"));
         users.put("julian@gmail.com",
-                User.createUser("Julian",
-                        "password",
+                    User.createUser("Julian Smith",
+                            "password",
                         "052345678",
                         Address.createAddress("Shamai 5, Jerusalem"),
                         "julian@gmail.com",
-                        Dog.createDog("Bob", "L")));
+                        Dog.createDog("Bob", "L"), givenRates));
+
         users.put("12kobi@walla.co.il",
-                User.createUser("Kobi",
+                User.createUser("Kobi Zach",
                         "1234",
                         "08333666",
                         Address.createAddress("Loyd George 2, Jerusalem"),
                         "12kobi@walla.co.il",
-                        Dog.createDog("Tooki", "M")));
+                        Dog.createDog("Tooki", "M"),givenRates));
+        givenRates.add(3);
+        givenRates.add(3);
         users.put("tirtir@patzi.shmenki",
-                User.createUser("Galgal",
+                User.createUser("Gal Cohen",
                         "1234",
                         "0551239876",
                         Address.createAddress("Ha'Banai 4, Jerusalem"),
                         "tirtir@patzi.shmenki",
-                        Dog.createDog("Loulou", "L")));
+                        Dog.createDog("Loulou", "L"),givenRates));
     }
 
     void rateUser(User user, int rate) {

@@ -28,6 +28,7 @@ public class EventActivity extends AppCompatActivity {
     public EditText special;
     public Button walkDone;
 
+    public User selfUser;
     public Event event;
 
     protected void onCreate(Bundle savedInstanceState){
@@ -35,8 +36,7 @@ public class EventActivity extends AppCompatActivity {
         this.setContentView(R.layout.event);
 
         event = (Event) getIntent().getSerializableExtra("eventClicked");
-
-        System.out.println(event.getEventTitle()+"  "+event.isItMe);
+        selfUser = (User) getIntent().getSerializableExtra("selfUser");
 
         if (event.isItMe){
             walkDone = (Button)findViewById(R.id.walkDoneButton);
@@ -51,7 +51,6 @@ public class EventActivity extends AppCompatActivity {
 //        map = (MapView) findViewById(R.id.mapView);
         special = (EditText) findViewById(R.id.commentsInput);
 
-
         time.setText(event.getTimeStr());
         date.setText(event.getDateStr());
         walkerName.setText(event.walker.getFullName());
@@ -64,9 +63,7 @@ public class EventActivity extends AppCompatActivity {
             // send the server information that this event can be deleted
             createNotification(view);
             Intent intent = new Intent(EventActivity.this, HomeActivity.class);
-            if (event.isItMe){
-                intent.putExtra("myEventToDelete", event);
-            }
+            intent.putExtra("selfUser", selfUser);
             startActivity(intent);
         }
 
