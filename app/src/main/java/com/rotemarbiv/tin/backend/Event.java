@@ -19,6 +19,7 @@ public class Event {
         this.partner = partner;
         this.eventTime = eventTime;
         this.comments = comments;
+
     }
 
     public static Event createEvent(User owner, User partner, EventTime eventTime, String comments) {

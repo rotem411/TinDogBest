@@ -113,6 +113,7 @@ public class Event implements Serializable {
     public static Event convertBackendEventToEvent(com.rotemarbiv.tin.backend.Event event){
         User convertWalker = User.convertBackendUserToUser(event.getOwner());
         User convertDog = User.convertBackendUserToUser(event.getPartner());
+
         Event toReturn = new Event(convertWalker, convertDog, event.getTime(), event.getDate());
         return toReturn;
     }

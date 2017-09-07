@@ -53,8 +53,6 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
         Event event = events.get(position);
 
-        System.out.println(event.getEventTitle() + " " + event.isItMe + " " + position);
-
         holder.imageIcon.setImageResource(event.getIcon());
         holder.nameTitle.setText(event.getEventTitle());
         holder.timeTitle.setText(event.getTimeStr());

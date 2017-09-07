@@ -54,8 +54,9 @@ public class BackendSimulator implements Serializable {
                         Address.createAddress("Ha'Banai 4, Jerusalem"),
                         "tirtir@patzi.shmenki",
                         Dog.createDog("Loulou", "L"),givenRates));
-        Event event = Event.createEvent(users.get(1), users.get(2), EventTime.createEventTime("7/10/17", "morning"), "");
-        users.get(1).getDashboard().getUserEvents().addEvent(event);
+        Event event = Event.createEvent(getUser("julian@gmail.com"), getUser("12kobi@walla.co.il"), EventTime.createEventTime("7/10/17", "morning"), "");
+        getUser("julian@gmail.com").getDashboard().getUserEvents().addEvent(event);
+        getUser("12kobi@walla.co.il").getDashboard().getDogEvents().addEvent(event);
     }
 
     void rateUser(User user, int rate) {
