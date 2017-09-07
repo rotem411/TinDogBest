@@ -6,16 +6,29 @@ package com.rotemarbiv.tin;
 
 
         import android.content.Intent;
+        import android.database.Cursor;
+        import android.graphics.Bitmap;
+        import android.graphics.BitmapFactory;
+        import android.graphics.drawable.BitmapDrawable;
+        import android.graphics.drawable.Drawable;
+        import android.net.Uri;
         import android.os.Bundle;
+        import android.os.Environment;
+        import android.provider.MediaStore;
         import android.support.v7.app.AppCompatActivity;
         import android.text.method.PasswordTransformationMethod;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
+        import android.widget.ImageView;
         import android.widget.RadioButton;
         import android.widget.Toast;
 
         import com.rotemarbiv.tin.backend.BackendSimulator;
+
+        import java.io.File;
+        import java.io.FileNotFoundException;
+        import java.io.InputStream;
 
 /**
  * Created by laurescemama on 12/07/2017.
@@ -23,6 +36,7 @@ package com.rotemarbiv.tin;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    public static final int IMAGE_GALLERY_REQUEST = 20;
     private static BackendSimulator backend = BackendSimulator.getInstance();
 
     public EditText fullName;
@@ -37,6 +51,9 @@ public class SignUpActivity extends AppCompatActivity {
     public Button signUpButton;
     public Button showPasswordButton;
 
+//    private  static final int SELECTED_PICTURE = 1;
+    public ImageView profilePic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
         address = (EditText) findViewById(R.id.addressInput);
         phoneNumber = (EditText) findViewById(R.id.phoneNumberInput);
         mail = (EditText) findViewById(R.id.mailInput);
-
+        profilePic = (ImageView) findViewById(R.id.profilePic);
         showPasswordButton = (Button) findViewById(R.id.showPasswordButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
 
@@ -131,5 +148,71 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+//    public void choosePic(View view){
+//        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//        startActivityForResult(intent, SELECTED_PICTURE);
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        switch (requestCode){
+//            case SELECTED_PICTURE:
+//                if(requestCode == RESULT_OK){
+//                    Uri uri = data.getData();
+//                    String[]projection = {MediaStore.Images.Media.DATA};
+//
+//                    Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+//                    cursor.moveToFirst();
+//
+//                    int columnIndex = cursor.getColumnIndex(projection[0]);
+//                    String filePath = cursor.getString(columnIndex);
+//                    cursor.close();
+//
+//                    Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
+//                    Drawable d = new BitmapDrawable(yourSelectedImage);
+//
+//                    profilePic.setBackground(d);
+//                }
+//        }
+//    }
 
+    public void choosePic(View view){
+        Intent photoPickIntent = new Intent(Intent.ACTION_PICK);
+        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String pictureDirectoryPath = pictureDirectory.getPath();
+
+        Uri data = Uri.parse(pictureDirectoryPath);
+
+        photoPickIntent.setDataAndType(data, "image/*");
+
+        startActivityForResult(photoPickIntent, IMAGE_GALLERY_REQUEST);
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            if(requestCode == IMAGE_GALLERY_REQUEST){
+                // we came from Image Gallery
+                Uri imageUri = data.getData();
+//                stream to read the image data
+                InputStream inputStream;
+
+                try {
+                    inputStream = getContentResolver().openInputStream(imageUri);
+                    Bitmap image = BitmapFactory.decodeStream(inputStream);
+
+                    profilePic.setImageBitmap(image);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
 }
