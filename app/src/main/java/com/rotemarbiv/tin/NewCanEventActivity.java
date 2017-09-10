@@ -118,8 +118,8 @@ public class NewCanEventActivity extends AppCompatActivity {
             int year = datePickerView.getYear();
 
             Calendar calendar= Calendar.getInstance();
-
-            if (calendar.YEAR <= year && calendar.MONTH <= month && calendar.DAY_OF_MONTH <= day){
+            // I think the <= should be the opposite
+            if (calendar.YEAR >= year && calendar.MONTH >= month && calendar.DAY_OF_MONTH >= day){
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "You cannot choose a date that has passed", Toast.LENGTH_LONG);
                 toast.show();
@@ -157,7 +157,11 @@ public class NewCanEventActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+                        Intent intent = new Intent(NewCanEventActivity.this, HomeActivity.class);
+                        intent.putExtra("selfUser", selfUser);
+                        startActivity(intent);
                     }
+
                 });
 
                 dialog.show();

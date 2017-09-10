@@ -65,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
         address = (EditText) findViewById(R.id.addressInput);
         phoneNumber = (EditText) findViewById(R.id.phoneNumberInput);
         mail = (EditText) findViewById(R.id.mailInput);
-        profilePic = (ImageView) findViewById(R.id.profilePic);
+        profilePic = (ImageView) findViewById(R.id.profileImage);
         showPasswordButton = (Button) findViewById(R.id.showPasswordButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
 
@@ -207,6 +207,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
 
                     profilePic.setImageBitmap(image);
+                    //TODO give it to server
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

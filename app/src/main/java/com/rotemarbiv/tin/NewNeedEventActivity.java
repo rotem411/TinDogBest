@@ -122,7 +122,7 @@ public class NewNeedEventActivity extends AppCompatActivity {
 
             Calendar calendar= Calendar.getInstance();
 
-            if (calendar.YEAR <= year && calendar.MONTH <= month && calendar.DAY_OF_MONTH <= day){
+            if (calendar.YEAR >= year && calendar.MONTH >= month && calendar.DAY_OF_MONTH >= day){
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "You cannot choose a date that has passed", Toast.LENGTH_LONG);
                 toast.show();
