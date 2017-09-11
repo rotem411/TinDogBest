@@ -139,7 +139,7 @@ public class NewCanEventActivity extends AppCompatActivity {
                 Event userEvent = Event.convertBackendEventToEvent(matchFound.getUserEvent());
                 userEvent.isItMe = true;
                 Event dogEvent = Event.convertBackendEventToEvent(matchFound.getDogEvent());
-                userEvent.isItMe = false;
+                dogEvent.isItMe = false;
 
 
                 Intent goodIntent = new Intent(this, ResultActivity.class);

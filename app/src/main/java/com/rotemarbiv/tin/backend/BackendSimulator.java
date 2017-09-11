@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import static java.lang.System.in;
+
 public class BackendSimulator implements Serializable {
 
     private static final boolean UPCOMING = true;
@@ -13,8 +15,7 @@ public class BackendSimulator implements Serializable {
 
     private static Random random = new Random();
 
-    private static HashMap<String, User> users = new HashMap<>();
-    //todo: array list
+    private static ArrayList<User> users = new ArrayList<>();
 
     private static BackendSimulator instance = new BackendSimulator();
 
@@ -30,17 +31,15 @@ public class BackendSimulator implements Serializable {
         ArrayList<Integer> givenRates = new ArrayList<Integer>();
         givenRates.add(5);
         givenRates.add(4);
-        users.put("no mail", User.of("no partner", "no email"));
-        users.put("julian@gmail.com",
-                    User.createUser("Julian Smith",
+        users.add(User.of("no partner", "no email"));
+        users.add(User.createUser("Julian Smith",
                             "password",
                         "052345678",
                         Address.createAddress("Shamai 5, Jerusalem"),
                         "julian@gmail.com",
                         "Bob", "L", givenRates));
 
-        users.put("12kobi@walla.co.il",
-                User.createUser("Kobi Zach",
+        users.add(User.createUser("Kobi Zach",
                         "1234",
                         "08333666",
                         Address.createAddress("Loyd George 2, Jerusalem"),
@@ -48,8 +47,7 @@ public class BackendSimulator implements Serializable {
                         "Tooki", "M",givenRates));
         givenRates.add(3);
         givenRates.add(3);
-        users.put("tirtir@patzi.shmenki",
-                User.createUser("Gal Cohen",
+        users.add(User.createUser("Gal Cohen",
                         "1234",
                         "0551239876",
                         Address.createAddress("Ha'Banai 4, Jerusalem"),
@@ -69,19 +67,18 @@ public class BackendSimulator implements Serializable {
 
     public Match findMatch(EventTime needTime, EventTime canTime, User owner) {
         int match = random.nextInt(users.size());
-        ArrayList<String> userEmails = new ArrayList<>(users.keySet());
-        // todo: match not you
+
 
         if (match == 0) {
-            Event dogEvent = Event.createEvent(users.get("no mail"), owner, needTime, "");
+            Event dogEvent = Event.createEvent(getUser("no mail"), owner, needTime, "");
             owner.getDashboard().getPendingEvents().addEvent(dogEvent);
             return null;
         } else {
-            User partner = users.get(userEmails.get(match));
+            User partner = users.get(match);
 
             while (partner.getEmail() == owner.getEmail()){ // can't match selfUser with himself
                 match = random.nextInt(users.size());
-                partner = users.get(userEmails.get(match));
+                partner = users.get(match);
             }
 
             Event ownerDogEvent = Event.createEvent(partner, owner, needTime, "");
@@ -108,16 +105,21 @@ public class BackendSimulator implements Serializable {
     public User signUp(String name, String password, String dogName, String dogSize, String address, String phone, String email) {
         Address theAddress = Address.createAddress(address);
         User user = User.createUser(name, password, phone, theAddress, email, dogName, dogSize);
-        users.put(user.getEmail(), user);
+        users.add(user);
         return user;
     }
 
     public User getUser(String email) {
-        return users.get(email);
+        for (User user : users){
+            if (user.getEmail() == email){
+                return user;
+            }
+        }
+        return null;
     }
 
     public User signIn(String email, String password) {
-        User user = users.get(email.toLowerCase());
+        User user = getUser(email.toLowerCase());
         if (user.getPassword().equals(password))
             return user;
         return null;  // return something that makes sense instead of null
