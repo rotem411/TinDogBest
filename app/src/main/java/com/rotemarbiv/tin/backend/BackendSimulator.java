@@ -111,7 +111,7 @@ public class BackendSimulator implements Serializable {
 
     public User getUser(String email) {
         for (User user : users){
-            if (user.getEmail() == email){
+            if (user.getEmail().equals(email)){
                 return user;
             }
         }
@@ -120,8 +120,10 @@ public class BackendSimulator implements Serializable {
 
     public User signIn(String email, String password) {
         User user = getUser(email.toLowerCase());
-        if (user.getPassword().equals(password))
-            return user;
+        if(user != null) {
+            if (user.getPassword().equals(password))
+                return user;
+        }
         return null;  // return something that makes sense instead of null
     }
 
