@@ -14,6 +14,7 @@ public class BackendSimulator implements Serializable {
     private static Random random = new Random();
 
     private static HashMap<String, User> users = new HashMap<>();
+    //todo: array list
 
     private static BackendSimulator instance = new BackendSimulator();
 

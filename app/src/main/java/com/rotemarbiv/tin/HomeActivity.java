@@ -31,6 +31,10 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<Event> myEvents;
     private ArrayList<Event> dogsEvents;
     private ArrayList<Event> myPendingEvents;
+    private EventAdapter myEventsAdapter;
+    private EventAdapter dogsEventsAdapter;
+    private ArrayAdapter myPendingAdapter;
+
 
     private FloatingActionButton newEventButton;
 
@@ -73,10 +77,9 @@ public class HomeActivity extends AppCompatActivity {
         ListView myEventsListView = (ListView)findViewById(R.id.myEventsList);
         ListView dogsEventsListView = (ListView)findViewById(R.id.dogsEventsList);
         ListView myPendingEventsListView = (ListView)findViewById(R.id.myPendingEventsList);
-
-        EventAdapter myEventsAdapter = new EventAdapter(this, R.layout.event_item_list, myEvents);
+        myEventsAdapter = new EventAdapter(this, R.layout.event_item_list, myEvents);
         myEventsListView.setAdapter(myEventsAdapter);
-        EventAdapter dogsEventsAdapter = new EventAdapter(this, R.layout.event_item_list, dogsEvents);
+        dogsEventsAdapter = new EventAdapter(this, R.layout.event_item_list, dogsEvents);
         dogsEventsListView.setAdapter(dogsEventsAdapter);
 
         myEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter myPendingAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, myPendingEvents);
+        myPendingAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, myPendingEvents);
         myPendingEventsListView.setAdapter(myPendingAdapter);
 
         myPendingEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -147,6 +150,10 @@ public class HomeActivity extends AppCompatActivity {
         myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents().getEvents());
         dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents().getEvents());
         myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents().getEvents());
+
+        this.myEventsAdapter.notifyDataSetChanged();
+        this.dogsEventsAdapter.notifyDataSetChanged();
+        this.myPendingAdapter.notifyDataSetChanged();
 
     }
 
