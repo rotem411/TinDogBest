@@ -16,7 +16,8 @@ public class User {
     private String phoneNumber;
     private Address address;
     private String email;
-    private Dog dog;
+    private String dogName;
+    private String dogSize;
     private Dashboard dashboard = new Dashboard();
     private int photo;
 
@@ -25,7 +26,8 @@ public class User {
         user.setName(name);
         user.setEmail(email);
         user.setPassword("password");
-        user.dog = Dog.createDog("Bob", "L");
+        user.dogName = "Bob";
+        user.dogSize = "L";
         return user;
     }
 
@@ -37,22 +39,25 @@ public class User {
                  String phoneNumber,
                  Address address,
                  String email,
-                 Dog dog) {
+                 String dogName,
+                 String dogSize) {
         this.name = name;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
-        this.dog = dog;
+        this.dogName = dogName;
+        this.dogSize = dogSize;
     }
     public static User createUser(String name,
                                   String password,
                                   String phoneNumber,
                                   Address address,
                                   String email,
-                                  Dog dog) {
-        verifyParamsNotNull(name, password, phoneNumber, address, email, dog);
-        User toReturn = new User(name, password, phoneNumber, address, email, dog);
+                                  String dogName,
+                                  String dogSize) {
+        verifyParamsNotNull(name, password, phoneNumber, address, email, dogName, dogSize);
+        User toReturn = new User(name, password, phoneNumber, address, email, dogName, dogSize);
         return toReturn;
     }
     public static User createUser(String name,
@@ -60,22 +65,26 @@ public class User {
                                   String phoneNumber,
                                   Address address,
                                   String email,
-                                  Dog dog, ArrayList<Integer> rates) {
-        verifyParamsNotNull(name, password, phoneNumber, address, email, dog);
-        User toReturn = new User(name, password, phoneNumber, address, email, dog);
+                                  String dogName,
+                                  String dogSize,
+                                  ArrayList<Integer> rates) {
+        verifyParamsNotNull(name, password, phoneNumber, address, email, dogName, dogSize);
+        User toReturn = new User(name, password, phoneNumber, address, email, dogName, dogSize);
         if(rates != null) {
             toReturn.setRates(rates);
         }
         return toReturn;
     }
 
-    private static void verifyParamsNotNull(String name, String password, String phoneNumber, Address address, String email, Dog dog) {
+    private static void verifyParamsNotNull(String name, String password, String phoneNumber, Address address, String email, String dogName, String dogSize) {
         checkNotNull(name, "'name' was null");
         checkNotNull(password, "'password' was null");
         checkNotNull(phoneNumber, "'phoneNumber' was null");
         checkNotNull(address, "'address' was null");
         checkNotNull(email, "'email' was null");
-        checkNotNull(dog, "'dog' was null");
+        checkNotNull(dogName, "'dogName' was null");
+        checkNotNull(dogSize, "'dogSize' was null");
+
     }
 
     public static User createUser(String name,
@@ -86,9 +95,8 @@ public class User {
                                   String dogName,
                                   String dogSize) {
         verifyParamsAreNotNull(name, password, phoneNumber, addressDescription, email, dogName, dogSize);
-        Dog dog = Dog.createDog(dogName, dogSize);
         Address address = Address.createAddress(addressDescription);
-        return new User(name, password, phoneNumber, address, email, dog);
+        return new User(name, password, phoneNumber, address, email, dogName, dogSize);
     }
 
     private static void verifyParamsAreNotNull(String name, String password, String phoneNumber, String addressDescription, String email, String dogName, String dogSize) {
@@ -154,19 +162,19 @@ public class User {
     }
 
     public String getDogName() {
-        return dog.getName();
+        return this.dogName;
     }
 
     public void setDogName(String name) {
-        dog.setName(name);
+        this.dogName = name;
     }
 
     public String getDogSize() {
-        return dog.getSize();
+        return this.dogSize;
     }
 
     public void setDogSize(String size) {
-        dog.setSize(size);
+        this.dogSize = size;
     }
 
 

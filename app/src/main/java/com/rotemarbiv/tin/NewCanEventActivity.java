@@ -119,7 +119,7 @@ public class NewCanEventActivity extends AppCompatActivity {
 
             Calendar calendar= Calendar.getInstance();
             // I think the <= should be the opposite
-            if (calendar.YEAR >= year && calendar.MONTH >= month && calendar.DAY_OF_MONTH >= day){
+            if (calendar.YEAR >= year && calendar.MONTH >= month && calendar.DAY_OF_MONTH > day){
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "You cannot choose a date that has passed", Toast.LENGTH_LONG);
                 toast.show();
@@ -151,7 +151,7 @@ public class NewCanEventActivity extends AppCompatActivity {
             else{
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.bad_result_dialog);
-
+                // todo: add processing time
                 Button dialogButton = (Button) dialog.findViewById(R.id.okButton);
                 dialogButton.setOnClickListener(new View.OnClickListener() {
                     @Override

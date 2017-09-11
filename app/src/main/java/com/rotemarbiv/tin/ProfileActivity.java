@@ -49,8 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
         homeButton = (Button) findViewById((R.id.homeButton));
         editButton = (Button) findViewById((R.id.editButton));
 
+        selfUser = (User) getIntent().getSerializableExtra("selfUser");
         profileUser = (User) getIntent().getSerializableExtra("profileUser");
-        selfUser = (User) getIntent().getSerializableExtra("selfUser"); //TODO: change better
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         ratingBar.setRating(backend.getUser(profileUser.getEmail()).getRating());
 

@@ -28,10 +28,6 @@ public class HomeActivity extends AppCompatActivity {
     private User selfUser;
     private static BackendSimulator backend = BackendSimulator.getInstance();
 
-//    private ArrayList<Event> myEvents = new ArrayList<Event>(); //todo: convert from backend.getTasks()
-//    private ArrayList<Event> dogsEvents = new ArrayList<Event>();
-//    private ArrayList<Event> myPendingEvents = new ArrayList<Event>();
-
     private ArrayList<Event> myEvents;
     private ArrayList<Event> dogsEvents;
     private ArrayList<Event> myPendingEvents;
@@ -93,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(myEvents.get(position).getEventTitle()+"   "+myEvents.get(position).isItMe);
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
                 intent.putExtra("eventClicked", myEvents.get(position));
+                intent.putExtra("selfUser", selfUser);
                 startActivity(intent);
 
             }
@@ -107,6 +104,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
                 intent.putExtra("eventClicked", dogsEvents.get(position));
+                intent.putExtra("selfUser", selfUser);
                 startActivity(intent);
 
             }
@@ -161,6 +159,5 @@ public class HomeActivity extends AppCompatActivity {
     }
 }
 
-// time of walk: morning (8-12, noon12-18, evening18-24)
-// date- no option for past event
-//
+// todo: second+ new event didn't show in table
+// todo: picking old dates- now availabe

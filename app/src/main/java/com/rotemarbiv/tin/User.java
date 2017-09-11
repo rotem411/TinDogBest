@@ -119,6 +119,7 @@ public class User implements Serializable {
         User toReturn = new User(user.getName(),user.getPassword(),user.getDogName(),
                 user.getDogSize(), user.getAddress(), user.getPhoneNumber(), user.getEmail(), true);
         return toReturn;
+        //todo: add rates
     }
 
     public static com.rotemarbiv.tin.backend.User convertUserToBackendUser(User user){

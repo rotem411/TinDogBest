@@ -36,7 +36,7 @@ public class BackendSimulator implements Serializable {
                         "052345678",
                         Address.createAddress("Shamai 5, Jerusalem"),
                         "julian@gmail.com",
-                        Dog.createDog("Bob", "L"), givenRates));
+                        "Bob", "L", givenRates));
 
         users.put("12kobi@walla.co.il",
                 User.createUser("Kobi Zach",
@@ -44,7 +44,7 @@ public class BackendSimulator implements Serializable {
                         "08333666",
                         Address.createAddress("Loyd George 2, Jerusalem"),
                         "12kobi@walla.co.il",
-                        Dog.createDog("Tooki", "M"),givenRates));
+                        "Tooki", "M",givenRates));
         givenRates.add(3);
         givenRates.add(3);
         users.put("tirtir@patzi.shmenki",
@@ -53,7 +53,7 @@ public class BackendSimulator implements Serializable {
                         "0551239876",
                         Address.createAddress("Ha'Banai 4, Jerusalem"),
                         "tirtir@patzi.shmenki",
-                        Dog.createDog("Loulou", "L"),givenRates));
+                        "Loulou", "L",givenRates));
         Event event = Event.createEvent(getUser("julian@gmail.com"), getUser("12kobi@walla.co.il"), EventTime.createEventTime("7/10/17", "morning"), "");
         getUser("julian@gmail.com").getDashboard().getUserEvents().addEvent(event);
         getUser("12kobi@walla.co.il").getDashboard().getDogEvents().addEvent(event);
@@ -69,6 +69,7 @@ public class BackendSimulator implements Serializable {
     public Match findMatch(EventTime needTime, EventTime canTime, User owner) {
         int match = random.nextInt(users.size());
         ArrayList<String> userEmails = new ArrayList<>(users.keySet());
+        // todo: match not you
 
         if (match == 0) {
             Event dogEvent = Event.createEvent(users.get("no mail"), owner, needTime, "");
@@ -104,9 +105,8 @@ public class BackendSimulator implements Serializable {
     }
 
     public User signUp(String name, String password, String dogName, String dogSize, String address, String phone, String email) {
-        Dog dog = Dog.createDog(dogName, dogSize);
         Address theAddress = Address.createAddress(address);
-        User user = User.createUser(name, password, phone, theAddress, email, dog);
+        User user = User.createUser(name, password, phone, theAddress, email, dogName, dogSize);
         users.put(user.getEmail(), user);
         return user;
     }
