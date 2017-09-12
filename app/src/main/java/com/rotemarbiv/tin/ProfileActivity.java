@@ -111,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
+                //nothingn
                 }
             });
 
@@ -129,7 +129,6 @@ public class ProfileActivity extends AppCompatActivity {
             backendUser.setAddress(profileUser.getEmail());
             backendUser.setPhoneNumber(profileUser.getPhoneNumber());
             backendUser.setDogSize(profileUser.getDogSize());
-            // todo: how to update server
             editButton.setText("Edit");
 
         }

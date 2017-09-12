@@ -58,18 +58,18 @@ public class Event implements Serializable {
      * out. Otherwise, the name of the selfUser who'll take out your dog.
      * @return String
      */
-    public String getEventTitle(){
-        if (isItMe){
+    public String getEventTitle(User selfUser){
+        if (selfUser.getEmail().equals(walker.getEmail())){
             return dog.getDogName();
         }
         else{
             return walker.getFullName();
         }
     }
-    public int getIcon(){
+    public int getIcon(User selfUser){
         // here will import pic icon from server according to selfUser
 
-        if (isItMe){
+        if (selfUser.getEmail().equals(walker.getEmail())){
             return R.mipmap.walk_dog_icon;
         }
         else{
@@ -113,7 +113,6 @@ public class Event implements Serializable {
     public static Event convertBackendEventToEvent(com.rotemarbiv.tin.backend.Event event){
         User convertWalker = User.convertBackendUserToUser(event.getOwner());
         User convertDog = User.convertBackendUserToUser(event.getPartner());
-
         Event toReturn = new Event(convertWalker, convertDog, event.getTime(), event.getDate());
         return toReturn;
     }

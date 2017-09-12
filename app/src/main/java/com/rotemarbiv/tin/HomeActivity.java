@@ -49,9 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         selfUser = (User) getIntent().getSerializableExtra("selfUser");
         com.rotemarbiv.tin.backend.User backendUser = backend.getUser(selfUser.getEmail());
 
-        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents().getEvents());
-        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents().getEvents());
-        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents().getEvents());
+        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents());
+        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents());
+        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents());
 
 //        Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
 //        Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
@@ -77,9 +77,9 @@ public class HomeActivity extends AppCompatActivity {
         ListView myEventsListView = (ListView)findViewById(R.id.myEventsList);
         ListView dogsEventsListView = (ListView)findViewById(R.id.dogsEventsList);
         ListView myPendingEventsListView = (ListView)findViewById(R.id.myPendingEventsList);
-        myEventsAdapter = new EventAdapter(this, R.layout.event_item_list, myEvents);
+        myEventsAdapter = new EventAdapter(this, R.layout.event_item_list, myEvents, selfUser);
         myEventsListView.setAdapter(myEventsAdapter);
-        dogsEventsAdapter = new EventAdapter(this, R.layout.event_item_list, dogsEvents);
+        dogsEventsAdapter = new EventAdapter(this, R.layout.event_item_list, dogsEvents, selfUser);
         dogsEventsListView.setAdapter(dogsEventsAdapter);
 
         myEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
                 int curEventID = view.getId();
                 Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
 
-                System.out.println(myEvents.get(position).getEventTitle()+"   "+myEvents.get(position).isItMe);
+                System.out.println(myEvents.get(position).getEventTitle(selfUser)+"   "+myEvents.get(position).isItMe);
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
                 intent.putExtra("eventClicked", myEvents.get(position));
                 intent.putExtra("selfUser", selfUser);
@@ -147,16 +147,15 @@ public class HomeActivity extends AppCompatActivity {
 
         com.rotemarbiv.tin.backend.User backendUser = backend.getUser(selfUser.getEmail());
 
-        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents().getEvents());
-        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents().getEvents());
-        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents().getEvents());
+        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents());
+        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents());
+        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents());
 
         this.myEventsAdapter.notifyDataSetChanged();
         this.dogsEventsAdapter.notifyDataSetChanged();
         this.myPendingAdapter.notifyDataSetChanged();
 
     }
-
 
     public void profileClicked(View view){
         Intent intent = new Intent(this, ProfileActivity.class);
@@ -166,5 +165,5 @@ public class HomeActivity extends AppCompatActivity {
     }
 }
 
-// todo: second+ new event didn't show in table
+// todo: events with other user don't work
 // todo: picking old dates- now availabe

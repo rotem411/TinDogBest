@@ -25,8 +25,6 @@ import java.util.Calendar;
 
 public class NewNeedEventActivity extends AppCompatActivity {
 
-    //TODO: split to 2 screens, one for when you can take out, and one for when you need
-
     public User selfUser; // the one utilizing the app
     public String time;
     public String date;

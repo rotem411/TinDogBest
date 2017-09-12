@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.MapView;
+import com.rotemarbiv.tin.backend.BackendSimulator;
 
 /**
  * Created by dafnaarbiv on 25/07/2017.
@@ -38,7 +39,7 @@ public class EventActivity extends AppCompatActivity {
         event = (Event) getIntent().getSerializableExtra("eventClicked");
         selfUser = (User) getIntent().getSerializableExtra("selfUser");
 
-        if (event.isItMe){
+        if (event.walker.getEmail().equals(this.selfUser.getEmail())){
             walkDone = (Button)findViewById(R.id.walkDoneButton);
             walkDone.setVisibility(View.VISIBLE);
             walkDone.setClickable(true);
@@ -81,6 +82,8 @@ public class EventActivity extends AppCompatActivity {
         public void walkDoneClicked(View view){
             // send the server information that this event can be deleted
             createNotification(view);
+            BackendSimulator backendSimulator = BackendSimulator.getInstance();
+            backendSimulator.removeEvent(Event.convertEventToBackendEvent(event));
             Intent intent = new Intent(EventActivity.this, HomeActivity.class);
             intent.putExtra("selfUser", selfUser);
             startActivity(intent);

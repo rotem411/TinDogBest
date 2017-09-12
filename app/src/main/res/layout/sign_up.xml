@@ -4,20 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/sign_up_background"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <TextView
         android:id="@+id/passwordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
-        app:layout_constraintRight_toLeftOf="@+id/passwordInput"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameLabel" />
+        tools:layout_editor_absoluteY="222dp"
+        tools:layout_editor_absoluteX="45dp" />
 
     <EditText
         android:id="@+id/passwordInput"
@@ -25,38 +23,24 @@
         android:layout_height="46dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintRight_toLeftOf="@+id/showPasswordButton"
-        android:layout_marginRight="17dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameInput" />
+        tools:layout_editor_absoluteY="210dp"
+        tools:layout_editor_absoluteX="161dp" />
 
     <Button
         android:id="@+id/signUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/mailInput"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintVertical_bias="1.0" />
+        tools:layout_editor_absoluteY="586dp"
+        tools:layout_editor_absoluteX="161dp" />
 
     <TextView
         android:id="@+id/fullNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Full Name"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="29dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/fullNameInput"
-        android:layout_marginRight="16dp"
-        app:layout_constraintHorizontal_bias="0.465" />
+        tools:layout_editor_absoluteY="124dp"
+        tools:layout_editor_absoluteX="108dp" />
 
     <EditText
         android:id="@+id/fullNameInput"
@@ -64,10 +48,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        tools:layout_editor_absoluteY="114dp"
+        tools:layout_editor_absoluteX="99dp" />
 
     <EditText
         android:id="@+id/dogNameInput"
@@ -75,10 +57,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        tools:layout_editor_absoluteY="471dp"
+        tools:layout_editor_absoluteX="172dp" />
 
     <EditText
         android:id="@+id/addressInput"
@@ -86,10 +66,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/RGroup"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        tools:layout_editor_absoluteY="285dp"
+        tools:layout_editor_absoluteX="150dp" />
 
     <EditText
         android:id="@+id/mailInput"
@@ -98,10 +76,8 @@
         android:ems="10"
         android:hint="name@domain.com"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        tools:layout_editor_absoluteY="418dp"
+        tools:layout_editor_absoluteX="150dp" />
 
     <EditText
         android:id="@+id/phoneNumberInput"
@@ -109,95 +85,81 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="phone"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/addressInput"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        tools:layout_editor_absoluteY="343dp"
+        tools:layout_editor_absoluteX="150dp" />
 
     <TextView
         android:id="@+id/dogNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dog Name"
-        android:layout_marginTop="35dp"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/dogNameInput"
-        android:layout_marginRight="16dp"
-        app:layout_constraintHorizontal_bias="0.481" />
+        tools:layout_editor_absoluteY="488dp"
+        tools:layout_editor_absoluteX="95dp" />
 
     <TextView
         android:id="@+id/dogSizeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dog Size"
-        android:layout_marginTop="34dp"
-        app:layout_constraintTop_toBottomOf="@+id/dogNameLabel"
-        app:layout_constraintRight_toLeftOf="@+id/RGroup"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.261" />
+        tools:layout_editor_absoluteY="544dp"
+        tools:layout_editor_absoluteX="99dp" />
 
     <TextView
         android:id="@+id/addressLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address"
-        android:layout_marginTop="41dp"
-        app:layout_constraintTop_toBottomOf="@+id/dogSizeLabel"
-        app:layout_constraintRight_toLeftOf="@+id/addressInput"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.408" />
+        tools:layout_editor_absoluteY="300dp"
+        tools:layout_editor_absoluteX="45dp" />
 
     <TextView
         android:id="@+id/phoneNumberLabel"
         android:layout_width="47dp"
         android:layout_height="20dp"
         android:text="Phone"
-        android:layout_marginTop="43dp"
-        app:layout_constraintTop_toBottomOf="@+id/addressLabel"
-        app:layout_constraintRight_toLeftOf="@+id/phoneNumberInput"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.466" />
+        tools:layout_editor_absoluteY="353dp"
+        tools:layout_editor_absoluteX="45dp" />
 
     <TextView
         android:id="@+id/mailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
-        android:layout_marginTop="36dp"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberLabel"
-        app:layout_constraintRight_toLeftOf="@+id/mailInput"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.417" />
+        tools:layout_editor_absoluteY="418dp"
+        tools:layout_editor_absoluteX="45dp" />
 
     <Button
         android:id="@+id/showPasswordButton"
         android:layout_width="66dp"
         android:layout_height="46dp"
         android:text="Show"
-        android:layout_marginRight="15dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameInput" />
+        tools:layout_editor_absoluteY="210dp"
+        tools:layout_editor_absoluteX="329dp" />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="65dp"
+        android:layout_height="63dp"
+        tools:layout_editor_absoluteY="38dp"
+        tools:layout_editor_absoluteX="173dp" />
+
+    <Button
+        android:id="@+id/imageBrowse"
+        android:layout_width="78dp"
+        android:layout_height="33dp"
+        android:nestedScrollingEnabled="true"
+        android:onClick="choosePic"
+        android:text="browse"
+        tools:layout_editor_absoluteY="53dp"
+        tools:layout_editor_absoluteX="236dp" />
 
     <RadioGroup
         android:id="@+id/RGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="57dp"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogNameInput">
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="522dp">
 
         <RadioButton
             android:id="@+id/smallButton"
@@ -215,8 +177,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text="M"
             android:onClick="onRadioButtonClicked"
+            android:text="M"
             app:layout_constraintRight_toLeftOf="@+id/largeButton" />
 
         <RadioButton
@@ -225,38 +187,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text="L"
-            android:onClick="onRadioButtonClicked"/>
+            android:onClick="onRadioButtonClicked"
+            android:text="L" />
     </RadioGroup>
-
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        android:layout_marginLeft="41dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/mailLabel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.125" />
-
-    <Button
-        android:id="@+id/imageBrowse"
-        android:layout_width="78dp"
-        android:layout_height="33dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:nestedScrollingEnabled="true"
-        android:onClick="choosePic"
-        android:text="browse"
-        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/profileImage"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mailInput"
-        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

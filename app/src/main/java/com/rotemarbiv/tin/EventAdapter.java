@@ -20,12 +20,14 @@ public class EventAdapter extends ArrayAdapter<Event> {
     Context context;
     int layoutResourceId;
     ArrayList<Event> events;
+    User selfUser;
 
-    public EventAdapter(Context context, int layoutResourceId, ArrayList<Event> data) {
+    public EventAdapter(Context context, int layoutResourceId, ArrayList<Event> data, User selfUSer) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.events = data;
+        this.selfUser = selfUSer;
     }
 
     @Override
@@ -53,14 +55,15 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
         Event event = events.get(position);
 
-        holder.imageIcon.setImageResource(event.getIcon());
-        holder.nameTitle.setText(event.getEventTitle());
+        holder.imageIcon.setImageResource(event.getIcon(this.selfUser));
+        holder.nameTitle.setText(event.getEventTitle(this.selfUser));
         holder.timeTitle.setText(event.getTimeStr());
         holder.dateTitle.setText(event.getDateStr());
 
 
         return row;
     }
+
 
     static class EventHolder
     {

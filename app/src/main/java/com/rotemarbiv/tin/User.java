@@ -31,7 +31,6 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.notifications = notifications;
-
     }
 
     User(String fullName, String dogName, String address, boolean notifications){
@@ -39,7 +38,6 @@ public class User implements Serializable {
         this.dogName = dogName;
         this.address = address;
         this.notifications = notifications;
-
 
         pendingEvents = new ArrayList<Event>();
     }
@@ -122,10 +120,15 @@ public class User implements Serializable {
         //todo: add rates
     }
 
+//    public static com.rotemarbiv.tin.backend.User convertUserToBackendUser(User user){
+//        com.rotemarbiv.tin.backend.User toReturn = com.rotemarbiv.tin.backend.User.createUser(user.getFullName(),
+//                user.getPassword(), user.getPhoneNumber(),user.getAddress(),user.getEmail(),
+//                user.getDogName(), user.getDogSize());
+//        return toReturn;
+//    }
+
     public static com.rotemarbiv.tin.backend.User convertUserToBackendUser(User user){
-        com.rotemarbiv.tin.backend.User toReturn = com.rotemarbiv.tin.backend.User.createUser(user.getFullName(),
-                user.getPassword(), user.getPhoneNumber(),user.getAddress(),user.getEmail(),
-                user.getDogName(), user.getDogSize());
+        com.rotemarbiv.tin.backend.User toReturn = com.rotemarbiv.tin.backend.BackendSimulator.getInstance().getUser(user.getEmail());
         return toReturn;
     }
 

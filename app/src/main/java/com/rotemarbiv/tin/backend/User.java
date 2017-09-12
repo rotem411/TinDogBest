@@ -14,11 +14,11 @@ public class User {
     private ArrayList<Integer> rates = new ArrayList<>();
 
     private String phoneNumber;
-    private Address address;
+    private String address;
     private String email;
     private String dogName;
     private String dogSize;
-    private Dashboard dashboard = new Dashboard();
+    private Dashboard dashboard;
     private int photo;
 
     public static User of(String name, String email) {
@@ -28,6 +28,7 @@ public class User {
         user.setPassword("password");
         user.dogName = "No Dog";
         user.dogSize = "S";
+        user.dashboard = new Dashboard();
         return user;
     }
 
@@ -37,7 +38,7 @@ public class User {
     private User(String name,
                  String password,
                  String phoneNumber,
-                 Address address,
+                 String address,
                  String email,
                  String dogName,
                  String dogSize) {
@@ -48,11 +49,13 @@ public class User {
         this.email = email;
         this.dogName = dogName;
         this.dogSize = dogSize;
+        this.dashboard = new Dashboard();
+
     }
     public static User createUser(String name,
                                   String password,
                                   String phoneNumber,
-                                  Address address,
+                                  String address,
                                   String email,
                                   String dogName,
                                   String dogSize) {
@@ -63,7 +66,7 @@ public class User {
     public static User createUser(String name,
                                   String password,
                                   String phoneNumber,
-                                  Address address,
+                                  String address,
                                   String email,
                                   String dogName,
                                   String dogSize,
@@ -76,7 +79,8 @@ public class User {
         return toReturn;
     }
 
-    private static void verifyParamsNotNull(String name, String password, String phoneNumber, Address address, String email, String dogName, String dogSize) {
+    private static void verifyParamsNotNull(String name, String password, String phoneNumber,
+                                String address, String email, String dogName, String dogSize) {
         checkNotNull(name, "'name' was null");
         checkNotNull(password, "'password' was null");
         checkNotNull(phoneNumber, "'phoneNumber' was null");
@@ -87,19 +91,8 @@ public class User {
 
     }
 
-    public static User createUser(String name,
-                                  String password,
-                                  String phoneNumber,
-                                  String addressDescription,
-                                  String email,
-                                  String dogName,
-                                  String dogSize) {
-        verifyParamsAreNotNull(name, password, phoneNumber, addressDescription, email, dogName, dogSize);
-        Address address = Address.createAddress(addressDescription);
-        return new User(name, password, phoneNumber, address, email, dogName, dogSize);
-    }
-
-    private static void verifyParamsAreNotNull(String name, String password, String phoneNumber, String addressDescription, String email, String dogName, String dogSize) {
+    private static void verifyParamsAreNotNull(String name, String password, String phoneNumber,
+                       String addressDescription, String email, String dogName, String dogSize) {
         checkNotNull(name, "'name' was null");
         checkNotNull(password, "'password' was null");
         checkNotNull(phoneNumber, "'phoneNumber' was null");
@@ -183,7 +176,7 @@ public class User {
     }
 
     public String getAddress() {
-        return address.getDescription();
+        return address;
     }
 
 
@@ -192,7 +185,7 @@ public class User {
     }
 
     public void setAddress(String address) {
-        this.address.setDescription(address);
+        this.address = address;
     }
 
     public int getPhoto() {

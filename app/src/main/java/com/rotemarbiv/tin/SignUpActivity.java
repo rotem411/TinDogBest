@@ -121,6 +121,11 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+        profilePic.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                choosePic(v);
+            }
+        });
     }
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
