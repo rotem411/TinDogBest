@@ -70,10 +70,11 @@ public class Event implements Serializable {
         // here will import pic icon from server according to selfUser
 
         if (selfUser.getEmail().equals(walker.getEmail())){
-            return R.mipmap.walk_dog_icon;
+            return R.drawable.home_oval_small_blue;
+
         }
         else{
-            return R.mipmap.walk_user_icon;
+            return R.drawable.home_oval_small_yellow;
 
         }
     }

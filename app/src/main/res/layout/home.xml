@@ -4,84 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/home_bg">
 
-    <TextView
-        android:id="@+id/comingEventsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upcoming Walks"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/profileButton" />
-
-    <TextView
-        android:id="@+id/myEventsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Events"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/comingEventsLabel"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/dogsEventsLabel"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.333" />
-
-    <TextView
-        android:id="@+id/dogsEventsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Dog's Events"
-        android:layout_marginRight="58dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/comingEventsLabel" />
-
-    <ListView
-        android:id="@+id/dogsEventsList"
-        android:layout_width="152dp"
-        android:layout_height="263dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogsEventsLabel"
-        app:layout_constraintVertical_bias="0.018"
-        tools:layout_editor_absoluteX="204dp" />
-
-    <ListView
-        android:id="@+id/myEventsList"
-        android:layout_width="151dp"
-        android:layout_height="265dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.317"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/dogsEventsList"
-        app:layout_constraintTop_toBottomOf="@+id/myEventsLabel"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-    <TextView
-        android:id="@+id/PendingWalksLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="39dp"
-        android:text="Pending Walks"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myEventsList" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addEventButton"
@@ -92,40 +17,116 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
-        android:src="@android:drawable/ic_menu_add"
+        android:background="@drawable/plus_fab"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.939"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dogsEventsList"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:id="@+id/profileButton"
+        android:layout_width="116dp"
+        android:layout_height="113dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/big_blue_oval"
+        android:onClick="profileClicked"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/myEventsList"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintRight_toLeftOf="@+id/textView5"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <ListView
+        android:id="@+id/dogsEventsList"
+        android:layout_width="194dp"
+        android:layout_height="286dp"
+        android:layout_marginBottom="201dp"
+        android:layout_marginRight="11dp"
+        android:paddingLeft="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="11dp" />
+
+    <ListView
+        android:id="@+id/myEventsList"
+        android:layout_width="194dp"
+        android:layout_height="286dp"
+        android:layout_marginBottom="202dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="16dp"
+        android:paddingLeft="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/dogsEventsList"
+        android:layout_marginEnd="8dp" />
 
     <ListView
         android:id="@+id/myPendingEventsList"
         android:layout_width="347dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PendingWalksLabel"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/profileButton"
-        android:layout_width="44dp"
-        android:layout_height="43dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@mipmap/walk_user_icon"
-        android:onClick="profileClicked"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="16dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Laure Scemama"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        android:layout_marginRight="37dp"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="13/09/2017"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="@+id/imageView3"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.531"
+        android:layout_marginBottom="41dp"
+        app:layout_constraintBottom_toTopOf="@+id/dogsEventsList"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="220dp"
+        android:layout_height="7dp"
+        app:srcCompat="@drawable/home_under_full_name_line"
+        tools:layout_editor_absoluteY="78dp"
+        app:layout_constraintRight_toRightOf="@+id/textView5"
+        app:layout_constraintLeft_toLeftOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.673" />
 
 </android.support.constraint.ConstraintLayout>
 
