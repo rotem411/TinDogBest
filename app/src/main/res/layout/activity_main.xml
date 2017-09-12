@@ -23,7 +23,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/emailInput"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912"
+        app:layout_constraintVertical_bias="0.928"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -75,17 +75,17 @@
         android:layout_width="264dp"
         android:layout_height="54dp"
         android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/sign_in_yellow"
-        android:text="Sign In"
+        android:text="SIGN IN"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/signUpButton"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/signUpButton"
@@ -95,7 +95,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/sign_up_white_stroke"
-        android:text="Sign Up"
+        android:text="SIGN UP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="145dp"
     android:layout_height="80dp"
+    android:background="@drawable/walk_item_bg"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
