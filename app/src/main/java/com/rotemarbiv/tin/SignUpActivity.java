@@ -53,6 +53,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 //    private  static final int SELECTED_PICTURE = 1;
     public ImageView profilePic;
+    public ImageView dogPic;
+    public boolean isPerson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
         phoneNumber = (EditText) findViewById(R.id.phoneNumberInput);
         mail = (EditText) findViewById(R.id.mailInput);
         profilePic = (ImageView) findViewById(R.id.profileImage);
+        dogPic = (ImageView) findViewById(R.id.dogPic);
         showPasswordButton = (Button) findViewById(R.id.showPasswordButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
 
@@ -123,6 +126,13 @@ public class SignUpActivity extends AppCompatActivity {
         });
         profilePic.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                isPerson = true;
+                choosePic(v);
+            }
+        });
+        dogPic.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                isPerson = false;
                 choosePic(v);
             }
         });
@@ -210,8 +220,9 @@ public class SignUpActivity extends AppCompatActivity {
                 try {
                     inputStream = getContentResolver().openInputStream(imageUri);
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
+                    if (isPerson){ profilePic.setImageBitmap(image);}
+                    else {dogPic.setImageBitmap(image);}
 
-                    profilePic.setImageBitmap(image);
                     //TODO give it to server
 
                 } catch (FileNotFoundException e) {

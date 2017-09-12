@@ -9,65 +9,74 @@
     tools:layout_editor_absoluteY="25dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <TextView
-        android:id="@+id/passwordLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        tools:layout_editor_absoluteY="222dp"
-        tools:layout_editor_absoluteX="45dp" />
-
     <EditText
         android:id="@+id/passwordInput"
         android:layout_width="153dp"
         android:layout_height="46dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteY="210dp"
-        tools:layout_editor_absoluteX="161dp" />
+        android:layout_marginTop="46dp"
+        app:layout_constraintTop_toBottomOf="@+id/fullNameInput"
+        android:layout_marginLeft="70dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        tools:layout_editor_absoluteY="586dp"
-        tools:layout_editor_absoluteX="161dp" />
-
-    <TextView
-        android:id="@+id/fullNameLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Full Name"
-        tools:layout_editor_absoluteY="124dp"
-        tools:layout_editor_absoluteX="108dp" />
+        android:layout_width="249dp"
+        android:layout_height="44dp"
+        android:background="@drawable/sign_up_btn"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/RGroup"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/fullNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
         android:ems="10"
+        android:hint="Full Name"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteY="114dp"
-        tools:layout_editor_absoluteX="99dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <EditText
         android:id="@+id/dogNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Dog Name"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteY="471dp"
-        tools:layout_editor_absoluteX="172dp" />
+        app:layout_constraintLeft_toRightOf="@+id/dogPic"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/mailInput" />
 
     <EditText
         android:id="@+id/addressInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Address"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteY="285dp"
-        tools:layout_editor_absoluteX="150dp" />
+        android:layout_marginTop="11dp"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.34" />
 
     <EditText
         android:id="@+id/mailInput"
@@ -76,90 +85,85 @@
         android:ems="10"
         android:hint="name@domain.com"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteY="418dp"
-        tools:layout_editor_absoluteX="150dp" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.34" />
 
     <EditText
         android:id="@+id/phoneNumberInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Phone"
         android:inputType="phone"
-        tools:layout_editor_absoluteY="343dp"
-        tools:layout_editor_absoluteX="150dp" />
-
-    <TextView
-        android:id="@+id/dogNameLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dog Name"
-        tools:layout_editor_absoluteY="488dp"
-        tools:layout_editor_absoluteX="95dp" />
+        android:layout_marginTop="7dp"
+        app:layout_constraintTop_toBottomOf="@+id/addressInput"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.34" />
 
     <TextView
         android:id="@+id/dogSizeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dog Size"
-        tools:layout_editor_absoluteY="544dp"
-        tools:layout_editor_absoluteX="99dp" />
-
-    <TextView
-        android:id="@+id/addressLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        tools:layout_editor_absoluteY="300dp"
-        tools:layout_editor_absoluteX="45dp" />
-
-    <TextView
-        android:id="@+id/phoneNumberLabel"
-        android:layout_width="47dp"
-        android:layout_height="20dp"
-        android:text="Phone"
-        tools:layout_editor_absoluteY="353dp"
-        tools:layout_editor_absoluteX="45dp" />
-
-    <TextView
-        android:id="@+id/mailLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        tools:layout_editor_absoluteY="418dp"
-        tools:layout_editor_absoluteX="45dp" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/dogPic"
+        android:layout_marginLeft="70dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/showPasswordButton"
-        android:layout_width="66dp"
-        android:layout_height="46dp"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
         android:text="Show"
-        tools:layout_editor_absoluteY="210dp"
-        tools:layout_editor_absoluteX="329dp" />
+        tools:layout_editor_absoluteY="202dp"
+        app:layout_constraintLeft_toRightOf="@+id/passwordInput"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.059" />
 
     <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        tools:layout_editor_absoluteY="38dp"
-        tools:layout_editor_absoluteX="173dp" />
+        android:layout_width="81dp"
+        android:layout_height="83dp"
+        android:background="@drawable/sign_up_pic"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
-    <Button
-        android:id="@+id/imageBrowse"
-        android:layout_width="78dp"
-        android:layout_height="33dp"
-        android:nestedScrollingEnabled="true"
-        android:onClick="choosePic"
-        android:text="browse"
-        tools:layout_editor_absoluteY="53dp"
-        tools:layout_editor_absoluteX="236dp" />
+    <ImageView
+        android:id="@+id/dogPic"
+        android:layout_width="86dp"
+        android:layout_height="123dp"
+        app:srcCompat="@drawable/sign_up_pic_blue"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/mailInput"
+        android:layout_marginLeft="63dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <RadioGroup
         android:id="@+id/RGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="70dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="172dp"
-        tools:layout_editor_absoluteY="522dp">
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintLeft_toRightOf="@+id/dogSizeLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dogNameInput">
 
         <RadioButton
             android:id="@+id/smallButton"
