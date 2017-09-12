@@ -17,28 +17,30 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="Email"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toTopOf="@+id/passwordLabel"
         app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/emailInput"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912" />
+        app:layout_constraintVertical_bias="0.912"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/passwordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:layout_marginLeft="32dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/passwordInput"
-        android:layout_marginRight="8dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintLeft_toLeftOf="@+id/emailLabel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         android:layout_marginBottom="234dp" />
 
     <EditText
         android:id="@+id/emailInput"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -47,22 +49,26 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="julian@gmail.com"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:backgroundTint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/passwordInput"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.982" />
+        app:layout_constraintVertical_bias="0.982"
+        android:layout_marginEnd="99dp" />
 
     <EditText
         android:id="@+id/passwordInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:layout_marginRight="99dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:text="password"
         app:layout_constraintBottom_toTopOf="@+id/signInButton"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="@+id/emailInput" />
 
     <Button
         android:id="@+id/signInButton"
@@ -73,10 +79,13 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/sign_in_yellow"
         android:text="Sign In"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/signUpButton"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/signUpButton"
@@ -89,7 +98,9 @@
         android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
 
 </android.support.constraint.ConstraintLayout>
