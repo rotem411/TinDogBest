@@ -48,7 +48,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="julian@gmail.com"
+        android:text="rotem.rbv@gmail.com"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:backgroundTint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/passwordInput"
@@ -66,7 +66,7 @@
         android:inputType="textPassword"
         android:backgroundTint="@android:color/white"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:text="password"
+        android:text="1234"
         app:layout_constraintBottom_toTopOf="@+id/signInButton"
         app:layout_constraintRight_toRightOf="@+id/emailInput" />
 

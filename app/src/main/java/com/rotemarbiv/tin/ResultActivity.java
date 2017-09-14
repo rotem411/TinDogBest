@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rotemarbiv.tin.backend.BackendSimulator;
 import com.rotemarbiv.tin.backend.Match;
 
 /**
@@ -15,6 +16,7 @@ import com.rotemarbiv.tin.backend.Match;
  */
 
 public class ResultActivity extends AppCompatActivity {
+    private static BackendSimulator backend = BackendSimulator.getInstance();
 
     public TextView fullName;
     public TextView userDate;
@@ -55,6 +57,9 @@ public class ResultActivity extends AppCompatActivity {
         userAddress.setText(userEvent.getAddress());
         dogDate.setText(dogEvent.getDateStr());
         dogAddress.setText(dogEvent.getAddress());
+        com.rotemarbiv.tin.backend.User backendUser = backend.getUser(selfUser.getEmail());
+
+        profilePic.setBackground(getResources().getDrawable(backendUser.getPersonPic()));
 
         fullName.setOnClickListener(new View.OnClickListener() {
             @Override

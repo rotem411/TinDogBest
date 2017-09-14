@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     private EventAdapter myEventsAdapter;
     private EventAdapter dogsEventsAdapter;
     private ArrayAdapter myPendingAdapter;
+    public Button profilePic;
 
 
     private FloatingActionButton newEventButton;
@@ -52,6 +55,9 @@ public class HomeActivity extends AppCompatActivity {
         myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents());
         dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents());
         myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents());
+        profilePic = (Button) findViewById(R.id.profileButton);
+        profilePic.setBackground(getResources().getDrawable(backendUser.getPersonPic()));
+
 
 //        Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
 //        Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");

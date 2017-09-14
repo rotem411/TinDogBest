@@ -1,11 +1,10 @@
 package com.rotemarbiv.tin.backend;
 
+import com.rotemarbiv.tin.R;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
-
-import static java.lang.System.in;
 
 public class BackendSimulator implements Serializable {
 
@@ -74,9 +73,16 @@ public class BackendSimulator implements Serializable {
                 "Ha'Banai 4, Jerusalem",
                 "laurescemama@gmail.com",
                 "Doggy", "L",givenRates));
-        Event event = Event.createEvent(getUser("julian@gmail.com"), getUser("12kobi@walla.co.il"), EventTime.createEventTime("7/10/17", "morning"), "");
-        getUser("julian@gmail.com").getDashboard().addUserEvent(event);
-        getUser("12kobi@walla.co.il").getDashboard().addDogEvent(event);
+        users.get(4).personPic = R.drawable.rotem_p;
+        users.get(5).personPic = R.drawable.gal_p;
+        users.get(6).personPic = R.drawable.laure_p;
+
+        users.get(4).dogPic = R.drawable.dog1;
+        users.get(5).dogPic = R.drawable.dog2;
+        users.get(6).dogPic = R.drawable.dog3;
+        Event event = Event.createEvent(getUser("rotem.rbv@gmail.com"), getUser("gal.nachmana@gmail.com"), EventTime.createEventTime("7/10/17", "morning"), "");
+        getUser("rotem.rbv@gmail.com").getDashboard().addUserEvent(event);
+        getUser("gal.nachmana@gmail.com").getDashboard().addDogEvent(event);
     }
 
     void rateUser(User user, int rate) {

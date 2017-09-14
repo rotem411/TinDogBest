@@ -19,7 +19,8 @@ public class User {
     private String dogName;
     private String dogSize;
     private Dashboard dashboard;
-    private int photo;
+    public int personPic;
+    public int dogPic;
 
     public static User of(String name, String email) {
         User user = new User();
@@ -52,6 +53,7 @@ public class User {
         this.dashboard = new Dashboard();
 
     }
+
     public static User createUser(String name,
                                   String password,
                                   String phoneNumber,
@@ -63,6 +65,7 @@ public class User {
         User toReturn = new User(name, password, phoneNumber, address, email, dogName, dogSize);
         return toReturn;
     }
+
     public static User createUser(String name,
                                   String password,
                                   String phoneNumber,
@@ -73,14 +76,14 @@ public class User {
                                   ArrayList<Integer> rates) {
         verifyParamsNotNull(name, password, phoneNumber, address, email, dogName, dogSize);
         User toReturn = new User(name, password, phoneNumber, address, email, dogName, dogSize);
-        if(rates != null) {
+        if (rates != null) {
             toReturn.setRates(rates);
         }
         return toReturn;
     }
 
     private static void verifyParamsNotNull(String name, String password, String phoneNumber,
-                                String address, String email, String dogName, String dogSize) {
+                                            String address, String email, String dogName, String dogSize) {
         checkNotNull(name, "'name' was null");
         checkNotNull(password, "'password' was null");
         checkNotNull(phoneNumber, "'phoneNumber' was null");
@@ -92,7 +95,7 @@ public class User {
     }
 
     private static void verifyParamsAreNotNull(String name, String password, String phoneNumber,
-                       String addressDescription, String email, String dogName, String dogSize) {
+                                               String addressDescription, String email, String dogName, String dogSize) {
         checkNotNull(name, "'name' was null");
         checkNotNull(password, "'password' was null");
         checkNotNull(phoneNumber, "'phoneNumber' was null");
@@ -188,7 +191,9 @@ public class User {
         this.address = address;
     }
 
-    public int getPhoto() {
-        return photo;
+    public int getPersonPic() {
+        return personPic;
     }
 }
+
+
