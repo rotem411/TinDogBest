@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rotemarbiv.tin">
 
+    <!--<uses-sdk-->
+        <!--android:minSdkVersion="16"-->
+        <!--android:targetSdkVersion="18"-->
+        <!--/>-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
 
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -23,30 +28,11 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".NewNeedEventActivity" />
+        <activity android:name=".NewCanEventActivity" />
+        <activity android:name=".EventActivity" />
+        <activity android:name=".ResultActivity" />
 
-        <activity android:name=".NewEventActivity"
-            android:parentActivityName="com.rotemarbiv.tin.HomeActivity" >
-        <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-
-        <activity android:name=".EventActivity"
-            android:parentActivityName="com.rotemarbiv.tin.HomeActivity" >
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-
-        <activity android:name=".ResultActivity"
-            android:parentActivityName="com.rotemarbiv.tin.HomeActivity" >
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
 
     </application>
 

@@ -4,85 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rotemarbiv.tin.MainActivity">
+    tools:context="com.rotemarbiv.tin.MainActivity"
+    android:background="@drawable/sign_in_bg">
+
 
     <TextView
-        android:id="@+id/userNameLabel"
+        android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Name"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/userNameInput"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Email"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toTopOf="@+id/passwordLabel"
-        app:layout_constraintHorizontal_bias="0.695"
-        app:layout_constraintVertical_bias="0.586" />
+        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/emailInput"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/passwordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:layout_marginLeft="32dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/passwordInput"
-        android:layout_marginRight="8dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintLeft_toLeftOf="@+id/emailLabel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
-        android:layout_marginBottom="310dp" />
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginBottom="234dp" />
 
     <EditText
-        android:id="@+id/userNameInput"
+        android:id="@+id/emailInput"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="99dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:text="rotem.rbv@gmail.com"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:backgroundTint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/passwordInput"
-        android:layout_marginRight="38dp"
-        app:layout_constraintVertical_bias="0.666"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.982"
+        android:layout_marginEnd="99dp" />
 
     <EditText
         android:id="@+id/passwordInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_marginRight="38dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="47dp"
-        app:layout_constraintBottom_toTopOf="@+id/signInButton" />
+        android:backgroundTint="@android:color/white"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:text="1234"
+        app:layout_constraintBottom_toTopOf="@+id/signInButton"
+        app:layout_constraintRight_toRightOf="@+id/emailInput" />
 
     <Button
         android:id="@+id/signInButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:layout_width="264dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="121dp"
-        app:layout_constraintBottom_toTopOf="@+id/signUpButton" />
+        android:layout_marginStart="8dp"
+        android:background="@drawable/sign_in_yellow"
+        android:text="SIGN IN"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="32dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="260dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="54dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginRight="8dp"
+        android:background="@drawable/sign_up_white_stroke"
+        android:text="SIGN UP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,51 @@
+@startuml
+
+class BackendSimulator {
+    - HashMap<String, User> users
+    - HashMap<String, Task> canTasks
+    - HashMap<String, Task> needTasks
+
+    + signUp()
+    + signIn()
+    + findMatch(Task can, Task need)
+    + addTask(Task can, Task need)
+    + viewProfile(User user)
+    + markDone(Task task)
+    + rateUser(User user, int rate)
+    + editTask(Task task)
+    + removeTask(Task task)
+}
+
+class User {
+    - name
+    - password
+    - phone number
+    - address
+    - Dog dog
+}
+
+class Dog {
+    - name
+    - age
+    - breed
+    - character
+}
+
+class Address {
+    - city
+    - street
+    - house
+    - apartment
+}
+
+class Task {
+    - time
+    - owner
+    - type
+}
+
+enum TaskType {
+    CAN, NEED
+}
+
+@enduml

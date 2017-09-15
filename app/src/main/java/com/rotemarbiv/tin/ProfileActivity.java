@@ -8,8 +8,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.rotemarbiv.tin.backend.BackendSimulator;
 
 /**
  * Created by dafnaarbiv on 12/07/2017.
@@ -18,7 +21,6 @@ import android.widget.TextView;
 public class ProfileActivity extends AppCompatActivity {
     //    public Button homeButton;
     public TextView fullName;
-    public EditText userName;
     public EditText dogName;
     public Spinner dogSizeSpinner;
     public EditText address;
@@ -26,8 +28,10 @@ public class ProfileActivity extends AppCompatActivity {
     public EditText phoneNum;
     public Button homeButton;
     public Button editButton;
-    public User user;
+    public User profileUser;
     public User selfUser;
+    public RatingBar ratingBar;
+    private static BackendSimulator backend = BackendSimulator.getInstance();
 
 
     @Override
@@ -45,8 +49,10 @@ public class ProfileActivity extends AppCompatActivity {
         homeButton = (Button) findViewById((R.id.homeButton));
         editButton = (Button) findViewById((R.id.editButton));
 
-        user = (User) getIntent().getSerializableExtra("profileUser");
-        selfUser = user; //TODO: change better
+        selfUser = (User) getIntent().getSerializableExtra("selfUser");
+        profileUser = (User) getIntent().getSerializableExtra("profileUser");
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        ratingBar.setRating(backend.getUser(profileUser.getEmail()).getRating());
 
         ArrayAdapter<CharSequence> dogSizeAdapter = ArrayAdapter.createFromResource(this,
                 R.array.dog_size_array, android.R.layout.simple_spinner_item);
@@ -54,21 +60,25 @@ public class ProfileActivity extends AppCompatActivity {
         dogSizeSpinner.setAdapter(dogSizeAdapter);
 
         dogSizeSpinner.setEnabled(false);
-        fullName.setText(user.getFullName());
-        dogName.setText(user.getDogName());
-        address.setText(user.getAddress());
-        email.setText(user.getEmail());
-        phoneNum.setText(user.getPhoneNumber());
+        fullName.setText(profileUser.getFullName());
+        dogName.setText(profileUser.getDogName());
+        address.setText(profileUser.getAddress());
+        email.setText(profileUser.getEmail());
+        phoneNum.setText(profileUser.getPhoneNumber());
 
-        if (user.dogSize != null){
-            dogSizeSpinner.setSelection(dogSizeAdapter.getPosition(user.getDogSize()));
+        if (profileUser.dogSize != null){
+            dogSizeSpinner.setSelection(dogSizeAdapter.getPosition(profileUser.getDogSize()));
         }
 
 
-        if (user.getEmail() == selfUser.getEmail()){
+        if (profileUser.getEmail().equals(selfUser.getEmail())){
 
             editButton.setVisibility(View.VISIBLE);
             editButton.setClickable(true);
+            ratingBar.setIsIndicator(false);
+        }
+        else {
+            ratingBar.setIsIndicator(true);
         }
 
     }
@@ -78,7 +88,6 @@ public class ProfileActivity extends AppCompatActivity {
         if (editButton.getText() == "Edit") {
             editButton.setText("Save");
             fullName.setEnabled(true);
-            userName.setEnabled(true);
             dogName.setEnabled(true);
             dogSizeSpinner.setEnabled(true);
             address.setEnabled(true);
@@ -88,7 +97,6 @@ public class ProfileActivity extends AppCompatActivity {
         else{
             //means it now says save
             fullName.setEnabled(false);
-            userName.setEnabled(false);
             dogName.setEnabled(false);
             dogSizeSpinner.setEnabled(false);
             address.setEnabled(false);
@@ -99,20 +107,28 @@ public class ProfileActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view,
                                            int position, long id) {
-                    user.dogSize = (String) parent.getItemAtPosition(position);
+                    profileUser.dogSize = (String) parent.getItemAtPosition(position);
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
+                //nothingn
                 }
             });
 
-            user.setFullName(fullName.getText().toString());
-            user.setDogName(dogName.getText().toString());
-            user.setAddress(address.getText().toString());
-            user.setEmail(email.getText().toString());
-            user.setPhoneNumber(phoneNum.getText().toString());
+            String pastEmail = profileUser.getEmail();
 
+            profileUser.setFullName(fullName.getText().toString());
+            profileUser.setDogName(dogName.getText().toString());
+            profileUser.setAddress(address.getText().toString());
+            profileUser.setEmail(email.getText().toString());
+            profileUser.setPhoneNumber(phoneNum.getText().toString());
+
+            com.rotemarbiv.tin.backend.User backendUser = backend.getUser(pastEmail);
+            backendUser.setName(profileUser.getFullName());
+            backendUser.setDogName(profileUser.getDogName());
+            backendUser.setAddress(profileUser.getEmail());
+            backendUser.setPhoneNumber(profileUser.getPhoneNumber());
+            backendUser.setDogSize(profileUser.getDogSize());
             editButton.setText("Edit");
 
         }
@@ -120,6 +136,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void goToHomePage(View view){
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("selfUser", selfUser);
         startActivity(intent);
     }
 }

@@ -1,8 +1,8 @@
 package com.rotemarbiv.tin;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,14 +10,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.rotemarbiv.tin.backend.BackendSimulator;
+import com.rotemarbiv.tin.backend.Task;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    public static User self;
-    public EditText userName;
-    public EditText password;
-    public Button signInButton;
-    public Button signUpButton;
-    public String passwordString;
+    private static User self;
+    private EditText email;
+    private EditText password;
+    private Button signInButton;
+    private Button signUpButton;
+    private String passwordString;
+    private String emailString;
+    private BackendSimulator backend = BackendSimulator.getInstance();
+
+    private com.rotemarbiv.tin.backend.User serverResponse;
 
 
     @Override
@@ -25,24 +35,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        userName = (EditText) findViewById(R.id.userNameInput);
+        email = (EditText) findViewById(R.id.emailInput);
         password = (EditText) findViewById(R.id.passwordInput);
-        passwordString = password.getText().toString();
         signInButton = (Button) findViewById(R.id.signInButton);
-        self = new User(userName.getText().toString(), password.getText().toString(), true);
+
 
         signInButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-//                if (MyApp.mGlobalUsers == null){
-//                    Toast.makeText(getApplicationContext(), "There is no such User or the password is not correct ",Toast.LENGTH_LONG).show();
-//                }
-//                else if (MyApp.mGlobalUsers.get(userName.getText().toString()).equals(passwordString)){ // verify the user with server
-//                    Toast.makeText(getApplicationContext(), "There is no such User or the password is not correct ",Toast.LENGTH_LONG).show();
-//                }
-//                else {
-                    //sign in as the user - dont know who
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                emailString = email.getText().toString();
+                passwordString = password.getText().toString();
+
+                if (email.getText().toString().trim().length()>0
+                         && password.getText().toString().trim().length() > 0){
+                            serverResponse = backend.signIn(emailString, passwordString);
+                            if(serverResponse == null){
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "User Doesn't exist. Try again or sign up.", Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+                            else{
+                                //sign in as the selfUser - dont know who
+                                self = User.convertBackendUserToUser(serverResponse);
+                                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                                intent.putExtra("selfUser", self);
+                                startActivity(intent);
+                            }
+                 }
+
 //                }
 
             }
@@ -52,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                // verify the user with server
+                // verify the selfUser with server
 
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(intent);

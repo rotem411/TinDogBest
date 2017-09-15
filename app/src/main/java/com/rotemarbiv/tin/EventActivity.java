@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.MapView;
+import com.rotemarbiv.tin.backend.BackendSimulator;
 
 /**
  * Created by dafnaarbiv on 25/07/2017.
@@ -28,6 +29,7 @@ public class EventActivity extends AppCompatActivity {
     public EditText special;
     public Button walkDone;
 
+    public User selfUser;
     public Event event;
 
     protected void onCreate(Bundle savedInstanceState){
@@ -35,10 +37,9 @@ public class EventActivity extends AppCompatActivity {
         this.setContentView(R.layout.event);
 
         event = (Event) getIntent().getSerializableExtra("eventClicked");
+        selfUser = (User) getIntent().getSerializableExtra("selfUser");
 
-        System.out.println(event.getEventTitle()+"  "+event.isItMe);
-
-        if (event.isItMe){
+        if (event.walker.getEmail().equals(this.selfUser.getEmail())){
             walkDone = (Button)findViewById(R.id.walkDoneButton);
             walkDone.setVisibility(View.VISIBLE);
             walkDone.setClickable(true);
@@ -51,22 +52,40 @@ public class EventActivity extends AppCompatActivity {
 //        map = (MapView) findViewById(R.id.mapView);
         special = (EditText) findViewById(R.id.commentsInput);
 
-
         time.setText(event.getTimeStr());
         date.setText(event.getDateStr());
         walkerName.setText(event.walker.getFullName());
         dogName.setText((event.dog.dogName));
         special.setText(event.comments);
 
+        walkerName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EventActivity.this, ProfileActivity.class);
+                intent.putExtra("selfUser", selfUser);
+                intent.putExtra("profileUser", event.walker);
+                startActivity(intent);
+            }
+        });
+        dogName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EventActivity.this, ProfileActivity.class);
+                intent.putExtra("selfUser", selfUser);
+                intent.putExtra("profileUser", event.dog);
+                startActivity(intent);
+            }
+        });
+
     }
 
         public void walkDoneClicked(View view){
             // send the server information that this event can be deleted
             createNotification(view);
+            BackendSimulator backendSimulator = BackendSimulator.getInstance();
+            backendSimulator.removeEvent(Event.convertEventToBackendEvent(event));
             Intent intent = new Intent(EventActivity.this, HomeActivity.class);
-            if (event.isItMe){
-                intent.putExtra("myEventToDelete", event);
-            }
+            intent.putExtra("selfUser", selfUser);
             startActivity(intent);
         }
 

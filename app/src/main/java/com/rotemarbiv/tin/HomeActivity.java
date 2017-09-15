@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.rotemarbiv.tin.backend.BackendSimulator;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by dafnaarbiv on 22/07/2017.
@@ -19,64 +22,71 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    public User laureUser = new User("Laure Scemama", "Doggy", "Yafo 3", true);
-    public User galUser = new User("Gal Nachmana", "Meggie", "Yafo 4", true);
-    public User rotemUser = new User("Rotem Arbiv", "Julia", "Yafo 5", true);
+//    public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "noon", true, 1);
+//    public Event b = new Event(laureUser, galUser, "Tue, July 7th", "morning", true, 2);
+//    public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
+//    public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);x
 
-    public Event a = new Event(laureUser, rotemUser, "Tue, July 7th", "noon", true, 1);
-    public Event b = new Event(laureUser, galUser, "Tue, July 7th", "morning", true, 2);
-    public Event c =  new Event(galUser, laureUser, "Wed, July 8th", "noon", false, 1);
-    public Event d =  new Event(rotemUser, laureUser, "Thu, July 8th", "evening",  false, 2);
+    private User selfUser;
+    private static BackendSimulator backend = BackendSimulator.getInstance();
 
-    private User selfUser; //TODO: receive from sign in
+    private ArrayList<Event> myEvents;
+    private ArrayList<Event> dogsEvents;
+    private ArrayList<Event> myPendingEvents;
+    private EventAdapter myEventsAdapter;
+    private EventAdapter dogsEventsAdapter;
+    private ArrayAdapter myPendingAdapter;
+    public Button profilePic;
 
-    private ArrayList<Event> myEvents = new ArrayList<Event>();
-    private ArrayList<Event> dogsEvents = new ArrayList<Event>();
-
-    private ArrayList<Event> myPendingEvents = new ArrayList<Event>();
 
     private FloatingActionButton newEventButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+//        myEvents.add(a);
+//        myEvents.add(b);
+//        dogsEvents.add(c);
+//        dogsEvents.add(d);
+//        myPendingEvents.add(d);
+        selfUser = (User) getIntent().getSerializableExtra("selfUser");
+        com.rotemarbiv.tin.backend.User backendUser = backend.getUser(selfUser.getEmail());
 
-        myEvents.add(a);
-        myEvents.add(b);
-        dogsEvents.add(c);
-        dogsEvents.add(d);
-        myPendingEvents.add(d);
+        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents());
+        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents());
+        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents());
+        profilePic = (Button) findViewById(R.id.profileButton);
+        profilePic.setBackground(getResources().getDrawable(backendUser.getPersonPic()));
 
-        Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
-        Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
-        Event toAdd = (Event) getIntent().getSerializableExtra("newEventFound");
 
-        if(myToDelete != null){
-
-            myEvents.remove(myToDelete.index);
-        }
-        if(dogToDelete != null){
-            dogsEvents.remove(dogToDelete.index);
-        }
-
-        if(toAdd != null){
-            if (toAdd.isItMe){
-                myEvents.add(toAdd);
-            }
-            else{
-                dogsEvents.add(toAdd);
-            }
-        }
+//        Event myToDelete = (Event) getIntent().getSerializableExtra("myEventToDelete");
+//        Event dogToDelete = (Event) getIntent().getSerializableExtra("dogEventToDelete");
+//        Event toAdd = (Event) getIntent().getSerializableExtra("newEventFound");
+//
+//        if(myToDelete != null){
+//
+//            myEvents.remove(myToDelete.index);
+//        }
+//        if(dogToDelete != null){
+//            dogsEvents.remove(dogToDelete.index);
+//        }
+//
+//        if(toAdd != null){
+//            if (toAdd.isItMe){
+//                myEvents.add(toAdd);
+//            }
+//            else{
+//                dogsEvents.add(toAdd);
+//            }
+//        }
 
         ListView myEventsListView = (ListView)findViewById(R.id.myEventsList);
         ListView dogsEventsListView = (ListView)findViewById(R.id.dogsEventsList);
         ListView myPendingEventsListView = (ListView)findViewById(R.id.myPendingEventsList);
-
-        EventAdapter myEventsAdapter = new EventAdapter(this, R.layout.event_item_list, myEvents);
+        myEventsAdapter = new EventAdapter(this, R.layout.event_item_list, myEvents, selfUser);
         myEventsListView.setAdapter(myEventsAdapter);
-        EventAdapter dogsEventsAdapter = new EventAdapter(this, R.layout.event_item_list, dogsEvents);
+        dogsEventsAdapter = new EventAdapter(this, R.layout.event_item_list, dogsEvents, selfUser);
         dogsEventsListView.setAdapter(dogsEventsAdapter);
-
 
         myEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -85,9 +95,10 @@ public class HomeActivity extends AppCompatActivity {
                 int curEventID = view.getId();
                 Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
 
-                System.out.println(myEvents.get(position).getEventTitle()+"   "+myEvents.get(position).isItMe);
+                System.out.println(myEvents.get(position).getEventTitle(selfUser)+"   "+myEvents.get(position).isItMe);
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
                 intent.putExtra("eventClicked", myEvents.get(position));
+                intent.putExtra("selfUser", selfUser);
                 startActivity(intent);
 
             }
@@ -100,16 +111,15 @@ public class HomeActivity extends AppCompatActivity {
                 int curEventID = view.getId();
                 Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
 
-
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
                 intent.putExtra("eventClicked", dogsEvents.get(position));
+                intent.putExtra("selfUser", selfUser);
                 startActivity(intent);
 
             }
         });
 
-
-        ArrayAdapter myPendingAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, myPendingEvents);
+        myPendingAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, myPendingEvents);
         myPendingEventsListView.setAdapter(myPendingAdapter);
 
         myPendingEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -119,7 +129,6 @@ public class HomeActivity extends AppCompatActivity {
                 int curEventID = view.getId();
                 Toast.makeText(getApplicationContext(), "cur Event id "+ curEventID,Toast.LENGTH_LONG ).show();
 
-
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
 //                intent.putExtra("spesificEvent", curEventID);
                 startActivity(intent);
@@ -127,24 +136,40 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
         newEventButton = (FloatingActionButton) findViewById(R.id.addEventButton);
         newEventButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, NewEventActivity.class);
+                Intent intent = new Intent(HomeActivity.this, NewNeedEventActivity.class);
+                intent.putExtra("selfUser", selfUser);
                 startActivity(intent);
             }
         });
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        com.rotemarbiv.tin.backend.User backendUser = backend.getUser(selfUser.getEmail());
+
+        myEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getUserEvents());
+        dogsEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getDogEvents());
+        myPendingEvents = Event.convertBackendEventListToEventList(backendUser.getDashboard().getPendingEvents());
+
+        this.myEventsAdapter.notifyDataSetChanged();
+        this.dogsEventsAdapter.notifyDataSetChanged();
+        this.myPendingAdapter.notifyDataSetChanged();
+
+    }
+
     public void profileClicked(View view){
         Intent intent = new Intent(this, ProfileActivity.class);
-        intent.putExtra("profileUser", laureUser);
+        intent.putExtra("profileUser", selfUser);
+        intent.putExtra("selfUser", selfUser);
         startActivity(intent);
     }
 }
 
-// time of walk: morning (8-12, noon12-18, evening18-24)
-// date- no option for past event
-//
+// todo: events with other user don't work
+// todo: picking old dates- now availabe
